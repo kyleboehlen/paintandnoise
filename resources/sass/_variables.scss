@@ -1,0 +1,33 @@
+// Google Fonts Typography
+$temp-font: 'Permanent Marker';
+
+// Base Colors
+$white: #ffffff;
+$black: #000000;
+$light-grey: #d1d1d1;
+$grey: #a0a0a0;
+$dark-grey: #4b4b4b;
+
+// Category Colors
+$a : .75;
+
+$violet: rgba(148, 0, 211);
+$c-violet: rgba(148, 0, 211, $a);
+
+$indigo: rgba(75, 0, 130);
+$c-indigo: rgba(75, 0, 130, $a);
+
+$blue: rgba(0, 0, 255);
+$c-blue: rgba(0, 0, 255, $a);
+
+$green: rgba(0, 255, 0);
+$c-green: rgba(0, 255, 0, $a);
+
+$yellow: rgba(255, 255, 0);
+$c-yellow: rgba(255, 255, 0, $a);
+
+$orange: rgba(255, 127, 0);
+$c-orange: rgba(255, 127, 0, $a);
+
+$red: rgba(255, 0, 0);
+$c-red: rgba(255, 0, 0, $a);
