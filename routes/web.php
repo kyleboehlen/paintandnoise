@@ -11,8 +11,11 @@
 |
 */
 
-Route::get('/', function() {
-    return view('temp');
-});
+// Root Route
+Route::get('/', 'HomeController@index')->name('root');
 
-Route::get('/temp/asset/logo', 'AssetController@templogo');
+// Home Route
+Route::get('/home', 'HomeController@home')->name('home');
+
+// About Route
+Route::get('/about', 'HomeController@about')->name('about');
