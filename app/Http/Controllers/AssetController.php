@@ -7,8 +7,9 @@ use Image;
 
 class AssetController extends Controller
 {
-    public function tempLogo()
+    // The main logo
+    public function logo()
     {
-        return Image::make(config('envars.media_path') . config('envars.white_logo_name'))->response();
+        return Image::make(config('envars.media_path') . config('envars.logo_name'))->response();
     }
 }
