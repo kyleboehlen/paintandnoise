@@ -1,12 +1,60 @@
 @import 'base';
-
-.temp
+html
 {
-    font-family: $temp-font;
-    text-align: center;
-    font-size: 5em;
+    height: 100%;
+}
 
-    width: 50%;
-    margin-left: 25%;
-    margin-right: 25%;
+header
+{
+    background-color: $white;
+    border-radius: 5px;
+    margin-top: 0%;
+
+    #header-logo
+    {
+        float: left;
+        margin-left: 2.5%;
+        margin-top: 1px;
+        height: 150px;
+        width: auto;
+    }
+
+    .title
+    {
+        display: inline-block;
+        font-family: $title_font;
+        font-size: 5em;
+        margin-bottom: 0%;
+        margin-left: 20%;
+        margin-top: 0%;
+    }
+
+    .auth-link
+    {
+        background-color: $black;
+        border-radius: 10px;
+        color: $white;
+        float: right;
+        font-family: $tool_font;
+        font-size: 3em;
+        margin-right: 2.5%;
+        margin-top: 15px;
+        padding-left: 15px;
+        padding-right: 15px;
+
+        &:hover
+        {
+            color: $dark-grey;
+        }
+    }
+}
+
+body
+{
+    background-color: $black;
+}
+
+footer
+{
+    background-color: $white;
 }
