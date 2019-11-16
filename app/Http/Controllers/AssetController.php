@@ -13,11 +13,11 @@ class AssetController extends Controller
     // The main logo
     public function logo()
     {
-        return Image::make(config('envars.media_path') . config('envars.logo_name'))->response();
+        return Image::make(config('media.path') . config('logo.name'))->response();
     }
 
     public function icon(IconRequest $request, $identifier)
     {
-        return Image::make(config('envars.media_path') . config('envars.icon_sub_dir') . $identifier . config('envars.icon_file_ext'))->response();
+        return Image::make(config('media.path') . config('icon.sub_dir') . $identifier . config('icon.file_ext'))->response();
     }
 }
