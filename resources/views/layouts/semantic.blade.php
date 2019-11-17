@@ -35,6 +35,6 @@
         </div>
         
         {{-- copyright... --}}
-        <p class="copyright">&copy;{{ config('app.name', 'P&N') }}</p>
+        <p class="copyright">&copy; {{ config('app.name', 'P&N') }}</p>
     </footer>
 @endsection
