@@ -184,6 +184,29 @@ footer
             font-size: 1.75em;
         }
     }
+
+    .container
+    {
+        display: flex;
+
+        img
+        {
+            border-radius: 50%;
+            display: inline-block;
+            height: 400px;
+            width: auto;
+        }
+    
+        p
+        {
+            color: $white;
+            display: inline-block;
+            font-family: $body-font;
+            margin-left: 10%;
+            margin-right: 10%;
+            text-align: center;
+        }
+    }
 }
 
 .team-section
@@ -227,26 +250,32 @@ footer
 
     .container
     {
-        display: flex;
-
         img
         {
-            border-radius: 50%;
-            display: inline-block;
-            height: 400px;
-            margin-left: 10%; 
-            width: auto;
+            margin-left: 10%;
         }
-    
+
         p
         {
-            color: $white;
-            display: inline-block;
-            font-family: $body-font;
             font-size: 2.25em;
-            margin-left: 10%;
+        }
+    }
+}
+
+.how-section
+{
+    @extend .about-page-section;
+
+    .container
+    {
+        img
+        {
             margin-right: 10%;
-            text-align: center;
+        }
+
+        p
+        {
+            font-size: 2.25em;
         }
     }
 }

@@ -27,6 +27,7 @@ Route::prefix('/assets')->group(function(){
 
     // About Page Images
     Route::get('/about', 'AssetController@about')->name('assets.about');
+    Route::get('/how', 'AssetController@how')->name('assets.how');
     
     // Icons
     Route::get('/icon/{identifier}', 'AssetController@icon')->name('assets.icon');

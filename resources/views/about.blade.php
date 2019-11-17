@@ -14,6 +14,17 @@
     </div>
 
     {{-- how it works section --}}
+    <div class="how-section">
+        <h2>How Does It Work?</h2>
+        <div class="container">
+            <p>
+                When artists share their work the community, not some magic algorithm, decides what gets voted to the top<br/><br/>
+                Anybody can sign up to browse content, or vote on which posts they like.<br/><br/>
+                Posts only last {{ config('posts.timeout') }} days so content stays fresh.
+            </p>
+            <img src="{{ route('assets.how') }}" title="Photo by {{ config('media.how_attribution') }}"/>
+        </div>
+    </div>
 
     {{-- why section --}}
 
