@@ -25,6 +25,16 @@
     </body>
 
     <footer>
-        {{-- copyright and contact info and social media links --}}
+        {{-- Social media links (facebook, insta, twitter)--}}
+        <div class="social-container">
+            @foreach(config('icon.identifiers') as $identifier)
+                <a href="{{ config('social.' . $identifier . '_url') . config('social.' . $identifier . '_username') }}" target="_blank"> 
+                    <img src="{{ route('assets.icon', $identifier) }}"/>
+                </a>
+            @endforeach
+        </div>
+        
+        {{-- copyright... --}}
+        <p class="copyright">&copy;{{ config('app.name', 'P&N') }}</p>
     </footer>
 @endsection

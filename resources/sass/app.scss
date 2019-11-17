@@ -56,5 +56,34 @@ body
 
 footer
 {
-    background-color: $white;
+    background-color: $black;
+    border-top: 5px solid $white;
+
+    .social-container
+    {
+        display: flex;
+        justify-content: center;
+        padding-top: 1%;
+        width: 100%;
+
+        a
+        {
+            margin-left: 1%;
+            margin-right: 1%;
+            text-decoration: none;
+
+            img
+            {
+                height: 50px;
+                width: auto;
+            }
+        }
+    }
+
+    .copyright
+    {
+        color: $white;
+        font-family: $body-font;
+        text-align: center;
+    }
 }
