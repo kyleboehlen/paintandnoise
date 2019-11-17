@@ -87,3 +87,48 @@ footer
         text-align: center;
     }
 }
+
+.about-page-section
+{
+    border-top: 5px solid $white;
+    margin-top: 75px;
+    width: 100%;
+
+    h2
+    {
+        color: $white;
+        font-family: $header_font;
+        font-size: 3em;
+        text-align: center;
+        text-decoration: underline;
+    }
+}
+
+.team-section
+{
+    @extend .about-page-section;
+    
+    .figure-container
+    {
+        display: flex;
+        justify-content: center;
+    
+        figure
+        {
+            img
+            {
+                border-radius: 50%;
+                height: 250px;
+                width: auto;
+            }
+    
+            figcaption
+            {
+                color: $white;
+                font-family: $tool_font;
+                font-size: 2em;
+                text-align: center;
+            }
+        }
+    }
+}
