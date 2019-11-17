@@ -47,6 +47,88 @@ header
             color: $dark-grey;
         }
     }
+
+    @media only screen and (max-width: 1300px)
+    {
+        .title
+        {
+            font-size: 4em;
+        }
+
+        .auth-link
+        {
+            font-size: 2em;
+        }
+    }
+
+    @media only screen and (max-width: 1100px)
+    {
+        #header-logo
+        {
+            height: 100px;
+        }
+
+        .title
+        {
+            font-size: 3em;
+            margin-left: 10%;
+        }
+
+        .auth-link
+        {
+            font-size: 1.5em;
+            margin-top: 5px;
+        }
+    }
+
+    @media only screen and (max-width: 800px)
+    {
+        #header-logo
+        {
+            height: 75px;
+        }
+
+        .title
+        {
+            font-size: 2em;
+        }
+
+        .auth-link
+        {
+            font-size: 1em;
+            margin-top: 2.5px;
+        }
+    }
+
+    @media only screen and (max-width: 600px)
+    {
+        #header-logo
+        {
+            float: none;
+            height: auto;
+            margin-left: 45%;
+            margin-right: 45%;
+            width: 10%;
+        }
+
+        .title
+        {
+            display: block;
+            margin-left: 0%;
+            text-align: center;
+        }
+
+        .auth-link
+        {
+            background-color: transparent;
+            color: $black;
+            display: block;
+            float: none;
+            text-align: center;
+            text-decoration: underline;
+            width: 100%;
+        }
+    }
 }
 
 body
