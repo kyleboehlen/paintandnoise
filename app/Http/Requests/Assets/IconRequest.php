@@ -21,12 +21,7 @@ class IconRequest extends FormRequest
         ];
 
         // Set validator rules
-        $rules = ['identifier' => ['required', 'alpha', Rule::in([
-            // Icon identifiers (this may need to move to a perm:: like class)
-            'instagram',
-            'facebook',
-            'twitter',
-        ])]];
+        $rules = ['identifier' => ['required', 'alpha', Rule::in(config('icon.identifiers'))]];
 
         // Return true if validator passes
         return Validator::make($input, $rules)->passes();
