@@ -11,8 +11,23 @@
 |
 */
 
-Route::get('/', function() {
-    return view('temp');
-});
+// Root Route
+Route::get('/', 'HomeController@index')->name('root');
 
-Route::get('/temp/asset/logo', 'AssetController@templogo');
+// Home Route
+Route::get('/home', 'HomeController@home')->name('home');
+
+// About Route
+Route::get('/about', 'HomeController@about')->name('about');
+
+// Assets
+Route::prefix('/assets')->group(function(){
+    // Main logo
+    Route::get('/logo', 'AssetController@logo')->name('assets.logo');
+    
+    // Icons
+    Route::get('/icon/{identifier}', 'AssetController@icon')->name('assets.icon');
+
+    // Team Member Pictures
+    Route::get('/team/{name}', 'AssetController@team')->name('assets.team');
+});

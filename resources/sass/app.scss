@@ -1,12 +1,222 @@
 @import 'base';
-
-.temp
+html
 {
-    font-family: $temp-font;
-    text-align: center;
-    font-size: 5em;
+    height: 100%;
+}
 
-    width: 50%;
-    margin-left: 25%;
-    margin-right: 25%;
+header
+{
+    background-color: $white;
+    border-radius: 5px;
+    margin-top: 0%;
+
+    #header-logo
+    {
+        float: left;
+        margin-left: 2.5%;
+        margin-top: 1px;
+        height: 150px;
+        width: auto;
+
+        @media only screen and (max-width: 1100px)
+        {
+            height: 100px;
+        }
+    
+        @media only screen and (max-width: 800px)
+        {
+            height: 75px;
+        }
+    
+        @media only screen and (max-width: 600px)
+        {
+            float: none;
+            height: auto;
+            margin-left: 42.5%;
+            margin-right: 42.5%;
+            width: 15%;
+        }
+    }
+
+    .title
+    {
+        display: inline-block;
+        font-family: $title_font;
+        font-size: 5em;
+        margin-bottom: 0%;
+        margin-left: 20%;
+        margin-top: 0%;
+
+        @media only screen and (max-width: 1300px)
+        {
+            font-size: 4em;
+        }
+
+        @media only screen and (max-width: 1100px)
+        {
+            font-size: 3em;
+            margin-left: 10%;
+        }
+        
+        @media only screen and (max-width: 800px)
+        {
+            font-size: 2em;
+        }
+        
+        @media only screen and (max-width: 600px)
+        {
+            display: block;
+            margin-left: 0%;
+            text-align: center;
+        }
+        
+    }
+
+    .auth-link
+    {
+        background-color: $black;
+        border-radius: 10px;
+        color: $white;
+        float: right;
+        font-family: $tool_font;
+        font-size: 2.5em;
+        margin-right: 2.5%;
+        margin-top: 15px;
+        padding: 5px;
+        text-decoration: none;
+
+        &:hover
+        {
+            color: $dark-grey;
+        }
+
+        @media only screen and (max-width: 1300px)
+        {
+            font-size: 2em;
+        }
+
+        @media only screen and (max-width: 1100px)
+        {
+            font-size: 1.5em;
+            margin-top: 5px;
+        }
+        
+        @media only screen and (max-width: 800px)
+        {
+            font-size: 1.25em;
+            padding: 1px;
+        }
+        
+        @media only screen and (max-width: 600px)
+        {
+            background-color: transparent;
+            color: $black;
+            display: block;
+            float: none;
+            text-align: center;
+            text-decoration: underline;
+            width: 100%;
+        }
+    }
+}
+
+body
+{
+    background-color: $black;
+}
+
+footer
+{
+    background-color: $black;
+    border-top: 5px solid $white;
+
+    .social-container
+    {
+        display: flex;
+        justify-content: center;
+        padding-top: 1%;
+        width: 100%;
+
+        a
+        {
+            margin-left: 1%;
+            margin-right: 1%;
+            text-decoration: none;
+
+            img
+            {
+                height: 50px;
+                width: auto;
+            }
+        }
+
+        @media only screen and (max-width: 600px)
+        {
+            justify-content: space-evenly;
+            padding-top: 2.5%;
+        }
+    }
+
+    .copyright
+    {
+        color: $white;
+        font-family: $body-font;
+        text-align: center;
+    }
+}
+
+.about-page-section
+{
+    border-top: 5px solid $white;
+    margin-top: 75px;
+    width: 100%;
+
+    h2
+    {
+        color: $white;
+        font-family: $header_font;
+        font-size: 3em;
+        text-align: center;
+        text-decoration: underline;
+
+        @media only screen and (max-width: 600px)
+        {
+            font-size: 1.75em;
+        }
+    }
+}
+
+.team-section
+{
+    @extend .about-page-section;
+    
+    .figure-container
+    {
+        display: flex;
+        justify-content: center;
+    
+        figure
+        {
+            img
+            {
+                border-radius: 50%;
+                height: 250px;
+                width: auto;
+            }
+    
+            figcaption
+            {
+                color: $white;
+                font-family: $tool_font;
+                font-size: 2em;
+                text-align: center;
+            }
+        }
+
+        @media only screen and (max-width: 600px)
+        {
+            flex-wrap: wrap;
+            justify-content: space-evenly;
+        }
+    }
 }
