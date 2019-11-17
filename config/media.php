@@ -5,4 +5,6 @@ return [
     'about_attribution' => env('ABOUT_ATTRIBUTION', 'unsplash'),
     'how_image' => env('HOW_IMAGE', 'how.jpg'),
     'how_attribution' => env('HOW_ATTRIBUTION', 'unsplash'),
+    'why_image' => env('WHY_IMAGE', 'why.jpg'),
+    'why_attribution' => env('WHY_ATTRIBUTION', 'unsplash'),
 ];

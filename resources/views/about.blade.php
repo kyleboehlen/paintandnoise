@@ -27,6 +27,17 @@
     </div>
 
     {{-- why section --}}
+    <div class="why-section">
+        <h2>So, Like, Why?</h2>
+        <div class="container">
+            <img src="{{ route('assets.why') }}" title="Photo by {{ config('media.why_attribution') }}"/>
+            <p>
+                We're always on the hunt for fresh art, and 'underground' artists are often our favorite.<br/><br/>
+                Current social media platforms cater to those that already have a large audience and isn't condusive for discovering artists at all.<br/><br/>
+                We figured we couldn't be the only ones bugged by the status quo, and P&N was born!
+            </p>
+        </div>
+    </div>
 
     {{-- team section --}}
     <div class="team-section">

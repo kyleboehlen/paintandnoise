@@ -279,3 +279,21 @@ footer
         }
     }
 }
+
+.why-section
+{
+    @extend .about-page-section;
+
+    .container
+    {
+        img
+        {
+            margin-left: 10%;
+        }
+
+        p
+        {
+            font-size: 2.25em;
+        }
+    }
+}

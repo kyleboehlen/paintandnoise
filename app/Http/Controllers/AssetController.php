@@ -36,4 +36,9 @@ class AssetController extends Controller
     {
         return Image::make(config('media.path') . config('media.how_image'))->fit(600, 600)->response();
     }
+
+    public function why()
+    {
+        return Image::make(config('media.path') . config('media.why_image'))->fit(600, 600)->response();
+    }
 }
