@@ -7,6 +7,7 @@ use Image;
 
 // Requests
 use App\Http\Requests\Assets\IconRequest;
+use App\Http\Requests\Assets\TeamRequest;
 
 class AssetController extends Controller
 {
@@ -19,5 +20,10 @@ class AssetController extends Controller
     public function icon(IconRequest $request, $identifier)
     {
         return Image::make(config('media.path') . config('icon.sub_dir') . $identifier . config('icon.file_ext'))->response();
+    }
+
+    public function team(TeamRequest $request, $name)
+    {
+        return Image::make(config('media.path') . config('team.sub_dir') . $name . config('team.file_ext'))->response();
     }
 }

@@ -27,4 +27,7 @@ Route::prefix('/assets')->group(function(){
     
     // Icons
     Route::get('/icon/{identifier}', 'AssetController@icon')->name('assets.icon');
+
+    // Team Member Pictures
+    Route::get('/team/{name}', 'AssetController@team')->name('assets.team');
 });
