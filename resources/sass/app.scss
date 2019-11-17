@@ -183,6 +183,11 @@ footer
         font-size: 3em;
         text-align: center;
         text-decoration: underline;
+
+        @media only screen and (max-width: 600px)
+        {
+            font-size: 1.75em;
+        }
     }
 }
 
@@ -193,7 +198,8 @@ footer
     .figure-container
     {
         display: flex;
-        justify-content: center;
+        flex-wrap: wrap;
+        justify-content: space-evenly;
     
         figure
         {
