@@ -27,6 +27,6 @@ class HomeController extends Controller
     public function about()
     {
         // Create and return about splash page view
-        return 'about';
+        return view('about');
     }
 }
