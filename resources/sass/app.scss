@@ -36,11 +36,11 @@ header
         color: $white;
         float: right;
         font-family: $tool_font;
-        font-size: 3em;
+        font-size: 2.5em;
         margin-right: 2.5%;
         margin-top: 15px;
-        padding-left: 15px;
-        padding-right: 15px;
+        padding: 5px;
+        text-decoration: none;
 
         &:hover
         {
