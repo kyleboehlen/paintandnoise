@@ -149,6 +149,12 @@ footer
                 width: auto;
             }
         }
+
+        @media only screen and (max-width: 600px)
+        {
+            justify-content: space-evenly;
+            padding-top: 2.5%;
+        }
     }
 
     .copyright
