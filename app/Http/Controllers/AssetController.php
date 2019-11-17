@@ -26,4 +26,9 @@ class AssetController extends Controller
     {
         return Image::make(config('media.path') . config('team.sub_dir') . $name . config('team.file_ext'))->response();
     }
+
+    public function about()
+    {
+        return Image::make(config('media.path') . config('media.about_image'))->fit(600, 600)->response();
+    }
 }
