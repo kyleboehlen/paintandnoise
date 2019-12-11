@@ -24,6 +24,11 @@ Route::get('/about', 'HomeController@about')->name('about');
 Route::prefix('/assets')->group(function(){
     // Main logo
     Route::get('/logo', 'AssetController@logo')->name('assets.logo');
+
+    // About Page Images
+    Route::get('/about', 'AssetController@about')->name('assets.about');
+    Route::get('/how', 'AssetController@how')->name('assets.how');
+    Route::get('/why', 'AssetController@why')->name('assets.why');
     
     // Icons
     Route::get('/icon/{identifier}', 'AssetController@icon')->name('assets.icon');

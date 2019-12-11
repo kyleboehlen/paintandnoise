@@ -184,6 +184,77 @@ footer
             font-size: 1.75em;
         }
     }
+
+    .container
+    {
+        display: flex;
+
+        img
+        {
+            border-radius: 50%;
+            display: inline-block;
+            height: 400px;
+            width: auto;
+
+            @media only screen and (max-width: 1200px)
+            {
+                height: 300px;
+            }
+
+            @media only screen and (max-width: 1000px)
+            {
+                height: 200px;
+            }
+
+            
+            @media only screen and (max-width: 900px)
+            {
+                flex-grow: 1;
+            }
+
+            @media only screen and (max-width: 600px)
+            {
+                height: auto;
+                width: 20%;
+            }
+        }
+    
+        p
+        {
+            color: $white;
+            display: inline-block;
+            font-family: $body-font;
+            font-size: 2.5em;
+            margin-left: 10%;
+            margin-right: 10%;
+            text-align: center;
+
+            @media only screen and (max-width: 1800px)
+            {
+                font-size: 2em;
+            }
+
+            @media only screen and (max-width: 1500px)
+            {
+                font-size: 1.75em;
+            }
+
+            @media only screen and (max-width: 1200px)
+            {
+                font-size: 1.5em;
+            }
+
+            @media only screen and (max-width: 1000px)
+            {
+                font-size: 1.25em;
+            }
+        }
+
+        @media only screen and (max-width: 900px)
+        {
+            flex-wrap: wrap;
+        }
+    }
 }
 
 .team-section
@@ -217,6 +288,64 @@ footer
         {
             flex-wrap: wrap;
             justify-content: space-evenly;
+        }
+    }
+}
+
+.about-section
+{
+    @extend .about-page-section;
+
+    .container
+    {
+        img
+        {
+            margin-left: 10%;
+
+            @media only screen and (max-width: 900px)
+            {
+                margin-left: 40%;
+                margin-right: 40%;
+            }
+        }
+    }
+}
+
+.how-section
+{
+    @extend .about-page-section;
+
+    .container
+    {
+        img
+        {
+            margin-right: 10%;
+
+            @media only screen and (max-width: 900px)
+            {
+                margin-left: 40%;
+                margin-right: 40%;
+                order: -1;
+            }
+        }
+    }
+}
+
+.why-section
+{
+    @extend .about-page-section;
+
+    .container
+    {
+        img
+        {
+            margin-left: 10%;
+
+            @media only screen and (max-width: 900px)
+            {
+                margin-left: 40%;
+                margin-right: 40%;
+            }
         }
     }
 }
