@@ -100,4 +100,6 @@ return [
 
     'prefix' => env('CACHE_PREFIX', Str::slug(env('APP_NAME', 'laravel'), '_').'_cache'),
 
+    // For assets that have a timeout
+    'cached_asset_timeout' => env('CACHED_ASSET_TIMEOUT', 60),
 ];
