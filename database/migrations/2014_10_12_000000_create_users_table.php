@@ -14,13 +14,30 @@ class CreateUsersTable extends Migration
     public function up()
     {
         Schema::create('users', function (Blueprint $table) {
+            // PK
             $table->bigIncrements('id');
-            $table->string('name');
-            $table->string('email')->unique();
-            $table->timestamp('email_verified_at')->nullable();
-            $table->string('password');
+
+            // Laravel Tables
+            $table->timestamps(0);
+            $table->softDeletes();
             $table->rememberToken();
-            $table->timestamps();
+
+            // More Columns
+            $table->string('name'); // name that displays
+            $table->string('slug')->unique(); // used in url
+
+            $table->string('email')->unique(); // also used at username for login, user auth
+            $table->timestamp('email_verified_at')->nullable();  // casts 
+
+            $table->string('password'); // hidden
+
+            $table->string('phone_number', 10); // only US for now
+            $table->timestamp('phone_number_verified_at')->nullable(); // casts
+            
+            $table->boolean('can_post')->default($value = 0); // Can not post unless verified
+            $table->boolean('can_vote')->default($value = 0); // For restricting voting, ghost ban config possible?
+
+            $table->string('zip_code', 5)->nullable(); // For location filtering in browsing
         });
     }
 
