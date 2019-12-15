@@ -7,6 +7,9 @@ use Carbon\Carbon;
 use Response;
 use Image;
 
+// Models
+use App\Models\Users;
+
 // Requests
 use App\Http\Requests\Assets\IconRequest;
 use App\Http\Requests\Assets\TeamRequest;
@@ -65,6 +68,18 @@ class AssetController extends Controller
         $img = Image::make($make)->fit(600, 600);
 
         return $this->cachedAssetResponse($img, $make);
+    }
+
+    public function profilePicture()
+    {
+        // Get logged in user
+        $user = \Auth::user();
+
+        $make = config('media.path') . config('profilepictures.sub_dir') . (is_null($user->profile_picture) ? config('profilepictures.default') : $user->profile_picture);
+
+        $img = Image::make($make);
+
+        return $img->response();
     }
 
     private function cachedAssetResponse($img, $make)
