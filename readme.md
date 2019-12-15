@@ -111,6 +111,12 @@ Change the default admin username, password and email
 - DEFAULT_ADMIN_PASSWORD=
 
 <br/>
+Add the mail account details
+
+- MAIL_USERNAME=
+- MAIL_PASSWORD=
+
+<br/>
 Run the database migration and seed it with the admin user
 
 `php artisan migrate`

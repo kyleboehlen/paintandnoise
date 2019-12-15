@@ -11,11 +11,14 @@
 |
 */
 
+// Auth
+Auth::routes(['verify' => true]);
+
 // Root Route
 Route::get('/', 'HomeController@index')->name('root');
 
 // Home Route
-Route::get('/home', 'HomeController@home')->name('home');
+Route::get('/home', 'HomeController@home')->middleware('auth')->middleware('verified')->name('home');
 
 // About Route
 Route::get('/about', 'HomeController@about')->name('about');
@@ -35,4 +38,7 @@ Route::prefix('/assets')->group(function(){
 
     // Team Member Pictures
     Route::get('/team/{name}', 'AssetController@team')->name('assets.team');
+
+    // User Profile Pictures
+    Route::get('user/profile-picture', 'AssetController@profilePicture')->middleware('auth')->name('assets.profile-picture');
 });

@@ -1,22 +1,38 @@
 @extends('layouts.base')
 
 @section('template')
+    {{-- Logout Form --}}
+    @if(Auth::check())
+        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+            @csrf
+        </form>
+    @endif
+
     {{-- header based on auth status --}}
     <header>
         {{-- Logo --}}
-        <img id="header-logo" src="{{ route('assets.logo') }}" />
+        <a href="{{ route('root') }}">
+            <img id="header-logo" src="{{ route('assets.logo') }}" />
+        </a>
 
         {{-- Title and filters --}}
-        @if(isset($show) && in_array($show, 'header_filters'))
+        @if(isset($show) && in_array('header_filters', $show))
             {{-- placeholder for filters that will replace the title --}}
         @else
             <h1 class="title">{{ config('app.name', 'P&N') }}</h1>
         @endif
 
         @if(Auth::check())
-            {{-- Browse link --}}
+            {{-- Logout button for now, needs to be moved to user account page --}}
+            <a class="profile-link" href="" 
+                onclick="event.preventDefault();
+                    document.getElementById('logout-form').submit();">
+                <img src="{{ route('assets.profile-picture') }}" />
+            </a>
         @else
-            <a class="auth-link" href="{{-- Sign Up/Login route --}}">Sign Up/Login</a>
+            @if(isset($show) && in_array('auth_link', $show))
+                <a class="auth-link" href="{{ route('login') }}">Sign Up/Login</a>
+            @endif
         @endif
     </header>
 

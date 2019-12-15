@@ -26,7 +26,10 @@ class HomeController extends Controller
 
     public function about()
     {
+        // Show auth link
+        $show = ['auth_link', ];
+
         // Create and return about splash page view
-        return view('about');
+        return view('about')->with(['show' => $show]);
     }
 }
