@@ -40,5 +40,5 @@ Route::prefix('/assets')->group(function(){
     Route::get('/team/{name}', 'AssetController@team')->name('assets.team');
 
     // User Profile Pictures
-    Route::get('user/profile-picture', 'AssetController@profilePicture')->middleware('auth')->name('assets.profile-picture');
+    Route::get('/user/profile-picture', 'AssetController@profilePicture')->middleware('auth')->name('assets.profile-picture');
 });
