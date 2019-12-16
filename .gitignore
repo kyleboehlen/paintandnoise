@@ -14,3 +14,4 @@ yarn-error.log
 /public/js
 /public/css
 /public/mix-manifest.json
+resources/views/vendor/mail/html/themes/default.css
