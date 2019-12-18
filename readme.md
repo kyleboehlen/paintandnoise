@@ -112,10 +112,10 @@ Change the default admin username, password and email
 - DEFAULT_ADMIN_PASSWORD=
 
 <br/>
-Add the mail account details
+Add the mail api details
 
-- MAIL_USERNAME=
-- MAIL_PASSWORD=
+- MAILGUN_DOMAIN=
+- MAILGUN_SECRET=
 
 <br/>
 Run the database migration and seed it with the admin user
