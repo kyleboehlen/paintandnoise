@@ -10,6 +10,7 @@ Before installing the site the following tools need to be installed:
 - composer (added to the PATH)
 - npm
 - yarn
+- phpunit
 
 <br/>
 Start by cloning into the repository
@@ -119,9 +120,7 @@ Add the mail account details
 <br/>
 Run the database migration and seed it with the admin user
 
-`php artisan migrate`
-
-`php artisan db:seed`
+`phpunit --filter Deploy`
 
 <br/><br/>
 ### _Make sure these steps are completed last_ 
