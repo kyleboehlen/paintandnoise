@@ -125,6 +125,261 @@ body
     background-color: $black;
 }
 
+// START COLORS
+.violet
+{
+    color: $violet;
+}
+
+.violet-hover
+{
+    &:hover
+    {
+        @extend .violet;
+    }
+}
+
+.violet-hover .checked
+{
+    @extend .violet;
+}
+
+.indigo
+{
+    color: $indigo;
+}
+
+.indigo-hover
+{
+    &:hover
+    {
+        @extend .indigo;
+    }
+}
+
+.indigo-hover .checked
+{
+    @extend .indigo;
+}
+
+.blue
+{
+    color: $blue;
+}
+
+.blue-hover
+{
+    &:hover
+    {
+        @extend .blue;
+    }
+}
+
+.blue-hover .checked
+{
+    @extend .blue;
+}
+
+.green
+{
+    color: $green;
+}
+
+.green-hover
+{
+    &:hover
+    {
+        @extend .green;
+    }
+}
+
+.green-hover .checked
+{
+    @extend .green;
+}
+
+.yellow
+{
+    color: $yellow;
+}
+
+.yellow-hover
+{
+    &:hover
+    {
+        @extend .yellow;
+    }
+}
+
+.yellow-hover .checked
+{
+    @extend .yellow;
+}
+
+.orange
+{
+    color: $orange;
+}
+
+.orange-hover
+{
+    &:hover
+    {
+        @extend .orange;
+    }
+}
+
+.orange-hover .checked
+{
+    @extend .orange;
+}
+
+.red
+{
+    color: $red;
+}
+
+.red-hover
+{
+    &:hover
+    {
+        @extend .red;
+    }
+}
+
+.red-hover .checked
+{
+    @extend .red;
+}
+
+.c-violet
+{
+    color: $c-violet;
+}
+
+.c-violet-hover
+{
+    &:hover
+    {
+        @extend .c-violet;
+    }
+}
+
+.c-violet-hover .checked
+{
+    @extend .c-violet;
+}
+
+.c-indigo
+{
+    color: $c-indigo;
+}
+
+.c-indigo-hover
+{
+    &:hover
+    {
+        @extend .c-indigo;
+    }
+}
+
+.c-indigo-hover .checked
+{
+    @extend .c-indigo;
+}
+
+.c-blue
+{
+    background-color: $c-blue;
+}
+
+.c-blue-hover
+{
+    &:hover
+    {
+        @extend .c-blue;
+    }
+}
+
+.c-blue-hover .checked
+{
+    @extend .c-blue;
+}
+
+.c-green
+{
+    background-color: $c-green;
+}
+
+.c-green-hover
+{
+    &:hover
+    {
+        @extend .c-green;
+    }
+}
+
+.c-green-hover .checked
+{
+    @extend .c-green;
+}
+
+.c-yellow
+{
+    background-color: $c-yellow;
+}
+
+.c-yellow-hover
+{
+    &:hover
+    {
+        @extend .c-yellow;
+    }
+}
+
+.c-yellow-hover .checked
+{
+    @extend .c-yellow;
+}
+
+.c-orange
+{
+    background-color: $c-orange;
+}
+
+.c-orange-hover
+{
+    &:hover
+    {
+        @extend .c-orange;
+    }
+}
+
+.c-orange-hover .checked
+{
+    @extend .c-orange;
+}
+
+.c-red
+{
+    background-color: $c-red;
+}
+
+.c-red-hover
+{
+    &:hover
+    {
+        @extend .c-red;
+    }
+}
+
+.c-red-hover .checked
+{
+    @extend .c-red;
+}
+
+// END COLORS
+
 footer
 {
     background-color: $black;
@@ -372,6 +627,39 @@ footer
     {
         font-family: $tool_font;
         font-size: 2.25em;
+        line-height: 175%;
+    }
+
+    .checkbox-list
+    {
+        font-size: 1.5em;
+        margin-left: 25%;
+        text-align: left;
+
+        label
+        {
+            color: $white;
+            font-family: $body-font;
+            font-size: 1.25em;
+            margin-top: 100px;
+
+            input
+            {
+                opacity: 0;
+            }
+
+            span
+            {
+                border-radius: 5px;
+                border: $thin-border solid $white;
+                padding: 4px;
+            }
+
+            .checkbox-span
+            {
+                border: none;
+            }
+        }
     }
 
     input[type=email], input[type=password], input[type=text]

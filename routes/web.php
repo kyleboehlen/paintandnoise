@@ -42,3 +42,16 @@ Route::prefix('/assets')->group(function(){
     // User Profile Pictures
     Route::get('/user/profile-picture', 'AssetController@profilePicture')->middleware('auth')->name('assets.profile-picture');
 });
+
+// Account management
+Route::prefix('/account')->group(function(){
+    // Root
+    Route::get('/', 'AccountManagementController@index')->name('account');
+
+    // Categories Flow
+    Route::prefix('/categories')->group(function(){
+        Route::get('/', 'AccountManagementController@showCategories')->name('account.categories');
+        Route::get('/{parent_id}', 'AccountManagementController@showCategories')->name('account.subcategories');
+        Route::post('/update', 'AccountManagementController@updateCategories')->name('account.categories.update');
+    });
+});
