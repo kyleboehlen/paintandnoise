@@ -2,6 +2,7 @@
 
 @section('body')
     <div class="card">
+        <br/>
         <div class="card-header">Sign Up</div>
 
         <div class="card-body">

@@ -43,7 +43,7 @@
                     <br/><br/>
                 @endif
 
-                <input type="submit" value="Submit" /><br/><br/><br/><br/>
+                <input id="categories-submit" type="submit" value="Submit" /><br/><br/><br/><br/>
 
                 @if(is_null($next_parent_category))
                     <a href="{{ route('account') }}">Skip.</a><br/><br/><br/>
