@@ -17,7 +17,7 @@ class AuthTest extends TestCase
      * @return void
      * @test
      */
-    public function testExample()
+    public function testUserGaurd()
     {
         // Call home
         $response = $this->get('/home');
@@ -44,7 +44,7 @@ class AuthTest extends TestCase
 
         // Call home
         $response = $this->actingAs($user)->get('/home');
-        
+
         // Assert ok
         $response->assertStatus(200);
     }
