@@ -49,7 +49,7 @@ class AccountManagementController extends Controller
         if($parent_id === false)
         {
             $categories = $parent_categories;
-            $index = 0;
+            $index = -1;
         }
         else
         {
