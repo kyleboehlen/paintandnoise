@@ -77,7 +77,7 @@ class AssetController extends Controller
 
         $make = config('media.path') . config('profilepictures.sub_dir') . (is_null($user->profile_picture) ? config('profilepictures.default') : $user->profile_picture);
 
-        $img = Image::make($make);
+        $img = Image::make($make)->fit(600, 600);
 
         return $img->response();
     }

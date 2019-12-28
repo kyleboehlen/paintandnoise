@@ -3,10 +3,14 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Image;
+use Storage;
 
 // Requests
 use App\Http\Requests\Account\ShowCategoriesRequest;
 use App\Http\Requests\Account\UpdateCategoriesRequest;
+use App\Http\Requests\Account\UpdateNameRequest;
+use App\Http\Requests\Account\UpdateProfilePictureRequest;
 
 // Models
 use App\Models\Categories\Categories;
@@ -26,7 +30,13 @@ class AccountManagementController extends Controller
         // Switch to log out button
         $show = ['log_out_link', ];
 
-        return view('account.index')->with(['show' => $show]);
+        // Hydrate user model
+        $user = \Auth::user();
+
+        return view('account.index')->with([
+            'show' => $show,
+            'user' => $user,
+        ]);
     }
 
     public function showCategories($parent_id = false)
@@ -147,7 +157,74 @@ class AccountManagementController extends Controller
             return redirect()->route('account.subcategories', $request->get('next-parent-category'));
         }
 
-        return redirect()->route('root');
+        return redirect()->route('account');
+    }
+
+    public function updateName(UpdateNameRequest $request)
+    {
+        // Get user
+        $user = \Auth::user();
+
+        // Set new name
+        $user->name = $request->get('name');
+        $user->save();
+
+        // Redirect back to account
+        return redirect()->route('account');
+    }
+
+    public function updateProfilePicture(UpdateProfilePictureRequest $request)
+    {
+        // Get user
+        $user = \Auth::user();
+        
+        // Set storage path
+        $path = config('media.path') . config('profilepictures.sub_dir');
+
+        // Save image
+        try
+        {
+            $storage = Storage::putFile($path, $request->file('profile-picture'));
+            $user->profile_picture = substr($storage, strrpos($storage, '/') + 1);
+            $img = Image::make($path . $user->profile_picture)->fit(600, 600)->save();
+        }
+        catch(\Exception $e)
+        {
+            return redirect()->back()->withErrors([
+                'profile-picture' => 'File Too Large :('
+            ]);
+        }
+        
+        $user->save();
+
+        // Resize
+        $img = Image::make($path . $user->profile_picture)->fit(600, 600)->save();
+
+        return redirect()->route('account');
+    }
+
+    public function updateNSFW()
+    {
+        // Get user
+        $user = \Auth::user();
+
+        // Toggle NSFW Setting
+        $user->toggleNSFW();
+        $user->save();
+
+        return redirect()->route('account');
+    }
+
+    public function updatePassword()
+    {
+        // Get user
+        $user = \Auth::user();
+
+        // Send password notification
+        $user->sendPasswordResetNotification($user->newResetPasswordToken());
+
+        // Return redirect with the success status alert
+        return redirect()->route('account')->with('status', 'We have e-mailed your password reset link!');
     }
 
     /** PRIVATE FUNCTIONS */

@@ -122,6 +122,12 @@ Run the database migration and seed it with the admin user
 
 `phpunit --filter Deploy`
 
+<br/>
+Change the php.ini file to let Laravel handle file upload sizes
+
+`upload_max_filesize = 0`
+`post_max_size = 0`
+
 <br/><br/>
 ### _Make sure these steps are completed last_ 
 

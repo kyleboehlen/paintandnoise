@@ -11,6 +11,16 @@
 |
 */
 
+// php.ini
+Route::get('/phpinfo', function(){
+    if(config('app.env') != 'production')
+    {
+        return phpinfo();
+    }
+
+    return redirect()->route('root');
+});
+
 // Auth
 Auth::routes(['verify' => true]);
 
@@ -53,5 +63,13 @@ Route::prefix('/account')->group(function(){
         Route::get('/', 'AccountManagementController@showCategories')->name('account.categories');
         Route::get('/{parent_id}', 'AccountManagementController@showCategories')->name('account.subcategories');
         Route::post('/update', 'AccountManagementController@updateCategories')->name('account.categories.update');
+    });
+
+    // Update Account Info
+    Route::prefix('/update')->group(function(){
+        Route::post('/name', 'AccountManagementController@updateName')->name('account.update.name');
+        Route::post('/profile-picture', 'AccountManagementController@updateProfilePicture')->name('account.update.profile-picture');
+        Route::post('/nsfw', 'AccountManagementController@updateNSFW')->name('account.update.nsfw');
+        Route::post('/password', 'AccountManagementController@updatePassword')->name('account.update.password');
     });
 });

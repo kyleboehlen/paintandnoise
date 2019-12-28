@@ -36,6 +36,7 @@ class CreateUsersTable extends Migration
             
             $table->boolean('can_post')->default($value = 0); // Can not post unless verified
             $table->boolean('can_vote')->default($value = 0); // For restricting voting, ghost ban config possible?
+            $table->boolean('show_nsfw')->default($value = 0); // For showing nsfw posts or nah
 
             $table->string('zip_code', 5)->nullable(); // For location filtering in browsing
 

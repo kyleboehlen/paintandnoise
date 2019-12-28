@@ -719,215 +719,279 @@ footer
         }
     }
 
-    label
+    .card-body
     {
-        font-family: $tool_font;
-        font-size: 2.25em;
-        line-height: 175%;
-
-        @media only screen and (max-width: 600px)
-        {
-            font-size: 2.5em;
-        }
-
-        @media only screen and (max-width: 300px)
-        {
-            font-size: 1.75em;
-        }
-    }
-
-    .checkbox-list
-    {
-        font-size: 1.5em;
-        margin-left: 25%;
-        text-align: left;
-
         label
+        {
+            font-family: $tool_font;
+            font-size: 2.25em;
+            line-height: 175%;
+    
+            @media only screen and (max-width: 600px)
+            {
+                font-size: 2.5em;
+            }
+    
+            @media only screen and (max-width: 300px)
+            {
+                font-size: 1.75em;
+            }
+        }
+    
+        .checkbox-list
+        {
+            font-size: 1.5em;
+            margin-left: 25%;
+            text-align: left;
+    
+            label
+            {
+                color: $white;
+                font-family: $body-font;
+                font-size: 1.25em;
+                margin-top: 100px;
+    
+                input
+                {
+                    opacity: 0;
+                }
+    
+                span
+                {
+                    border-radius: 5px;
+                    border: $thin-border solid $white;
+                    padding: 4px;
+                }
+    
+                .checkbox-span
+                {
+                    border: none;
+                }
+            }
+    
+            @media screen and (max-width: 1400px)
+            {
+                margin-left: 15%;
+            }
+    
+            @media screen and (max-width: 1400px)
+            {
+                font-size: 1.25em;
+            }
+    
+            @media screen and (max-width: 400px)
+            {
+                font-size: 1em;
+            }
+    
+            @media screen and (max-width: 300px)
+            {
+                margin-left: 10%;
+            }
+        }
+    
+        input[type=email], input[type=password], input[type=text]
+        {
+            font-family: $body-font;
+            font-size: 1.25em;
+    
+            @media only screen and (max-width: 600px)
+            {
+                font-size: 1.5em;
+            }
+    
+            @media only screen and (max-width: 500px)
+            {
+                font-size: 1.25em;
+            }
+    
+            @media only screen and (max-width: 400px)
+            {
+                font-size: 1em;
+            }
+    
+            @media only screen and (max-width: 300px)
+            {
+                font-size: .75em;
+            }
+        }
+    
+        input[type=submit]
+        {
+            background-color: $black;
+            color: $white;
+            cursor: pointer;
+            font-family: $tool_font;
+            font-size: 2.5em;
+            padding: 5px;
+            width: 45%;
+    
+            &:hover
+            {
+                color: $dark-grey;
+            }
+    
+            @media only screen and (max-width: 450px)
+            {
+                font-size: 2em;
+                width: 60%;
+            }
+        }
+    
+        a
         {
             color: $white;
             font-family: $body-font;
+            font-size: 1.5em;
+    
+            &:hover
+            {
+                color: $dark-grey;
+            }
+    
+            @media only screen and (max-width: 400px)
+            {
+                font-size: 1.25em;
+            }
+    
+            @media only screen and (max-width: 300px)
+            {
+                font-size: 1em;
+            }
+        }
+    
+        p
+        {
+            font-family: $body-font;
             font-size: 1.25em;
-            margin-top: 100px;
-
-            input
+            margin-left: 5%;
+            margin-right: 5%;
+        }
+    
+        #reset-link-submit, #request-verify-submit, #confirm-password-submit, #reset-password-submit
+        {
+            font-size: 1.75em;
+            width: 50%;
+    
+            @media only screen and (max-width: 1300px)
             {
-                opacity: 0;
+                width: 70%;
             }
-
-            span
+    
+            @media only screen and (max-width: 400px)
             {
-                border-radius: 5px;
-                border: $thin-border solid $white;
-                padding: 4px;
+                font-size: 1.25em;
+                width: 60%;
             }
-
-            .checkbox-span
+    
+            @media only screen and (max-width: 300px)
             {
-                border: none;
+                font-size: 1em;
             }
         }
-
-        @media screen and (max-width: 1400px)
+    
+        #categories-submit
         {
-            margin-left: 15%;
+            @media screen and (max-width: 1400px)
+            {
+                width: 60%;
+            }
         }
-
-        @media screen and (max-width: 1400px)
+    
+        @media only screen and (max-width: 1000px)
         {
-            font-size: 1.25em;
+            margin-left: 30%;
+            margin-right: 30%;
+            width: 40%;
         }
-
-        @media screen and (max-width: 400px)
+    
+        @media only screen and (max-width: 800px)
         {
-            font-size: 1em;
+            margin-left: 25%;
+            margin-right: 25%;
+            width: 50%;
         }
-
-        @media screen and (max-width: 300px)
-        {
-            margin-left: 10%;
-        }
-    }
-
-    input[type=email], input[type=password], input[type=text]
-    {
-        font-family: $body-font;
-        font-size: 1.25em;
-
+    
         @media only screen and (max-width: 600px)
         {
-            font-size: 1.5em;
-        }
-
-        @media only screen and (max-width: 500px)
-        {
-            font-size: 1.25em;
-        }
-
-        @media only screen and (max-width: 400px)
-        {
-            font-size: 1em;
-        }
-
-        @media only screen and (max-width: 300px)
-        {
-            font-size: .75em;
-        }
-    }
-
-    input[type=submit]
-    {
-        background-color: $black;
-        color: $white;
-        font-family: $tool_font;
-        font-size: 2.5em;
-        padding: 5px;
-        width: 45%;
-
-        &:hover
-        {
-            color: $dark-grey;
-        }
-
-        @media only screen and (max-width: 450px)
-        {
-            font-size: 2em;
-            width: 60%;
-        }
-    }
-
-    a
-    {
-        color: $white;
-        font-family: $body-font;
-        font-size: 1.5em;
-
-        &:hover
-        {
-            color: $dark-grey;
-        }
-
-        @media only screen and (max-width: 400px)
-        {
-            font-size: 1.25em;
-        }
-
-        @media only screen and (max-width: 300px)
-        {
-            font-size: 1em;
-        }
-    }
-
-    p
-    {
-        font-family: $body-font;
-        font-size: 1.25em;
-        margin-left: 5%;
-        margin-right: 5%;
-    }
-
-    #reset-link-submit, #request-verify-submit, #confirm-password-submit, #reset-password-submit
-    {
-        font-size: 1.75em;
-        width: 50%;
-
-        @media only screen and (max-width: 1300px)
-        {
+            margin-left: 15%;
+            margin-right: 15%;
             width: 70%;
         }
-
+    
+        @media only screen and (max-width: 500px)
+        {
+            margin-left: 10%;
+            margin-right: 10%;
+            width: 80%;
+        }
+    
         @media only screen and (max-width: 400px)
         {
+            margin-left: 5%;
+            margin-right: 5%;
+            width: 90%;
+        }
+    }
+
+    .account-card-body
+    {
+        @extend .card-body;
+
+        font-size: 1.25em;
+
+        .account-profile-picture
+        {        
+            img
+            {
+                border: $thin-border solid $white;
+                border-radius: 50%;
+                cursor: pointer;
+                height: 100px;
+                padding: 10px;
+                width: auto;
+            }
+        }
+
+        #profile-picture-form
+        {
+            display: none;
+        }
+        
+        input[type="text"]
+        {
+            text-align: center;
+        }
+
+        input[type="submit"]
+        {
             font-size: 1.25em;
-            width: 60%;
+
+            @media only screen and (max-width: 600px)
+            {
+                font-size: 1.5em;
+            }
+        
+            @media only screen and (max-width: 500px)
+            {
+                font-size: 1.25em;
+            }
+        
+            @media only screen and (max-width: 400px)
+            {
+                font-size: 1em;
+            }
+        
+            @media only screen and (max-width: 300px)
+            {
+                font-size: .75em;
+            }
         }
 
-        @media only screen and (max-width: 300px)
+        .nsfw
         {
-            font-size: 1em;
+            color: $red;
         }
-    }
-
-    #categories-submit
-    {
-        @media screen and (max-width: 1400px)
-        {
-            width: 60%;
-        }
-    }
-
-    @media only screen and (max-width: 1000px)
-    {
-        margin-left: 30%;
-        margin-right: 30%;
-        width: 40%;
-    }
-
-    @media only screen and (max-width: 800px)
-    {
-        margin-left: 25%;
-        margin-right: 25%;
-        width: 50%;
-    }
-
-    @media only screen and (max-width: 600px)
-    {
-        margin-left: 15%;
-        margin-right: 15%;
-        width: 70%;
-    }
-
-    @media only screen and (max-width: 500px)
-    {
-        margin-left: 10%;
-        margin-right: 10%;
-        width: 80%;
-    }
-
-    @media only screen and (max-width: 400px)
-    {
-        margin-left: 5%;
-        margin-right: 5%;
-        width: 90%;
     }
 }
 

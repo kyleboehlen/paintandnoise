@@ -4,7 +4,10 @@ namespace App\Models;
 
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Auth\Notifications\ResetPassword as ResetPasswordNotification;
 use Illuminate\Notifications\Notifiable;
+use Carbon\Carbon;
+use DB;
 
 // Models
 use App\Models\Categories\UsersCategories;
@@ -52,5 +55,32 @@ class Users extends Authenticatable implements MustVerifyEmail
         }
 
         return $categories_id;
+    }
+
+    /**
+     * Send the password reset notification.
+     *
+     * @param  string  $token
+     * @return void
+     */
+    public function sendPasswordResetNotification($token)
+    {
+        $this->notify(new ResetPasswordNotification($token));
+    }
+
+    /**
+     * Generate a new password reset token
+     *
+     * @param void
+     * @return void
+     */
+    public function newResetPasswordToken()
+    {
+        return app('auth.password.broker')->createToken($this);
+    }
+
+    public function toggleNSFW()
+    {
+        $this->show_nsfw = !$this->show_nsfw;
     }
 }
