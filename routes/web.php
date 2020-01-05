@@ -76,26 +76,33 @@ Route::prefix('/account')->group(function(){
 
 // Admin
 Route::prefix('/admin')->group(function(){
+
     // Root
-    Route::get('/', 'AdminController@index')->name('admin');
+    Route::get('/', 'Admin\AdminController@index')->name('admin');
+    Route::get('/home', 'Admin\AdminController@home')->middleware('auth:admin')->name('admin.home');
+
+    //Login Routes
+    Route::get('/login','Admin\LoginController@showLoginForm')->name('admin.login');
+    Route::post('/login','Admin\LoginController@login');
+    Route::post('/logout','Admin\LoginController@logout')->name('admin.logout');
 
     // Admin Users Tool
     Route::prefix('/users')->group(function(){
-        Route::get('/', 'AdminUsersController@index')->name('admin.users');
+        Route::get('/', 'Admin\AdminUsersController@index')->name('admin.users');
     });
 
     // Admin Reported Posts Tool
     Route::prefix('/reported-posts')->group(function(){
-        Route::get('/', 'ReportedPostsController@index')->name('admin.reported-posts');
+        Route::get('/', 'Admin\ReportedPostsController@index')->name('admin.reported-posts');
     });
 
     // Admin Poster Users
     Route::prefix('/posters')->group(function(){
-        Route::get('/', 'PostersController@index')->name('admin.posters');
+        Route::get('/', 'Admin\PostersController@index')->name('admin.posters');
     });
 
     // Admin Stats Page
     Route::prefix('/stats')->group(function(){
-        Route::get('/', 'StatsController@index')->name('admin.stats');
+        Route::get('/', 'Admin\StatsController@index')->name('admin.stats');
     });
 });

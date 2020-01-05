@@ -1,0 +1,1016 @@
+@import 'base';
+html
+{
+    height: 100%;
+}
+
+header
+{
+    background-color: $white;
+    border-radius: 5px;
+    margin-top: 0%;
+
+    #header-logo
+    {
+        float: left;
+        margin-left: 2.5%;
+        margin-top: 1px;
+        height: 150px;
+        width: auto;
+
+        @media only screen and (max-width: 1100px)
+        {
+            height: 100px;
+        }
+    
+        @media only screen and (max-width: 800px)
+        {
+            height: 75px;
+        }
+    
+        @media only screen and (max-width: 600px)
+        {
+            float: none;
+            height: auto;
+            margin-left: 42.5%;
+            margin-right: 42.5%;
+            width: 15%;
+        }
+    }
+
+    .title
+    {
+        display: inline-block;
+        font-family: $title_font;
+        font-size: 5em;
+        margin-bottom: 0%;
+        margin-left: 20%;
+        margin-top: 0%;
+
+        @media only screen and (max-width: 1300px)
+        {
+            font-size: 4em;
+        }
+
+        @media only screen and (max-width: 1100px)
+        {
+            font-size: 3em;
+            margin-left: 10%;
+        }
+        
+        @media only screen and (max-width: 800px)
+        {
+            font-size: 2em;
+        }
+        
+        @media only screen and (max-width: 600px)
+        {
+            display: block;
+            margin-left: 0%;
+            text-align: center;
+        }
+        
+    }
+
+    .auth-link
+    {
+        background-color: $black;
+        border-radius: 10px;
+        color: $white;
+        float: right;
+        font-family: $tool_font;
+        font-size: 2.5em;
+        margin-right: 2.5%;
+        margin-top: 15px;
+        padding: 5px;
+        text-decoration: none;
+
+        &:hover
+        {
+            color: $dark-grey;
+        }
+
+        @media only screen and (max-width: 1300px)
+        {
+            font-size: 2em;
+        }
+
+        @media only screen and (max-width: 1100px)
+        {
+            font-size: 1.5em;
+            margin-top: 5px;
+        }
+        
+        @media only screen and (max-width: 800px)
+        {
+            font-size: 1.25em;
+            padding: 1px;
+        }
+        
+        @media only screen and (max-width: 600px)
+        {
+            background-color: transparent;
+            color: $black;
+            display: block;
+            float: none;
+            text-align: center;
+            text-decoration: underline;
+            width: 100%;
+        }
+    }
+
+    .profile-link
+    {
+        border: $thin-border solid $black;
+        border-radius: 50%;
+        float: right;
+        margin-right: 25px;
+        margin-top: 5px;
+
+        img
+        {
+            border-radius: 50%;
+            height: 75px;
+            padding: 2.5px;
+            width: auto;
+
+            @media only screen and (max-width: 1400px)
+            {
+                height: 70px;
+                padding: 5px;
+            }
+
+            @media only screen and (max-width: 1350px)
+            {
+                height: 60px;
+                padding: 2.5px;
+            }
+
+            @media only screen and (max-width: 1200px)
+            {
+                height: 40px;
+                padding: 1px;
+            }
+
+            @media only screen and (max-width: 1200px)
+            {
+                height: 40px;
+                padding: 1px;
+            }
+
+            @media only screen and (max-width: 900px)
+            {
+                height: 30px;
+                padding: 1px;
+            }
+
+            @media only screen and (max-width: 850px)
+            {
+                height: 20px;
+                padding: 1px;
+            }
+
+            @media only screen and (max-width: 600px)
+            {
+                height: 50px;
+                padding: 5px;
+            }
+
+            @media only screen and (max-width: 400px)
+            {
+                height: 30px;
+                padding: 2.5px;
+            }
+        }
+
+        @media only screen and (max-width: 900px)
+        {
+            margin-right: 10px;
+            margin-top: 10px;
+        }
+
+        @media only screen and (max-width: 850px)
+        {
+            margin-right: 10px;
+            margin-top: 5px;
+        }
+
+        @media only screen and (max-width: 600px)
+        {
+            margin-top: -100px;
+        }
+
+        @media only screen and (max-width: 600px)
+        {
+            margin-top: -85px;
+        }
+    }
+}
+
+body
+{
+    background-color: $black;
+}
+
+// START COLORS
+.violet
+{
+    color: $violet;
+}
+
+.violet-hover
+{
+    &:hover
+    {
+        @extend .violet;
+    }
+}
+
+.violet-hover .checked
+{
+    @extend .violet;
+}
+
+.indigo
+{
+    color: $indigo;
+}
+
+.indigo-hover
+{
+    &:hover
+    {
+        @extend .indigo;
+    }
+}
+
+.indigo-hover .checked
+{
+    @extend .indigo;
+}
+
+.blue
+{
+    color: $blue;
+}
+
+.blue-hover
+{
+    &:hover
+    {
+        @extend .blue;
+    }
+}
+
+.blue-hover .checked
+{
+    @extend .blue;
+}
+
+.green
+{
+    color: $green;
+}
+
+.green-hover
+{
+    &:hover
+    {
+        @extend .green;
+    }
+}
+
+.green-hover .checked
+{
+    @extend .green;
+}
+
+.yellow
+{
+    color: $yellow;
+}
+
+.yellow-hover
+{
+    &:hover
+    {
+        @extend .yellow;
+    }
+}
+
+.yellow-hover .checked
+{
+    @extend .yellow;
+}
+
+.orange
+{
+    color: $orange;
+}
+
+.orange-hover
+{
+    &:hover
+    {
+        @extend .orange;
+    }
+}
+
+.orange-hover .checked
+{
+    @extend .orange;
+}
+
+.red
+{
+    color: $red;
+}
+
+.red-hover
+{
+    &:hover
+    {
+        @extend .red;
+    }
+}
+
+.red-hover .checked
+{
+    @extend .red;
+}
+
+.c-violet
+{
+    color: $c-violet;
+}
+
+.c-violet-hover
+{
+    &:hover
+    {
+        @extend .c-violet;
+    }
+}
+
+.c-violet-hover .checked
+{
+    @extend .c-violet;
+}
+
+.c-indigo
+{
+    color: $c-indigo;
+}
+
+.c-indigo-hover
+{
+    &:hover
+    {
+        @extend .c-indigo;
+    }
+}
+
+.c-indigo-hover .checked
+{
+    @extend .c-indigo;
+}
+
+.c-blue
+{
+    background-color: $c-blue;
+}
+
+.c-blue-hover
+{
+    &:hover
+    {
+        @extend .c-blue;
+    }
+}
+
+.c-blue-hover .checked
+{
+    @extend .c-blue;
+}
+
+.c-green
+{
+    background-color: $c-green;
+}
+
+.c-green-hover
+{
+    &:hover
+    {
+        @extend .c-green;
+    }
+}
+
+.c-green-hover .checked
+{
+    @extend .c-green;
+}
+
+.c-yellow
+{
+    background-color: $c-yellow;
+}
+
+.c-yellow-hover
+{
+    &:hover
+    {
+        @extend .c-yellow;
+    }
+}
+
+.c-yellow-hover .checked
+{
+    @extend .c-yellow;
+}
+
+.c-orange
+{
+    background-color: $c-orange;
+}
+
+.c-orange-hover
+{
+    &:hover
+    {
+        @extend .c-orange;
+    }
+}
+
+.c-orange-hover .checked
+{
+    @extend .c-orange;
+}
+
+.c-red
+{
+    background-color: $c-red;
+}
+
+.c-red-hover
+{
+    &:hover
+    {
+        @extend .c-red;
+    }
+}
+
+.c-red-hover .checked
+{
+    @extend .c-red;
+}
+
+// END COLORS
+
+footer
+{
+    background-color: $black;
+    border-top: 5px solid $white;
+
+    .social-container
+    {
+        display: flex;
+        justify-content: center;
+        padding-top: 1%;
+        width: 100%;
+
+        a
+        {
+            margin-left: 1%;
+            margin-right: 1%;
+            text-decoration: none;
+
+            img
+            {
+                height: 50px;
+                width: auto;
+            }
+        }
+
+        @media only screen and (max-width: 600px)
+        {
+            justify-content: space-evenly;
+            padding-top: 2.5%;
+        }
+    }
+
+    .copyright
+    {
+        color: $white;
+        font-family: $body-font;
+        text-align: center;
+    }
+}
+
+.about-page-section
+{
+    border-top: 5px solid $white;
+    margin-top: 75px;
+    width: 100%;
+
+    h2
+    {
+        color: $white;
+        font-family: $header_font;
+        font-size: 3em;
+        text-align: center;
+        text-decoration: underline;
+
+        @media only screen and (max-width: 600px)
+        {
+            font-size: 1.75em;
+        }
+    }
+
+    .container
+    {
+        display: flex;
+
+        img
+        {
+            border-radius: 50%;
+            display: inline-block;
+            height: 400px;
+            width: auto;
+
+            @media only screen and (max-width: 1200px)
+            {
+                height: 300px;
+            }
+
+            @media only screen and (max-width: 1000px)
+            {
+                height: 200px;
+            }
+
+            
+            @media only screen and (max-width: 900px)
+            {
+                flex-grow: 1;
+            }
+
+            @media only screen and (max-width: 600px)
+            {
+                height: auto;
+                width: 20%;
+            }
+        }
+    
+        p
+        {
+            color: $white;
+            display: inline-block;
+            font-family: $body-font;
+            font-size: 2.5em;
+            margin-left: 10%;
+            margin-right: 10%;
+            text-align: center;
+
+            @media only screen and (max-width: 1800px)
+            {
+                font-size: 2em;
+            }
+
+            @media only screen and (max-width: 1500px)
+            {
+                font-size: 1.75em;
+            }
+
+            @media only screen and (max-width: 1200px)
+            {
+                font-size: 1.5em;
+            }
+
+            @media only screen and (max-width: 1000px)
+            {
+                font-size: 1.25em;
+            }
+        }
+
+        @media only screen and (max-width: 900px)
+        {
+            flex-wrap: wrap;
+        }
+    }
+}
+
+.team-section
+{
+    @extend .about-page-section;
+    
+    .figure-container
+    {
+        display: flex;
+        justify-content: center;
+    
+        figure
+        {
+            img
+            {
+                border-radius: 50%;
+                height: 250px;
+                width: auto;
+            }
+    
+            figcaption
+            {
+                color: $white;
+                font-family: $tool_font;
+                font-size: 2em;
+                text-align: center;
+            }
+        }
+
+        @media only screen and (max-width: 600px)
+        {
+            flex-wrap: wrap;
+            justify-content: space-evenly;
+        }
+    }
+}
+
+.about-section
+{
+    @extend .about-page-section;
+
+    .container
+    {
+        img
+        {
+            margin-left: 10%;
+
+            @media only screen and (max-width: 900px)
+            {
+                margin-left: 40%;
+                margin-right: 40%;
+            }
+        }
+    }
+}
+
+.how-section
+{
+    @extend .about-page-section;
+
+    .container
+    {
+        img
+        {
+            margin-right: 10%;
+
+            @media only screen and (max-width: 900px)
+            {
+                margin-left: 40%;
+                margin-right: 40%;
+                order: -1;
+            }
+        }
+    }
+}
+
+.why-section
+{
+    @extend .about-page-section;
+
+    .container
+    {
+        img
+        {
+            margin-left: 10%;
+
+            @media only screen and (max-width: 900px)
+            {
+                margin-left: 40%;
+                margin-right: 40%;
+            }
+        }
+    }
+}
+
+.card
+{
+    border: $medium-border solid $light-grey;
+    color: $white;
+    margin-bottom: 2.5%;
+    margin-left: 35%;
+    margin-top: 2.5%;
+    margin-right: 35%;
+    text-align: center;
+    width: 30%;
+
+    .card-header
+    {
+        color: $white;
+        font-family: $header_font;
+        font-size: 3.25em;
+
+        @media only screen and (max-width: 400px)
+        {
+            font-size: 2.25em;
+        }
+
+        @media only screen and (max-width: 300px)
+        {
+            font-size: 1.5em;
+        }
+    }
+
+    .card-body
+    {
+        label
+        {
+            font-family: $tool_font;
+            font-size: 2.25em;
+            line-height: 175%;
+    
+            @media only screen and (max-width: 600px)
+            {
+                font-size: 2.5em;
+            }
+    
+            @media only screen and (max-width: 300px)
+            {
+                font-size: 1.75em;
+            }
+        }
+    
+        .checkbox-list
+        {
+            font-size: 1.5em;
+            margin-left: 25%;
+            text-align: left;
+    
+            label
+            {
+                color: $white;
+                font-family: $body-font;
+                font-size: 1.25em;
+                margin-top: 100px;
+    
+                input
+                {
+                    opacity: 0;
+                }
+    
+                span
+                {
+                    border-radius: 5px;
+                    border: $thin-border solid $white;
+                    padding: 4px;
+                }
+    
+                .checkbox-span
+                {
+                    border: none;
+                }
+            }
+    
+            @media screen and (max-width: 1400px)
+            {
+                margin-left: 15%;
+            }
+    
+            @media screen and (max-width: 1400px)
+            {
+                font-size: 1.25em;
+            }
+    
+            @media screen and (max-width: 400px)
+            {
+                font-size: 1em;
+            }
+    
+            @media screen and (max-width: 300px)
+            {
+                margin-left: 10%;
+            }
+        }
+    
+        input[type=email], input[type=password], input[type=text]
+        {
+            font-family: $body-font;
+            font-size: 1.25em;
+    
+            @media only screen and (max-width: 600px)
+            {
+                font-size: 1.5em;
+            }
+    
+            @media only screen and (max-width: 500px)
+            {
+                font-size: 1.25em;
+            }
+    
+            @media only screen and (max-width: 400px)
+            {
+                font-size: 1em;
+            }
+    
+            @media only screen and (max-width: 300px)
+            {
+                font-size: .75em;
+            }
+        }
+    
+        input[type=submit]
+        {
+            background-color: $black;
+            color: $white;
+            cursor: pointer;
+            font-family: $tool_font;
+            font-size: 2.5em;
+            padding: 5px;
+            width: 45%;
+    
+            &:hover
+            {
+                color: $dark-grey;
+            }
+    
+            @media only screen and (max-width: 450px)
+            {
+                font-size: 2em;
+                width: 60%;
+            }
+        }
+    
+        a
+        {
+            color: $white;
+            font-family: $body-font;
+            font-size: 1.5em;
+    
+            &:hover
+            {
+                color: $dark-grey;
+            }
+    
+            @media only screen and (max-width: 400px)
+            {
+                font-size: 1.25em;
+            }
+    
+            @media only screen and (max-width: 300px)
+            {
+                font-size: 1em;
+            }
+        }
+    
+        p
+        {
+            font-family: $body-font;
+            font-size: 1.25em;
+            margin-left: 5%;
+            margin-right: 5%;
+        }
+    
+        #reset-link-submit, #request-verify-submit, #confirm-password-submit, #reset-password-submit
+        {
+            font-size: 1.75em;
+            width: 50%;
+    
+            @media only screen and (max-width: 1300px)
+            {
+                width: 70%;
+            }
+    
+            @media only screen and (max-width: 400px)
+            {
+                font-size: 1.25em;
+                width: 60%;
+            }
+    
+            @media only screen and (max-width: 300px)
+            {
+                font-size: 1em;
+            }
+        }
+    
+        #categories-submit
+        {
+            @media screen and (max-width: 1400px)
+            {
+                width: 60%;
+            }
+        }
+    }
+
+    .account-card-body
+    {
+        @extend .card-body;
+
+        font-size: 1.25em;
+
+        .account-profile-picture
+        {        
+            img
+            {
+                border: $thin-border solid $white;
+                border-radius: 50%;
+                cursor: pointer;
+                height: 100px;
+                padding: 10px;
+                width: auto;
+            }
+        }
+
+        #profile-picture-form
+        {
+            display: none;
+        }
+        
+        input[type="text"]
+        {
+            text-align: center;
+        }
+
+        input[type="submit"]
+        {
+            font-size: 1.25em;
+
+            @media only screen and (max-width: 600px)
+            {
+                font-size: 1.5em;
+            }
+        
+            @media only screen and (max-width: 500px)
+            {
+                font-size: 1.25em;
+            }
+        
+            @media only screen and (max-width: 400px)
+            {
+                font-size: 1em;
+            }
+        
+            @media only screen and (max-width: 300px)
+            {
+                font-size: .75em;
+            }
+        }
+
+        .nsfw
+        {
+            color: $red;
+        }
+    }
+
+    @media only screen and (max-width: 1000px)
+    {
+        margin-left: 30%;
+        margin-right: 30%;
+        width: 40%;
+    }
+
+    @media only screen and (max-width: 800px)
+    {
+        margin-left: 25%;
+        margin-right: 25%;
+        width: 50%;
+    }
+
+    @media only screen and (max-width: 600px)
+    {
+        margin-left: 15%;
+        margin-right: 15%;
+        width: 70%;
+    }
+
+    @media only screen and (max-width: 500px)
+    {
+        margin-left: 10%;
+        margin-right: 10%;
+        width: 80%;
+    }
+
+    @media only screen and (max-width: 400px)
+    {
+        margin-left: 5%;
+        margin-right: 5%;
+        width: 90%;
+    }
+}
+
+.is-invalid
+{
+    background-color: $c-red;
+}
+
+.invalid-feedback
+{
+    color: $red;
+    font-family: $body-font;
+    font-size: 1.25em;
+}
+
+.alert-success
+{
+    color: $green;
+    font-family: $body-font;
+    font-size: 1.25em;
+}
