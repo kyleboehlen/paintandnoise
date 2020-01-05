@@ -13,5 +13,17 @@ class DatabaseSeeder extends Seeder
     {
         // Seed categories
         $this->call(CategoriesSeed::class);
+
+        // Seed admin tools
+        $this->call(AdminToolsSeed::class);
+
+        // Seed admin permissions
+        $this->call(AdminPermissionsSeed::class);
+
+        // Seed super admin
+        $this->call(SuperAdminSeed::class);
+        
+        // Seed super admin permissions
+        $this->call(SuperAdminPermissionsSeed::class);
     }
 }

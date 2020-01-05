@@ -73,3 +73,29 @@ Route::prefix('/account')->group(function(){
         Route::post('/password', 'AccountManagementController@updatePassword')->name('account.update.password');
     });
 });
+
+// Admin
+Route::prefix('/admin')->group(function(){
+    // Root
+    Route::get('/', 'AdminController@index')->name('admin');
+
+    // Admin Users Tool
+    Route::prefix('/users')->group(function(){
+        Route::get('/', 'AdminUsersController@index')->name('admin.users');
+    });
+
+    // Admin Reported Posts Tool
+    Route::prefix('/reported-posts')->group(function(){
+        Route::get('/', 'ReportedPostsController@index')->name('admin.reported-posts');
+    });
+
+    // Admin Poster Users
+    Route::prefix('/posters')->group(function(){
+        Route::get('/', 'PostersController@index')->name('admin.posters');
+    });
+
+    // Admin Stats Page
+    Route::prefix('/stats')->group(function(){
+        Route::get('/', 'StatsController@index')->name('admin.stats');
+    });
+});

@@ -105,17 +105,16 @@ Create a nysql database and create a new user to grant all privliages to the dat
 - DB_PASSWORD=
 
 <br/>
-Change the default admin username, password and email
-
-- DEFAULT_ADMIN_USERNAME=
-- DEFAULT_ADMIN_EMAIL=
-- DEFAULT_ADMIN_PASSWORD=
-
-<br/>
 Add the mail api details
 
 - MAILGUN_DOMAIN=
 - MAILGUN_SECRET=
+
+<br/>
+Set the super admin details
+
+- SUPER_ADMIN_EMAIL="admin_email@domain.com"
+- SUPER_ADMIN_PASSWORD=password
 
 <br/>
 Run the database migration and seed it with the admin user
