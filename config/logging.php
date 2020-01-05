@@ -17,7 +17,7 @@ return [
     |
     */
 
-    'default' => env('LOG_CHANNEL', 'stack'),
+    'default' => env('LOG_CHANNEL', 'production_log_stack'),
 
     /*
     |--------------------------------------------------------------------------
@@ -35,23 +35,77 @@ return [
     */
 
     'channels' => [
-        'stack' => [
+        /**************************
+         ******* LOG STACKS ******
+         *************************/
+        'production_log_stack' => [
             'driver' => 'stack',
-            'channels' => ['daily'],
+            'channels' => ['info', 'warning', 'error', 'critical', 'papertrail'],
             'ignore_exceptions' => false,
         ],
 
-        'single' => [
+        'local_log_stack' => [
+            'driver' => 'stack',
+            'channels' => ['debug', 'info', 'warning', 'error', 'critical'],
+            'ignore_exceptions' => false,
+        ],
+
+        /**************************
+         **** IN USE LOG DRIVERS **
+         *************************/
+        'debug' => [
             'driver' => 'single',
-            'path' => storage_path('logs/laravel.log'),
+            'path' => storage_path('logs/debug/laravel.log'),
             'level' => 'debug',
         ],
 
-        'daily' => [
+        'info' => [
             'driver' => 'daily',
-            'path' => storage_path('logs/laravel.log'),
-            'level' => 'debug',
+            'path' => storage_path('logs/info/laravel.log'),
+            'level' => 'info',
+            'days' => 7,
+        ],
+
+        'warning' => [
+            'driver' => 'daily',
+            'path' => storage_path('logs/warning/laravel.log'),
+            'level' => 'warning',
             'days' => 14,
+        ],
+
+        'error' => [
+            'driver' => 'daily',
+            'path' => storage_path('logs/error/laravel.log'),
+            'level' => 'error',
+            'days' => 365,
+        ],
+
+        'critical' => [
+            'driver' => 'single',
+            'path' => storage_path('logs/critical/laravel.log'),
+            'level' => 'critical',
+        ],
+
+        'papertrail' => [
+            'driver' => 'monolog',
+            'level' => 'info',
+            'handler' => SyslogUdpHandler::class,
+            'handler_with' => [
+                'host' => env('PAPERTRAIL_URL'),
+                'port' => env('PAPERTRAIL_PORT'),
+            ],
+        ],
+
+        /**************************
+         **** OTHER LOG DRIVERS ***
+         *************************/
+        'stderr' => [
+            'driver' => 'monolog',
+            'handler' => StreamHandler::class,
+            'formatter' => env('LOG_STDERR_FORMATTER'),
+            'with' => [
+                'stream' => 'php://stderr',
+            ],
         ],
 
         'slack' => [
@@ -60,25 +114,6 @@ return [
             'username' => 'Laravel Log',
             'emoji' => ':boom:',
             'level' => 'critical',
-        ],
-
-        'papertrail' => [
-            'driver' => 'monolog',
-            'level' => 'debug',
-            'handler' => SyslogUdpHandler::class,
-            'handler_with' => [
-                'host' => env('PAPERTRAIL_URL'),
-                'port' => env('PAPERTRAIL_PORT'),
-            ],
-        ],
-
-        'stderr' => [
-            'driver' => 'monolog',
-            'handler' => StreamHandler::class,
-            'formatter' => env('LOG_STDERR_FORMATTER'),
-            'with' => [
-                'stream' => 'php://stderr',
-            ],
         ],
 
         'syslog' => [

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Log;
 use Image;
 use Storage;
 
@@ -133,22 +134,48 @@ class AccountManagementController extends Controller
         // Insert categories for user
         if($request->has('categories'))
         {
-            if(is_array($request->get('categories')))
+            if(is_array($request->get('categories'))) // Iterate through array if several IDs have been provided
             {
                 foreach($request->get('categories') as $category_id)
                 {
                     $users_categories = new UsersCategories;
                     $users_categories->users_id = \Auth::user()->id;
                     $users_categories->categories_id = $category_id;
-                    $users_categories->save();
+                    if(!$users_categories->save())
+                    {
+                        Log::warning('Failed to update categories for user.', [
+                            'user_id' => \Auth::user()->id,
+                            'category_id' => $category_id,
+                        ]);
+                    }
+                    else
+                    {
+                        Log::info('Added category for user.', [
+                            'user_id' => \Auth::user()->id,
+                            'category_id' => $category_id,
+                        ]);
+                    }
                 }
             }
-            else
+            else // Single ID
             {
                 $users_categories = new UsersCategories;
                 $users_categories->users_id = \Auth::user()->id;
                 $users_categories->categories_id = $request->get('categories');
-                $users_categories->save();
+                if(!$users_categories->save())
+                {
+                    Log::warning('Failed to update categories for user.', [
+                        'user_id' => \Auth::user()->id,
+                        'category_id' => $category_id,
+                    ]);
+                }
+                else
+                {
+                    Log::info('Added category for user.', [
+                        'user_id' => \Auth::user()->id,
+                        'category_id' => $category_id,
+                    ]);
+                }
             }
         }
 
@@ -167,7 +194,20 @@ class AccountManagementController extends Controller
 
         // Set new name
         $user->name = $request->get('name');
-        $user->save();
+        if(!$user->save())
+        {
+            Log::warning('Failed to update categories for user.', [
+                'user_id' => $user->id,
+                'name', $request->get('name'),
+            ]);
+        }
+        else
+        {
+            Log::info('User updated name', [
+                'user_id' => $user->id,
+                'name', $request->get('name'),
+            ]);
+        }
 
         // Redirect back to account
         return redirect()->route('account');
@@ -190,15 +230,28 @@ class AccountManagementController extends Controller
         }
         catch(\Exception $e)
         {
+            Log::info('User attempted to upload too large of a profile picture.', [
+                'user_id' => $user->id
+            ]);
+
             return redirect()->back()->withErrors([
                 'profile-picture' => 'File Too Large :('
             ]);
         }
         
-        $user->save();
-
-        // Resize
-        $img = Image::make($path . $user->profile_picture)->fit(600, 600)->save();
+        if(!$user->save())
+        {
+            Log::warning('User failed to save with new profile picture name.', [
+                'user_id' => $user->id,
+                'profile_picture' => $user->profile_picture,
+            ]);
+        }
+        else
+        {
+            Log::info('User updated profile picture.', [
+                'user_id' => $user->id,
+            ]);
+        }
 
         return redirect()->route('account');
     }
@@ -210,7 +263,18 @@ class AccountManagementController extends Controller
 
         // Toggle NSFW Setting
         $user->toggleNSFW();
-        $user->save();
+        if(!$user->save())
+        {
+            Log::warning('Failed to save user NSFW settings.', [
+                'user_id' => $user->id,
+            ]);
+        }
+        else
+        {
+            Log::info('User updated NSFW settings.', [
+                'user_id' => $user->id,
+            ]);
+        }
 
         return redirect()->route('account');
     }
@@ -222,6 +286,12 @@ class AccountManagementController extends Controller
 
         // Send password notification
         $user->sendPasswordResetNotification($user->newResetPasswordToken());
+
+        // Log token event
+        Log::info('Manually generated password reset token and notifcation for user.', [
+            'user_id' => $user->id,
+            'sent_to' => $user->email,
+        ]);
 
         // Return redirect with the success status alert
         return redirect()->route('account')->with('status', 'We have e-mailed your password reset link!');
