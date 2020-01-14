@@ -8,6 +8,7 @@ use Illuminate\Auth\Notifications\ResetPassword as ResetPasswordNotification;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Carbon\Carbon;
+use Log;
 use DB;
 
 // Models
@@ -68,6 +69,10 @@ class Users extends Authenticatable implements MustVerifyEmail
     public function sendPasswordResetNotification($token)
     {
         $this->notify(new ResetPasswordNotification($token));
+        Log::info('Reset Password Notification generated for user.', [
+            'user_id' => $this->id,
+            'email' => $this->email,
+        ]);
     }
 
     /**
