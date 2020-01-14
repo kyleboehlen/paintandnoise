@@ -3,11 +3,13 @@
 namespace App\Models\Admin;
 
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class AdminUsers extends Authenticatable
 {
     use Notifiable;
+    use SoftDeletes;
 
     protected $guard = 'admin';
 

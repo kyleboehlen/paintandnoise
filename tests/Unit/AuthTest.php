@@ -6,6 +6,7 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
 use Carbon\Carbon;
+use Artisan;
 
 // Models
 use App\Models\Users;
@@ -21,11 +22,11 @@ class AuthTest extends TestCase
      */
     public function testUserGaurd()
     {
-        // Call home
-        $response = $this->get('/home');
+        // Call root
+        $response = $this->get('/');
 
         // Assert redirect to about
-        $response->assertStatus(302);
+        $response->assertRedirect('/about');
 
         // Create user
         $user = $user = factory(Users::class)->create();
@@ -34,24 +35,37 @@ class AuthTest extends TestCase
         $user->email_verified_at = null;
         $this->assertTrue($user->save());
 
-        // Call home
-        $response = $this->actingAs($user)->get('/home');
+        // Call root
+        $response = $this->actingAs($user)->get('/');
 
         // Assert redirect
-        $response->assertStatus(302);
+        $response->assertRedirect('/home');
+
+        // Test email verification redirect
+        $response = $this->actingAs($user)->get('/home');
+        $response->assertRedirect('/email/verify');
 
         // Verify user email
         $user->email_verified_at = Carbon::now()->toDateTimeString();
         $this->assertTrue($user->save());
 
-        // Call home
-        $response = $this->actingAs($user)->get('/home');
+        // Test logged in redirect
+        $response = $this->actingAs($user)->get('/');
+        $response->assertRedirect('/home');
 
-        // Assert ok
-        $response->assertStatus(200);
+        // Verify user session destroyed on user delete
+        $this->assertTrue($user->delete());
+        $this->assertTrue(!is_null($user->deleted_at));
+        $this->flushSession();
+
+        // Call root
+        $response = $this->actingAs($user)->get('/');
+
+        // Assert redirect
+        $response->assertRedirect('/about');
     }
 
-        /**
+    /**
      * Test the admin auth gaurd is working properly
      *
      * @return void
@@ -59,19 +73,30 @@ class AuthTest extends TestCase
      */
     public function testAdminGaurd()
     {
-        // Call admin home
-        $response = $this->get('/admin/home');
+        // Call admin
+        $response = $this->get('/admin');
 
-        // Assert redirect to about
-        $response->assertStatus(302);
+        // Assert redirect to login
+        $response->assertRedirect('/admin/login');
 
         // Create admin user
         $admin = factory(AdminUsers::class)->create();
 
-        // Call admin home
-        $response = $this->actingAs($admin, 'admin')->get('/admin/home');
+        // Call admin
+        $response = $this->actingAs($admin, 'admin')->get('/admin');
 
-        // Assert ok
-        $response->assertStatus(200);
+        // Assert redirect to home
+        $response->assertRedirect('/admin/home');
+
+        // Verify session destroyed when admin created
+        $this->assertTrue($admin->delete());
+        $this->assertTrue(!is_null($admin->deleted_at));
+        $this->flushSession();
+
+        // Call admin
+        $response = $this->actingAs($admin, 'admin')->get('/admin');
+
+        // Assert redirect to login
+        $response->assertRedirect('/admin/login');
     }
 }
