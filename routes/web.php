@@ -12,14 +12,7 @@
 */
 
 // php.ini
-Route::get('/phpinfo', function(){
-    if(config('app.env') != 'production')
-    {
-        return phpinfo();
-    }
-
-    return redirect()->route('root');
-});
+Route::get('/phpinfo', 'Debug\DebugController@phpInfo')->name('debug.phpinfo');
 
 // Auth
 Auth::routes(['verify' => true]);
