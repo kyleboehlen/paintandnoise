@@ -49,7 +49,7 @@ class UsersTest extends TestCase
             { /* skipping duplicate relationship */ }
         }
         
-        // Verify there are more than 100
+        // Verify there are the proper amount
         $this->assertTrue(UsersCategories::all()->count() == $num_relationships);
     }
 }
