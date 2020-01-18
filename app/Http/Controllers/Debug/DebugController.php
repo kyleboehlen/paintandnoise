@@ -7,13 +7,19 @@ use Illuminate\Http\Request;
 
 class DebugController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware('notprod');
+    }
+
     public function phpInfo()
     {
-        if(config('app.env') != 'production')
-        {
-            return phpinfo();
-        }
+        return phpinfo();
+    }
 
-        return redirect()->route('root');
+    public function test()
+    {
+        // For test code to debug
     }
 }

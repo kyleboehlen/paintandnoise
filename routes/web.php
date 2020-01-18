@@ -14,6 +14,9 @@
 // php.ini
 Route::get('/phpinfo', 'Debug\DebugController@phpInfo')->name('debug.phpinfo');
 
+// Test
+Route::get('/test', 'Debug\DebugController@test')->name('debug.test');
+
 // Auth
 Auth::routes(['verify' => true]);
 
