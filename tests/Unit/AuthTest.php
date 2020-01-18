@@ -11,6 +11,7 @@ use Artisan;
 // Models
 use App\Models\Users;
 use App\Models\Admin\AdminUsers;
+use App\Models\Admin\AdminPermissions;
 
 class AuthTest extends TestCase
 {
@@ -98,5 +99,55 @@ class AuthTest extends TestCase
 
         // Assert redirect to login
         $response->assertRedirect('/admin/login');
+    }
+
+    /**
+     * Test the admin permisssions functions are working properly
+     *
+     * @return void
+     */
+    public function testAdminPermissions()
+    {
+        // Create admin user
+        $admin = factory(AdminUsers::class)->create();
+
+        // Get a random permission
+        $permission = AdminPermissions::all()->random();
+
+        // Admin shouldn't have permission yet
+        $this->assertFalse($admin->checkPermissions($permission->id));
+
+        // Assign admin permission
+        $this->assertTrue($admin->assignPermissions($permission->id));
+
+        // Admin should have permission now
+        $this->assertTrue($admin->checkPermissions($permission->id));
+
+        // Create array with another random permission
+        $permission_ids = array(
+            $permission->id,
+            AdminPermissions::where('id', '!=', $permission->id)->get()->random()->id,
+        );
+
+        // Admin shouldn't have next random permission yet
+        $this->assertFalse($admin->checkPermissions($permission_ids[1]));
+
+        // Assign Permissions to admin by array
+        $this->assertTrue($admin->assignPermissions($permission_ids));
+
+        // Verify admin has permissions
+        $this->assertTrue($admin->checkPermissions($permission_ids));
+
+        // Revoke first permission from admin
+        $this->assertTrue($admin->revokePermissions($permission->id));
+
+        // Verify still passes with array
+        $this->assertTrue($admin->checkPermissions($permission_ids));
+
+        // Revoke all permissions by array
+        $this->assertTrue($admin->revokePermissions($permission_ids));
+
+        // Verify permissions removed
+        $this->assertFalse($admin->checkPermissions($permission_ids));
     }
 }
