@@ -7,6 +7,8 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
 // Models
+use App\Models\Admin\AdminTools;
+use App\Models\Admin\AdminPerissions;
 use App\Models\Admin\AdminUsersPermissions;
 
 class AdminUsers extends Authenticatable
@@ -198,5 +200,19 @@ class AdminUsers extends Authenticatable
     private function checkPermission($permission)
     {
         return in_array($permission, $this->permissions());
+    }
+
+    /**
+     * Get tools admin user has permissions under
+     *
+     * @return mixed
+     */
+    public function tools()
+    {
+        return AdminTools::whereIn('id',
+            AdminPermissions::whereIn('id', 
+                $this->permissions()
+            )->pluck('tools_id')->toArray()
+        )->get()->sortBy('name');
     }
 }

@@ -1,13 +1,17 @@
 @extends('layouts.admin')
 
 @section('body')
-    <div class="card">
+    <div class="home-card">
         <br/><br/>
         <div class="card-header">Home</div><br/><br/>
 
         <div class="card-body">
-            Welcome, Admin.<br/><br/>
-            Please select a tool.<br/><br/>
+            @foreach($tools as $tool)
+                <a href="{{ route($tool->route_name) }}">
+                    {{ $tool->name }}
+                </a><br/>
+            @endforeach
+            <br/>
         </div>
     </div>
 @endsection
