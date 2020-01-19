@@ -23,6 +23,8 @@
             @if($user->checkPermissions(\App\Http\Permissions\Admin::CREATE_ADMINS))
                 <p> -- or -- </p>
                 <form action="{{ route('admin.users.create') }}" method="POST">
+                    @csrf
+                    
                     <label for="name">Name</label><br/>
                     <input id="name" type="text" name="name" required/><br/>
 

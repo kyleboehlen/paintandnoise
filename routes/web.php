@@ -89,6 +89,9 @@ Route::prefix('/admin')->group(function(){
         // Redirect 
         Route::post('/redirect', 'Admin\AdminUsersController@redirect')->name('admin.users.redirect');
 
+        // View
+        Route::get('/view/{id}', 'Admin\AdminUsersController@view')->name('admin.users.view');
+
         // Create
         Route::post('/create', 'Admin\AdminUsersController@create')->name('admin.users.create');
     });
