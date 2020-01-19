@@ -12,7 +12,7 @@
         {{-- header based on auth status --}}
         <header>
             {{-- Logo --}}
-            <a href="{{ route('root') }}">
+            <a href="{{ route('admin') }}">
                 <img id="header-logo" src="{{ route('assets.logo') }}" />
             </a>
 
