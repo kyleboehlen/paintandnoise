@@ -25,7 +25,11 @@ class ViewServiceProvider extends ServiceProvider
     public function boot()
     {
         View::composer(
-            'admin.home', 'App\Http\Composers\AdminHomeComposer'
+            'admin.home', 'App\Http\Composers\Admin\HomeComposer'
+        );
+
+        View::composer(
+            'admin.users', 'App\Http\Composers\Admin\UsersComposer'
         );
     }
 }

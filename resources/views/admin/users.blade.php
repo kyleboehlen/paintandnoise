@@ -6,7 +6,7 @@
         <div class="card-header">Users</div><br/><br/>
 
         <div class="card-body">
-            @if($user->checkPermissions(\App\Http\Permissions\Admin::VIEW_ADMINS))
+            @if($admin->checkPermissions(\App\Http\Permissions\Admin::VIEW_ADMINS))
                 <form action="{{ route('admin.users.redirect') }}" method="POST">
                     @csrf
 
@@ -37,7 +37,7 @@
                 </form>
             @endif
 
-            @if($user->checkPermissions(\App\Http\Permissions\Admin::CREATE_ADMINS))
+            @if($admin->checkPermissions(\App\Http\Permissions\Admin::CREATE_ADMINS))
                 <p> -- or -- </p>
                 <form action="{{ route('admin.users.create') }}" method="POST">
                     @csrf

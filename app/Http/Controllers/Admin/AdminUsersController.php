@@ -24,10 +24,7 @@ class AdminUsersController extends Controller
 
     public function index(IndexRequest $request)
     {
-        return view('admin.users')->with([
-            'stylesheet' => 'admin',
-            'user' => \Auth::guard('admin')->user(),
-        ]);
+        return view('admin.users');
     }
 
     public function redirect(RedirectRequest $request)

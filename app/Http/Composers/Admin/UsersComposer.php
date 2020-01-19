@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Composers;
+namespace App\Http\Composers\Admin;
 
 use Illuminate\View\View;
 
-class AdminHomeComposer
+class UsersComposer
 {
     /**
      * Bind data to the view.
@@ -14,6 +14,9 @@ class AdminHomeComposer
      */
     public function compose(View $view)
     {
-        $view->with('tools', \Auth::guard('admin')->user()->tools());
+        $view->with([
+            'admin' => \Auth::guard('admin')->user(),
+            'stylesheet' => 'admin',
+        ]);
     }
 }

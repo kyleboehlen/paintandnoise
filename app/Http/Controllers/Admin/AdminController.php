@@ -22,8 +22,6 @@ class AdminController extends Controller
     public function home()
     {
         // Create and return home view
-        return view('admin.home')->with([
-            'stylesheet' => 'admin',
-        ]);
+        return view('admin.home');
     }
 }
