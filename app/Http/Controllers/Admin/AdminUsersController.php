@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Session;
 use Validator;
 use Log;
 use Str;
@@ -16,6 +17,7 @@ use App\Http\Requests\Admin\Users\IndexRequest;
 use App\Http\Requests\Admin\Users\RedirectRequest;
 use App\Http\Requests\Admin\Users\ViewRequest;
 use App\Http\Requests\Admin\Users\CreateRequest;
+use App\Http\Requests\Admin\Users\DeleteRequest;
 
 // Rules
 use App\Rules\Admin\AdminUserId;
@@ -42,22 +44,13 @@ class AdminUsersController extends Controller
 
     public function view(ViewRequest $request, $id)
     {
-        // Set user-id for validation
-        $input = [
-            'user-id' => $id,
-        ];
-
-        // Set validation rules
-        $rules = [
-            'user-id' => ['required', 'numeric', new AdminUserId,],
-        ];
-
-        // Create validator for user id
-        $validator = Validator::make($input, $rules);
-
-        // Redirect if validation fails
-        if($validator->fails())
+        if(!$this->validateAdminUserId($id))
         {
+            Log::error('Could not validate admin user by id for view.', [
+                'id' => $id,
+                'requesting_admin_id' => \Auth::guard('admin')->user()->id,
+                'requesting_admin_name' => \Auth::guard('admin')->user()->name,
+            ]);
             return redirect()->route('admin.users');
         }
         
@@ -100,5 +93,59 @@ class AdminUsersController extends Controller
         }
 
         return redirect()->route('admin.users.view', $user->id);
+    }
+
+    public function delete(DeleteRequest $request, $id)
+    {
+        // Set acting admin
+        $admin = \Auth::guard('admin')->user();
+
+        // Validate admin user id from route
+        if(!$this->validateAdminUserId($id))
+        {
+            Log::error('Could not validate admin user by id for deletion.', [
+                'id' => $id,
+                'requesting_admin_id' => $admin->id,
+                'requesting_admin_name' => $admin->name,
+            ]);
+            return redirect()->route('admin.users');
+        }
+
+        // Fetch and delete admin user
+        $user = AdminUsers::find($id);
+        if($user->delete())
+        {
+            Log::info("$admin->name deleted admin user $user->name by id.", [
+                'id' => $id,
+                'requesting_admin_id' => $admin->id,
+            ]);
+            return redirect()->route('admin.users');
+        }
+        
+        Session::flash('failed-deletion', true);
+        Log::error('Failed to delete admin user by id', [
+            'id' => $id,
+            'requesting_admin_id' => $admin->id,
+            'requesting_admin_name' => $admin->name,
+        ]);
+        return redirect()->route('admin.users.view', $user->id);
+    }
+
+    private function validateAdminUserId($id)
+    {
+        // Set user-id for validation
+        $input = [
+            'user-id' => $id,
+        ];
+
+        // Set validation rules
+        $rules = [
+            'user-id' => ['required', 'numeric', new AdminUserId,],
+        ];
+
+        // Create validator for user id
+        $validator = Validator::make($input, $rules);
+
+        return $validator->passes();
     }
 }

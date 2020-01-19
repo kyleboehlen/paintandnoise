@@ -87,6 +87,12 @@
                         @csrf
                     </form>
 
+                    @if(session('failed-deletion'))
+                        <div class="invalid-feedback" role="alert">
+                            <p>Failed to delete user.</p>
+                        </div>
+                    @endif
+
                     <a class="delete-link" href="{{ route('admin.users.delete', $user->id) }}" 
                         onclick="event.preventDefault();
                             document.getElementById('delete-form').submit();">
