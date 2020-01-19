@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Validator;
 use Log;
 use Str;
 
@@ -13,7 +14,11 @@ use App\Models\Admin\AdminUsers;
 // Requests
 use App\Http\Requests\Admin\Users\IndexRequest;
 use App\Http\Requests\Admin\Users\RedirectRequest;
+use App\Http\Requests\Admin\Users\ViewRequest;
 use App\Http\Requests\Admin\Users\CreateRequest;
+
+// Rules
+use App\Rules\Admin\AdminUserId;
 
 class AdminUsersController extends Controller
 {
@@ -24,13 +29,47 @@ class AdminUsersController extends Controller
 
     public function index(IndexRequest $request)
     {
-        return view('admin.users');
+        return view('admin.users')->with([
+            'show' => 'index',
+        ]);
     }
 
     public function redirect(RedirectRequest $request)
     {
         // Return view for requested admin user
         return redirect()->route('admin.users.view', $request->get('user-id'));
+    }
+
+    public function view(ViewRequest $request, $id)
+    {
+        // Set user-id for validation
+        $input = [
+            'user-id' => $id,
+        ];
+
+        // Set validation rules
+        $rules = [
+            'user-id' => ['required', 'numeric', new AdminUserId,],
+        ];
+
+        // Create validator for user id
+        $validator = Validator::make($input, $rules);
+
+        // Redirect if validation fails
+        if($validator->fails())
+        {
+            return redirect()->route('admin.users');
+        }
+        
+        // Generate selected user
+        $user = AdminUsers::find($id);
+
+        // Return selected admin user
+        return view('admin.users')->with([
+            'card_header' => "User: $user->name",
+            'show' => 'view',
+            'user' => $user,
+        ]);
     }
 
     public function create(CreateRequest $request)

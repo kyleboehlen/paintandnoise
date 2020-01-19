@@ -3,3 +3,17 @@
 
 // Variables
 @import 'variables';
+
+%flex-container
+{
+    align-items: stretch;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-around;
+}
+
+%flex-item
+{
+    flex-grow: 0;
+    padding: 25px;
+}
