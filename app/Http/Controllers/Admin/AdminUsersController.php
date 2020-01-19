@@ -12,6 +12,7 @@ use App\Models\Admin\AdminUsers;
 
 // Requests
 use App\Http\Requests\Admin\Users\IndexRequest;
+use App\Http\Requests\Admin\Users\RedirectRequest;
 use App\Http\Requests\Admin\Users\CreateRequest;
 
 class AdminUsersController extends Controller
@@ -20,13 +21,19 @@ class AdminUsersController extends Controller
     {
         $this->middleware('auth:admin');
     }
-    
+
     public function index(IndexRequest $request)
     {
         return view('admin.users')->with([
             'stylesheet' => 'admin',
             'user' => \Auth::guard('admin')->user(),
         ]);
+    }
+
+    public function redirect(RedirectRequest $request)
+    {
+        // Return view for requested admin user
+        return redirect()->route('admin.users.view', $request->get('user-id'));
     }
 
     public function create(CreateRequest $request)

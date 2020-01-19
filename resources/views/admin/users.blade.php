@@ -8,13 +8,30 @@
         <div class="card-body">
             @if($user->checkPermissions(\App\Http\Permissions\Admin::VIEW_ADMINS))
                 <form action="{{ route('admin.users.redirect') }}" method="POST">
-                    <select name="user-id">
-                        @foreach(\App\Models\Admin\AdminUsers::all() as $admin_user)
-                            <option value="{{ $admin_user->id }}">
-                                {{ $admin_user->name }}
-                            </option>
+                    @csrf
+
+                    <select name="user-id" class="@if($errors->has('user-id')) is-invalid @endif">
+                        @foreach(\App\Models\Admin\AdminUsers::all()->sortBy('name') as $admin_user)
+                            @if($admin_user->id != 1) {{-- Don't display super admin --}}
+                                <option value="{{ $admin_user->id }}">
+                                    {{ $admin_user->name }}
+                                </option>
+                            @endif
                         @endforeach
                     </select><br/><br/>
+
+                    @if($errors->has('user-id'))
+                        <span class="invalid-feedback" role="alert">
+                            @if(is_array($errors->get('user-id')))
+                                @foreach($errors->get('user-id') as $error)
+                                    <strong>{{ $error }}</strong>
+                                @endforeach
+                            @else
+                                <strong>{{ $errors->get('user-id') }}</strong>
+                            @endif
+                        </span>
+                        <br/><br/>
+                    @endif
 
                     <input type="submit" value="Select" />
                 </form>
@@ -24,12 +41,38 @@
                 <p> -- or -- </p>
                 <form action="{{ route('admin.users.create') }}" method="POST">
                     @csrf
-                    
+
                     <label for="name">Name</label><br/>
-                    <input id="name" type="text" name="name" required/><br/>
+                    <input id="name" type="text" name="name" class="@if($errors->has('name')) is-invalid @endif" required/><br/>
+
+                    @if($errors->has('name'))
+                        <span class="invalid-feedback" role="alert">
+                            @if(is_array($errors->get('name')))
+                                @foreach($errors->get('name') as $error)
+                                    <strong>{{ $error }}</strong>
+                                @endforeach
+                            @else
+                                <strong>{{ $errors->get('name') }}</strong>
+                            @endif
+                        </span>
+                        <br/><br/>
+                    @endif
 
                     <label for="email">Email</label><br/>
-                    <input id="email" type="email" name="email" required/><br/><br/>
+                    <input id="email" type="email" name="email" class="@if($errors->has('email')) is-invalid @endif" required/><br/><br/>
+
+                    @if($errors->has('email'))
+                        <span class="invalid-feedback" role="alert">
+                            @if(is_array($errors->get('email')))
+                                @foreach($errors->get('email') as $error)
+                                    <strong>{{ $error }}</strong>
+                                @endforeach
+                            @else
+                                <strong>{{ $errors->get('email') }}</strong>
+                            @endif
+                        </span>
+                        <br/><br/>
+                    @endif
 
                     <input type="submit" value="Add" /><br/><br/>
                 </form>
