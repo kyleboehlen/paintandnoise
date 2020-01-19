@@ -6,7 +6,7 @@
         <div class="card-header">Verify Your Email</div>
 
         <div class="card-body">
-            @if (session('resent'))
+            @if(session('resent'))
                 <div class="alert-success" role="alert">
                     <p>A new verification link has been sent to your email address :)</p>
                 </div>
