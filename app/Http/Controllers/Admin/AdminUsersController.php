@@ -16,6 +16,11 @@ use App\Http\Requests\Admin\Users\CreateRequest;
 
 class AdminUsersController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth:admin');
+    }
+    
     public function index(IndexRequest $request)
     {
         return view('admin.users')->with([
