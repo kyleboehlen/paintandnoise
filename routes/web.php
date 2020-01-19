@@ -85,6 +85,12 @@ Route::prefix('/admin')->group(function(){
     // Admin Users Tool
     Route::prefix('/users')->group(function(){
         Route::get('/', 'Admin\AdminUsersController@index')->name('admin.users');
+
+        // Redirect 
+        Route::post('/redirect', 'Admin\AdminUsersController@redirect')->name('admin.users.redirect');
+
+        // Create
+        Route::post('/create', 'Admin\AdminUsersController@create')->name('admin.users.create');
     });
 
     // Admin Reported Posts Tool

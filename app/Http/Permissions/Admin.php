@@ -9,6 +9,7 @@ class Admin
     const RESET_ADMIN_PASSWORDS = [3];
     const DELETE_ADMINS = [4];
     const VIEW_ADMINS = [5];
+    const ADMIN_USER_TOOL_PERMISSIONS = [1, 2, 3, 4, 5];
     const VIEW_REPORTED_POSTS = [6];
     const RESOLVE_REPORTED_POSTS = [7];
     const VIEW_POSTERS = [8];
