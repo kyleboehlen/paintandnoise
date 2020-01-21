@@ -27,6 +27,7 @@ class AdminUsersController extends Controller
     public function __construct()
     {
         $this->middleware('auth:admin');
+        $this->admin = \Auth::guard('admin')->user();
     }
 
     public function index(IndexRequest $request)
@@ -48,8 +49,8 @@ class AdminUsersController extends Controller
         {
             Log::error('Could not validate admin user by id for view.', [
                 'id' => $id,
-                'requesting_admin_id' => \Auth::guard('admin')->user()->id,
-                'requesting_admin_name' => \Auth::guard('admin')->user()->name,
+                'requesting_admin_id' => $this->admin->id,
+                'requesting_admin_name' => $this->admin->name,
             ]);
             return redirect()->route('admin.users');
         }
@@ -97,16 +98,13 @@ class AdminUsersController extends Controller
 
     public function delete(DeleteRequest $request, $id)
     {
-        // Set acting admin
-        $admin = \Auth::guard('admin')->user();
-
         // Validate admin user id from route
         if(!$this->validateAdminUserId($id))
         {
             Log::error('Could not validate admin user by id for deletion.', [
                 'id' => $id,
-                'requesting_admin_id' => $admin->id,
-                'requesting_admin_name' => $admin->name,
+                'requesting_admin_id' => $this->admin->id,
+                'requesting_admin_name' => $this->admin->name,
             ]);
             return redirect()->route('admin.users');
         }
@@ -115,6 +113,7 @@ class AdminUsersController extends Controller
         $user = AdminUsers::find($id);
         if($user->delete())
         {
+            $admin = $this->admin;
             Log::info("$admin->name deleted admin user $user->name by id.", [
                 'id' => $id,
                 'requesting_admin_id' => $admin->id,
@@ -125,8 +124,8 @@ class AdminUsersController extends Controller
         Session::flash('failed-deletion', true);
         Log::error('Failed to delete admin user by id', [
             'id' => $id,
-            'requesting_admin_id' => $admin->id,
-            'requesting_admin_name' => $admin->name,
+            'requesting_admin_id' => $this->admin->id,
+            'requesting_admin_name' => $this->admin->name,
         ]);
         return redirect()->route('admin.users.view', $user->id);
     }
