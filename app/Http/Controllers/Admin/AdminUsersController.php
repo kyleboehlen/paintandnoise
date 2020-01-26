@@ -18,6 +18,7 @@ use App\Http\Requests\Admin\Users\RedirectRequest;
 use App\Http\Requests\Admin\Users\ViewRequest;
 use App\Http\Requests\Admin\Users\CreateRequest;
 use App\Http\Requests\Admin\Users\DeleteRequest;
+use App\Http\Requests\Admin\Users\ResetPasswordRequest;
 
 // Rules
 use App\Rules\Admin\AdminUserId;
@@ -132,6 +133,35 @@ class AdminUsersController extends Controller
             'requesting_admin_name' => $this->admin->name,
         ]);
         return redirect()->route('admin.users.view', $user->id);
+    }
+
+    public function resetPassword(ResetPasswordRequest $request, $id)
+    {
+        // Validate admin user id from route
+        if(!$this->validateAdminUserId($id))
+        {
+            Log::error('Could not validate admin user by id to send a password reset email.', [
+                'id' => $id,
+                'requesting_admin_id' => $this->admin->id,
+                'requesting_admin_name' => $this->admin->name,
+            ]);
+            return redirect()->route('admin.users');
+        }
+
+        // Generate password reset
+        $user = AdminUsers::find($id);
+        $user->sendPasswordResetNotification($user->newResetPasswordToken());
+
+        // Log event
+        $admin = $this->admin;
+        Session::flash('sent', true);
+        Log::info("$admin->name generated password reset token and notifcation for admin $user->name.", [
+            'id' => $id,
+            'admin_id' => $admin->id,
+        ]);
+
+        // Return redirect with the success status alert
+        return redirect()->route('admin.users.view', $id);
     }
 
     private function validateAdminUserId($id)

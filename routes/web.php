@@ -77,10 +77,16 @@ Route::prefix('/admin')->group(function(){
     Route::get('/', 'Admin\AdminController@index')->name('admin');
     Route::get('/home', 'Admin\AdminController@home')->middleware('auth:admin')->name('admin.home');
 
-    //Login Routes
+    // Login Routes
     Route::get('/login','Admin\LoginController@showLoginForm')->name('admin.login');
     Route::post('/login','Admin\LoginController@login');
     Route::post('/logout','Admin\LoginController@logout')->name('admin.logout');
+
+    // Password Routes
+    Route::prefix('/password')->group(function(){
+        Route::get('/reset/{token}', 'Admin\ResetPasswordController@showResetForm')->name('admin.password.reset');
+        Route::post('/reset', 'Admin\ResetPasswordController@reset')->name('admin.password.update');
+    });
 
     // Admin Users Tool
     Route::prefix('/users')->group(function(){

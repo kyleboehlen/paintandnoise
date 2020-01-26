@@ -5,6 +5,8 @@ namespace App\Models\Admin;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use App\Notifications\Admin\ResetPasswordNotification;
+use Log;
 
 // Models
 use App\Models\Admin\AdminTools;
@@ -17,6 +19,7 @@ class AdminUsers extends Authenticatable
     use SoftDeletes;
 
     protected $guard = 'admin';
+    protected $rememberTokenName = false;
 
     protected $fillable = [
         'name', 'email', 'password',
@@ -35,6 +38,10 @@ class AdminUsers extends Authenticatable
     public function sendPasswordResetNotification($token)
     {
         $this->notify(new ResetPasswordNotification($token));
+        Log::info('Reset Password Notification generated for admin.', [
+            'admin_user_id' => $this->id,
+            'email' => $this->email,
+        ]);
     }
 
     /**
@@ -45,7 +52,7 @@ class AdminUsers extends Authenticatable
      */
     public function newResetPasswordToken()
     {
-        return app('auth.password.broker')->createToken($this);
+        return app('auth.password')->broker('admins')->createToken($this);
     }
 
     /**
