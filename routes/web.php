@@ -102,7 +102,7 @@ Route::prefix('/admin')->group(function(){
         Route::post('/create', 'Admin\AdminUsersController@create')->name('admin.users.create');
 
         // Update
-        Route::post('/update', 'Admin\AdminUsersController@update')->name('admin.users.update');
+        Route::post('/update/{id}', 'Admin\AdminUsersController@update')->name('admin.users.update');
 
         // Delete
         Route::post('/delete/{id}', 'Admin\AdminUsersController@delete')->name('admin.users.delete');

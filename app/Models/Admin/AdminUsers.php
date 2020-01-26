@@ -60,9 +60,10 @@ class AdminUsers extends Authenticatable
      * 
      * @return array
      */
-    public function permissions()
+    public function permissions($collection = false)
     {
-        return AdminUsersPermissions::where('admin_users_id', $this->id)->get()->pluck('admin_permissions_id')->toArray();
+        $permissions_ids = AdminUsersPermissions::where('admin_users_id', $this->id)->get()->pluck('admin_permissions_id')->toArray();
+        return ($collection ? AdminPermissions::whereIn('id', $permissions_ids)->get() : $permissions_ids);
     }
 
     /**

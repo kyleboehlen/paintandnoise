@@ -11,12 +11,15 @@ use Str;
 
 // Models
 use App\Models\Admin\AdminUsers;
+use App\Models\Admin\AdminPermissions;
+use App\Models\Admin\AdminUsersPermissions;
 
 // Requests
 use App\Http\Requests\Admin\Users\IndexRequest;
 use App\Http\Requests\Admin\Users\RedirectRequest;
 use App\Http\Requests\Admin\Users\ViewRequest;
 use App\Http\Requests\Admin\Users\CreateRequest;
+use App\Http\Requests\Admin\Users\UpdateRequest;
 use App\Http\Requests\Admin\Users\DeleteRequest;
 use App\Http\Requests\Admin\Users\ResetPasswordRequest;
 
@@ -99,6 +102,104 @@ class AdminUsersController extends Controller
         }
 
         return redirect()->route('admin.users.view', $user->id);
+    }
+
+    public function update(UpdateRequest $request, $id)
+    {
+        // Validate admin user id from route
+        if(!$this->validateAdminUserId($id))
+        {
+            Log::error('Could not validate admin user by id for updating permissions', [
+                'id' => $id,
+                'requesting_admin_id' => $this->admin->id,
+                'requesting_admin_name' => $this->admin->name,
+            ]);
+            return redirect()->route('admin.users');
+        }
+
+        // Get user
+        $user = AdminUsers::find($id);
+
+        // Create permissions array
+        if($request->has('permissions'))
+        {
+            $permissions_array = $request->get('permissions');
+        }
+        else
+        {
+            $permissions_array = array();
+        }
+
+        // Get any current permissions
+        $current_permissions = $user->permissions($collection = true);
+
+        // Check current permissions
+        if(!is_null($current_permissions))
+        {
+            foreach($current_permissions as $current_permission)
+            {
+                if(!in_array($current_permission, $permissions_array))
+                {
+                    $admin_users_permission = AdminUsersPermissions::where('admin_users_id', $id)->where('admin_permissions_id', $current_permission->id)->first();
+
+                    if(!$admin_users_permission->delete())
+                    {
+                        Log::error("Failed to delete permission for admin $user->name", [
+                            'id' => $id,
+                            'requesting_admin_id' => $this->admin->id,
+                            'requesting_admin_name' => $this->admin->name,
+                            'permissions_id' => $current_permission->id,
+                        ]);
+                    }
+                }
+            }
+        }
+
+        // Add Permissions
+        foreach($permissions_array as $permission_id)
+        {
+            $permission = AdminPermissions::find($permission_id);
+
+            if(!is_null($permission))
+            {
+                $admin_users_permission = AdminUsersPermissions::withTrashed()->where('admin_users_id', $id)->where('admin_permissions_id', $permission->id)->first();
+
+                if(is_null($admin_users_permission))
+                {
+                    $attributes_array = [
+                        'admin_users_id' => $user->id,
+                        'admin_permissions_id' => $permission->id,
+                    ];
+    
+                    if($request->has('expires'))
+                    {
+                        array_push($attributes_array, [
+                            'expires' => $request->get('expires'),
+                        ]);
+                    }
+    
+                    $admin_users_permission = new AdminUsersPermissions($attributes_array);
+                }
+                else
+                {
+                    $admin_users_permission->deleted_at = null;
+                }
+
+
+                if(!$admin_users_permission->save())
+                {
+                    Log::error("Failed to save permission for admin $user->name", [
+                        'id' => $id,
+                        'requesting_admin_id' => $this->admin->id,
+                        'requesting_admin_name' => $this->admin->name,
+                        'permissions_id' => $permission->id,
+                    ]);
+                }
+            }
+        }
+
+        // Return view
+        return redirect()->route('admin.users.view', $id);
     }
 
     public function delete(DeleteRequest $request, $id)

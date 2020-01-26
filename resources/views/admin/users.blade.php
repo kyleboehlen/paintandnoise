@@ -118,7 +118,7 @@
                     </a><br/><br/>
                 @endif
 
-                <form id="permissions-form" action="{{ route('admin.users.update') }}" method="POST">
+                <form id="permissions-form" action="{{ route('admin.users.update', $user->id) }}" method="POST">
                     @csrf
                     
                     <p class="permissions-label">Permissions</p>
