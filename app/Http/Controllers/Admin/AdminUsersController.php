@@ -27,7 +27,11 @@ class AdminUsersController extends Controller
     public function __construct()
     {
         $this->middleware('auth:admin');
-        $this->admin = \Auth::guard('admin')->user();
+    }
+
+    public function __get($admin)
+    {
+        return \Auth::guard('admin')->user();
     }
 
     public function index(IndexRequest $request)
