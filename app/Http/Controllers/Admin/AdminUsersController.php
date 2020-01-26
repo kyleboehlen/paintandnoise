@@ -68,7 +68,6 @@ class AdminUsersController extends Controller
 
         // Return selected admin user
         return view('admin.users')->with([
-            'card_header' => "User: $user->name",
             'show' => 'view',
             'user' => $user,
         ]);

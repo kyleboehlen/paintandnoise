@@ -4,8 +4,8 @@
     <div class="users-card">
         <br/><br/>
         <div class="card-header">
-            @isset($card_header) {{ $card_header }} @endisset
-            @empty($card_header) Users @endempty
+            @isset($user) {{ $user->name }} @endisset
+            @empty($user) Users @endempty
         </div><br/><br/>
 
         <div class="card-body">
@@ -114,7 +114,7 @@
                     <a class="reset-password-link" href="{{ route('admin.users.password', $user->id) }}" 
                         onclick="event.preventDefault();
                             document.getElementById('reset-password-form').submit();">
-                        Send Reset Password To: {{ $user->email }}
+                        Send Reset Password To:<br/>{{ $user->email }}
                     </a><br/><br/>
                 @endif
 
