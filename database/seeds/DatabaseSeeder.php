@@ -27,6 +27,6 @@ class DatabaseSeeder extends Seeder
         $this->call(SuperAdminPermissionsSeed::class);
 
         // Seed poster statuses
-        $this->call(PosterStatusesSeed::class);
+        $this->call(PostersStatusesSeed::class);
     }
 }

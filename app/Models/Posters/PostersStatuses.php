@@ -4,7 +4,7 @@ namespace App\Models\Posters;
 
 use Illuminate\Database\Eloquent\Model;
 
-class PosterStatuses extends Model
+class PostersStatuses extends Model
 {
     //
 }

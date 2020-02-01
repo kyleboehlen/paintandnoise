@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreatePosterStatusesTable extends Migration
+class CreatePostersStatusesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreatePosterStatusesTable extends Migration
      */
     public function up()
     {
-        Schema::create('poster_statuses', function (Blueprint $table) {
+        Schema::create('posters_statuses', function (Blueprint $table) {
             // PK
             $table->tinyIncrements('id');
             
@@ -29,6 +29,6 @@ class CreatePosterStatusesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('poster_statuses');
+        Schema::dropIfExists('posters_statuses');
     }
 }

@@ -2,7 +2,7 @@
 
 use Illuminate\Database\Seeder;
 
-class PosterStatusesSeed extends Seeder
+class PostersStatusesSeed extends Seeder
 {
     /**
      * Run the database seeds.
@@ -43,7 +43,7 @@ class PosterStatusesSeed extends Seeder
             try
             {
                 // Insert status
-                DB::table('poster_statuses')->insert(array($status));
+                DB::table('posters_statuses')->insert(array($status));
             }
             catch(\Exception $e)
             {
@@ -52,7 +52,7 @@ class PosterStatusesSeed extends Seeder
                 $name = $status['name'];
 
                 // Print duplicate error message to console
-                echo "Status $id ($name) already exsists in the database, skipping...\n";
+                echo "Posters Status $id ($name) already exsists in the database, skipping...\n";
             }
         }
     }
