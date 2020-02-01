@@ -24,7 +24,6 @@ class CreateUsersTable extends Migration
 
             // More Columns
             $table->string('name'); // name that displays
-            $table->string('slug')->unique()->nullable(); // used in url
 
             $table->string('email')->unique(); // also used at username for login, user auth
             $table->timestamp('email_verified_at')->nullable();  // casts 
@@ -34,7 +33,6 @@ class CreateUsersTable extends Migration
             $table->string('phone_number', 10)->nullable(); // only US for now
             $table->timestamp('phone_number_verified_at')->nullable(); // casts
             
-            $table->boolean('can_post')->default($value = 0); // Can not post unless verified
             $table->boolean('can_vote')->default($value = 0); // For restricting voting, ghost ban config possible?
             $table->boolean('show_nsfw')->default($value = 0); // For showing nsfw posts or nah
 
