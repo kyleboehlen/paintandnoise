@@ -25,5 +25,8 @@ class DatabaseSeeder extends Seeder
         
         // Seed super admin permissions
         $this->call(SuperAdminPermissionsSeed::class);
+
+        // Seed poster statuses
+        $this->call(PosterStatusesSeed::class);
     }
 }
