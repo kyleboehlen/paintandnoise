@@ -49,10 +49,12 @@
         <footer>
             {{-- Social media links (facebook, insta, twitter)--}}
             <div class="social-container">
-                @foreach(config('icon.identifiers') as $identifier)
-                    <a href="{{ config('social.' . $identifier . '_url') . config('social.' . $identifier . '_username') }}" target="_blank"> 
-                        <img src="{{ route('assets.icon', $identifier) }}"/>
-                    </a>
+                @foreach(\App\Models\Socials\Socials::all() as $social)
+                    @if(config()->has("social.$social->id"))
+                        <a href="{{ $social->buildUrl(config("social.$social->id")) }}" target="_blank"> 
+                            <img src="{{ route('assets.icon', $social->icon_identifier) }}"/>
+                        </a>
+                    @endif
                 @endforeach
             </div>
             

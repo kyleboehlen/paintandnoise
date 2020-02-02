@@ -6,5 +6,8 @@ return [
         'facebook',
         'instagram',
         'twitter',
+        'spotify',
+        'soundcloud',
+        'youtube',
     ],
 ];

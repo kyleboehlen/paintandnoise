@@ -28,5 +28,8 @@ class DatabaseSeeder extends Seeder
 
         // Seed poster statuses
         $this->call(PostersStatusesSeed::class);
+
+        // Seed socials
+        $this->call(SocialsSeed::class);
     }
 }
