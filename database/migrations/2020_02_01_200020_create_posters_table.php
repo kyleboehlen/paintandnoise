@@ -26,6 +26,7 @@ class CreatePostersTable extends Migration
             $table->string('slug', 8)->nullable($value = true)->unique();
             $table->tinyInteger('status_id')->default($value = 3)->unsigned(); // Default value = 'Applied'
             $table->string('bio', 255)->nullable($value = true);
+            $table->char('verification_token', 6); // Alpha numeric
 
             // Constraints
             $table->foreign('users_id')->references('id')->on('users');
