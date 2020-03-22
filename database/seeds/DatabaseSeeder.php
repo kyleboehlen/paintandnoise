@@ -31,5 +31,8 @@ class DatabaseSeeder extends Seeder
 
         // Seed socials
         $this->call(SocialsSeed::class);
+
+        // Seed posts types
+        $this->call(PostsTypesSeed::class);
     }
 }

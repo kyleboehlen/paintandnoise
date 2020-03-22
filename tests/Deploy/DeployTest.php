@@ -73,5 +73,8 @@ class DeployTest extends TestCase
 
         // Verify super admin has all 11 admin permissions
         $this->assertTrue(DB::table('admin_users_permissions')->where('users_id', 1)->get()->count() == 11);
+
+        // Check for 3 posts types
+        $this->assertTrue(DB::table('posts_types')->get()->count() == 3);
     }
 }
