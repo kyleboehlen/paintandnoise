@@ -13,12 +13,12 @@ class AdminUsersPermissions extends Model
     use SoftDeletes;
     use HasCompositePrimaryKey;
 
-    protected $primaryKey = ['admin_users_id', 'admin_permissions_id'];
+    protected $primaryKey = ['users_id', 'permissions_id'];
 
     public $incrementing = false;
     public $fillable = [
-        'admin_users_id',
-        'admin_permissions_id',
+        'users_id',
+        'permissions_id',
         'expires',
     ];
 }

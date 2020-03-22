@@ -11,7 +11,7 @@ use App\Models\Admin\AdminPermissions;
 
 $factory->define(AdminUsersPermissions::class, function (Faker $faker) {
     return [
-        'admin_users_id' => AdminUsers::all()->random()->id,
-        'admin_permissions_id' => AdminPermissions::all()->random()->id,
+        'users_id' => AdminUsers::all()->random()->id,
+        'permissions_id' => AdminPermissions::all()->random()->id,
     ];
 });

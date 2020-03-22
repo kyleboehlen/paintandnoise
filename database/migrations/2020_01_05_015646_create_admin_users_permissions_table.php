@@ -15,8 +15,8 @@ class CreateAdminUsersPermissionsTable extends Migration
     {
         Schema::create('admin_users_permissions', function (Blueprint $table) {
             // Composite PK
-            $table->bigInteger('admin_users_id')->unsigned();
-            $table->smallInteger('admin_permissions_id')->unsigned();
+            $table->bigInteger('users_id')->unsigned();
+            $table->smallInteger('permissions_id')->unsigned();
 
             // More Columns
             $table->dateTime('expires')->nullable($value = true);
@@ -26,9 +26,9 @@ class CreateAdminUsersPermissionsTable extends Migration
             $table->timestamps();
 
             // Constraints
-            $table->primary(['admin_users_id', 'admin_permissions_id', ], 'admin_users_permissions_pk');
-            $table->foreign('admin_users_id')->references('id')->on('admin_users');
-            $table->foreign('admin_permissions_id')->references('id')->on('admin_permissions');
+            $table->primary(['users_id', 'permissions_id', ], 'admin_users_permissions_pk');
+            $table->foreign('users_id')->references('id')->on('admin_users');
+            $table->foreign('permissions_id')->references('id')->on('admin_permissions');
         });
     }
 

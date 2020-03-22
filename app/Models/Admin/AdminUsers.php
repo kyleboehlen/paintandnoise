@@ -62,7 +62,7 @@ class AdminUsers extends Authenticatable
      */
     public function permissions($collection = false)
     {
-        $permissions_ids = AdminUsersPermissions::where('admin_users_id', $this->id)->get()->pluck('admin_permissions_id')->toArray();
+        $permissions_ids = AdminUsersPermissions::where('users_id', $this->id)->get()->pluck('permissions_id')->toArray();
         return ($collection ? AdminPermissions::whereIn('id', $permissions_ids)->get() : $permissions_ids);
     }
 
@@ -102,7 +102,7 @@ class AdminUsers extends Authenticatable
      */
     private function assignPermission($permission_id, $expire = null)
     {
-        $admin_user_permission = AdminUsersPermissions::withTrashed()->where('admin_users_id', $this->id)->where('admin_permissions_id', $permission_id)->first();
+        $admin_user_permission = AdminUsersPermissions::withTrashed()->where('users_id', $this->id)->where('permissions_id', $permission_id)->first();
 
         if(!is_null($admin_user_permission))
         {
@@ -112,8 +112,8 @@ class AdminUsers extends Authenticatable
         else
         {
             $admin_user_permission = new AdminUsersPermissions([
-                'admin_users_id' => $this->id,
-                'admin_permissions_id' => $permission_id,
+                'users_id' => $this->id,
+                'permissions_id' => $permission_id,
                 'expires' => (is_null($expire) ? $expire : $expire->toDatetimeString()),
             ]);
         }
@@ -163,7 +163,7 @@ class AdminUsers extends Authenticatable
      */
     private function revokePermission($permission_id)
     {
-        $admin_user_permission = AdminUsersPermissions::where('admin_users_id', $this->id)->where('admin_permissions_id', $permission_id)->first();
+        $admin_user_permission = AdminUsersPermissions::where('users_id', $this->id)->where('permissions_id', $permission_id)->first();
 
         if(is_null($admin_user_permission))
         {

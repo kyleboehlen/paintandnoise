@@ -20,8 +20,8 @@ class SuperAdminPermissionsSeed extends Seeder
         foreach($permissions as $permission)
         {
             $array = [
-                'admin_users_id' => 1,
-                'admin_permissions_id' => $permission->id,
+                'users_id' => 1,
+                'permissions_id' => $permission->id,
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now(),
             ];

@@ -72,6 +72,6 @@ class DeployTest extends TestCase
         $this->assertFalse(Hash::needsRehash($super_admin->password));
 
         // Verify super admin has all 11 admin permissions
-        $this->assertTrue(DB::table('admin_users_permissions')->where('admin_users_id', 1)->get()->count() == 11);
+        $this->assertTrue(DB::table('admin_users_permissions')->where('users_id', 1)->get()->count() == 11);
     }
 }
