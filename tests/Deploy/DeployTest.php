@@ -37,6 +37,14 @@ class DeployTest extends TestCase
         $this->assertTrue(Schema::hasTable('admin_permissions'));
         $this->assertTrue(Schema::hasTable('admin_users_permissions'));
         $this->assertTrue(Schema::hasTable('admin_password_resets'));
+        $this->assertTrue(Schema::hasTable('posters_statuses'));
+        $this->assertTrue(Schema::hasTable('posters'));
+        $this->assertTrue(Schema::hasTable('socials'));
+        $this->assertTrue(Schema::hasTable('posters_socials'));
+        $this->assertTrue(Schema::hasTable('posters_categories'));
+        $this->assertTrue(Schema::hasTable('posts_types'));
+        $this->assertTrue(Schema::hasTable('posts'));
+        $this->assertTrue(Schema::hasTable('votes'));
     }
 
     /**
