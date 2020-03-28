@@ -32,7 +32,7 @@ class AdminsTest extends TestCase
      * Seed admin users permissions
      *
      * @return void
-
+     * @test
      */
     public function adminsPermissionsTest()
     {
