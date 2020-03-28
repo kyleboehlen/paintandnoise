@@ -14,7 +14,8 @@
         </testsuite>
 
         <testsuite name="TestData">
-            <directory suffix="Test.php">./tests/TestData</directory>
+            <file>./tests/TestData/AdminsTest.php</file>
+            <file>./tests/TestData/UsersTest.php</file>
         </testsuite>
 
         <testsuite name="Unit">
