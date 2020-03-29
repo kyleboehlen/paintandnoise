@@ -16,6 +16,7 @@
         <testsuite name="TestData">
             <file>./tests/TestData/AdminsTest.php</file>
             <file>./tests/TestData/UsersTest.php</file>
+            <file>./tests/TestData/PostersTest.php</file>
         </testsuite>
 
         <testsuite name="Unit">

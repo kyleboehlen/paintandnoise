@@ -21,10 +21,9 @@ class UsersTest extends TestCase
     public function usersTest()
     {
         // Create random users using users factory
-        $users = factory(Users::class, mt_rand(100, 1000))->create();
-
+        $users = factory(Users::class, mt_rand(1000, 2000))->create();
         // Verify there are more than 100
-        $this->assertTrue(count($users) >= 100);
+        $this->assertTrue(count($users) >= 1000);
     }
 
     /**
