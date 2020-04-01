@@ -24,6 +24,10 @@ class PostsTypesSeed extends Seeder
                 'id' => 3,
                 'name' => 'Video',
             ),
+            array(
+                'id' => 4,
+                'name' => 'Text',
+            )
         );
 
         foreach($types as $type)
