@@ -27,7 +27,11 @@ class PostsTypesSeed extends Seeder
             array(
                 'id' => 4,
                 'name' => 'Text',
-            )
+            ),
+            array(
+                'id' => 5,
+                'name' => 'Embedded SoundCloud',
+            ),
         );
 
         foreach($types as $type)
