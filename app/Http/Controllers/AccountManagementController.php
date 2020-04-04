@@ -70,9 +70,7 @@ class AccountManagementController extends Controller
             })) !== false)
             {
                 // Get parent id subcategories
-                $categories = $parent_categories[$index]->subCategories()->sortBy(function($category){
-                    return $category->usersCount();
-                });
+                $categories = $parent_categories[$index]->subCategories;
 
                 // If no subcategories send back to parent categories list
                 if(is_null($categories))

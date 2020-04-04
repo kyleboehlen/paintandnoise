@@ -5,13 +5,14 @@ namespace App\Models\Categories;
 use Illuminate\Database\Eloquent\Model;
 
 // Models
+use App\Models\Users;
 use App\Models\Categories\UsersCategories;
 
 class Categories extends Model
 {
     public function users()
     {
-        return UsersCategories::where('categories_id', $this->id)->get();
+        return $this->belongsToMany(Users::class, UsersCategories::class);
     }
 
     public function usersCount()
@@ -21,7 +22,7 @@ class Categories extends Model
 
     public function subCategories()
     {
-        return Categories::where('parent_id', $this->id)->get();
+        return $this->hasMany(self::class, 'parent_id');
     }
 
     public function subCategoriesCount()
