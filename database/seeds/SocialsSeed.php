@@ -50,9 +50,9 @@ class SocialsSeed extends Seeder
             array(
                 'id' => 6,
                 'name' => 'Spotify',
-                'url' => 'https://open.spotify.com/',
+                'url' => 'https://open.spotify.com',
                 'icon_identifier' => 'spotify',
-                'profile_link_pattern' => '{url}/artist/{uid}',
+                'profile_link_pattern' => '{url}/{type}/{uid}',
             ),
         );
 

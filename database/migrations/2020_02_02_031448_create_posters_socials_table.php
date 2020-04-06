@@ -23,7 +23,7 @@ class CreatePostersSocialsTable extends Migration
             $table->softDeletes();
 
             // Other Columns
-            $table->string('value', 255);
+            $table->json('value');
             $table->boolean('verified')->default($value = 0);
 
             // Constraints

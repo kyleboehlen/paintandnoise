@@ -126,3 +126,6 @@ Route::prefix('/admin')->group(function(){
         Route::get('/', 'Admin\StatsController@index')->name('admin.stats');
     });
 });
+
+// Spotify redirect
+Route::get('/spotify', 'RedirectController@spotify');

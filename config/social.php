@@ -9,4 +9,8 @@ return [
     3 => [ // Instagram
         'username' => env('INSTAGRAM_USERNAME', 'paintandnoise'),
     ],
+    6 => [ // Spotify
+        'type' => env('SPOTIFY_TYPE', 'user'),
+        'uid' => env('SPOTIFY_UID', '06hpbv4kf4wq8ncu95k61l41c?si=rWYCcURlQGGyxtZMnsEgrw'),
+    ],
 ];
