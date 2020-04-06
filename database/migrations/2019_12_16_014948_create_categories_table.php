@@ -13,14 +13,18 @@ class CreateCategoriesTable extends Migration
      */
     public function up()
     {
-        Schema::create('categories', function (Blueprint $table) {
+        $colors = [
+            'blue', 'green', 'indigo', 'orange', 'red', 'violet', 'yellow',
+        ];
+
+        Schema::create('categories', function (Blueprint $table) use ($colors) {
             // PK
             $table->smallIncrements('id');
 
             // More Tables
             $table->string('name', 100);
             $table->smallInteger('parent_id')->unsigned()->nullable(); // References parent category ID
-            $table->string('color', 100)->nullable();
+            $table->enum('color', $colors)->nullable();
 
             // Constraints
             $table->foreign('parent_id')->references('id')->on('categories'); // See, it references parent category ID right here! Wow!
