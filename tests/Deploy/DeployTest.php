@@ -57,8 +57,8 @@ class DeployTest extends TestCase
         // Seed the database
         Artisan::call('db:seed');
 
-        // Check if there are 19 categories seeded
-        $this->assertTrue(DB::table('categories')->get()->count() == 19);
+        // Check if there are 20 categories seeded
+        $this->assertTrue(DB::table('categories')->get()->count() == 20);
 
         // Check for 4 admin tools
         $this->assertTrue(DB::table('admin_tools')->get()->count() == 4);

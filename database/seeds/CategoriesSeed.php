@@ -126,6 +126,12 @@ class CategoriesSeed extends Seeder
                 'parent_id' => 4, // Digital Art
                 'color' => null,
             ),
+            array(
+                'id' => 20,
+                'name' => 'Punk',
+                'parent_id' => 1, // Music
+                'color' => null,
+            ),
         );
 
         foreach($categories as $category)
