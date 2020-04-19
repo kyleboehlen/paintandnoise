@@ -74,9 +74,10 @@ class DeployTest extends TestCase
 
         // Verify super admin info
         $super_admin = AdminUsers::find(1);
+        $super_admin_config = config('admin.super_admin');
         $this->assertTrue($super_admin->name == 'Super Admin');
-        $this->assertTrue($super_admin->email == env('SUPER_ADMIN_EMAIL'));
-        $this->assertTrue($super_admin->password == Hash::check(env('SUPER_ADMIN_PASSWORD'), $super_admin->password));
+        $this->assertTrue($super_admin->email == $super_admin_config['email']);
+        $this->assertTrue($super_admin->password == Hash::check($super_admin_config['password'], $super_admin->password));
         $this->assertFalse(Hash::needsRehash($super_admin->password));
 
         // Verify super admin has all 11 admin permissions
