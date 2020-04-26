@@ -85,7 +85,7 @@ class PostersTest extends TestCase
                 $attr = array(
                     'posters_id' => $poster->id,
                     'socials_id' => $social->id,
-                    'value' => $handles[$social->id],
+                    'value' => json_encode($handles[$social->id]),
                     'verified' => 1, // Verified = true
                 );
 
