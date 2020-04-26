@@ -2,6 +2,9 @@
 
 use Illuminate\Database\Seeder;
 
+// Constant Helpers
+use App\Http\Helpers\Constants\Socials;
+
 class SocialsSeed extends Seeder
 {
     /**
@@ -13,42 +16,42 @@ class SocialsSeed extends Seeder
     {
         $socials = array(
             array(
-                'id' => 1,
+                'id' => Socials::FACEBOOK,
                 'name' => 'Facebook',
                 'url' => 'https://www.facebook.com',
                 'icon_identifier' => 'facebook',
                 'profile_link_pattern' => '{url}/{username}',
             ),
             array(
-                'id' => 2,
+                'id' => Socials::TWITTER,
                 'name' => 'Twitter',
                 'url' => 'https://twitter.com',
                 'icon_identifier' => 'twitter',
                 'profile_link_pattern' => '{url}/{username}',
             ),
             array(
-                'id' => 3,
+                'id' => Socials::INSTAGRAM,
                 'name' => 'Instagram',
                 'url' => 'https://www.instagram.com',
                 'icon_identifier' => 'instagram',
                 'profile_link_pattern' => '{url}/{username}',
             ),
             array(
-                'id' => 4,
+                'id' => Socials::YOUTUBE,
                 'name' => 'Youtube',
                 'url' => 'https://www.youtube.com',
                 'icon_identifier' => 'youtube',
                 'profile_link_pattern' => '{url}/user/{username}',
             ),
             array(
-                'id' => 5,
+                'id' => Socials::SOUNDCLOUD,
                 'name' => 'Soundcloud',
                 'url' => 'https://soundcloud.com',
                 'icon_identifier' => 'soundcloud',
                 'profile_link_pattern' => '{url}/{username}',
             ),
             array(
-                'id' => 6,
+                'id' => Socials::SPOTIFY,
                 'name' => 'Spotify',
                 'url' => 'https://open.spotify.com',
                 'icon_identifier' => 'spotify',

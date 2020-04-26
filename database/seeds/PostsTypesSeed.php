@@ -2,6 +2,9 @@
 
 use Illuminate\Database\Seeder;
 
+// Constant Helpers
+use App\Http\Helpers\Constants\Posts\Types;
+
 class PostsTypesSeed extends Seeder
 {
     /**
@@ -13,23 +16,23 @@ class PostsTypesSeed extends Seeder
     {
         $types = array(
             array(
-                'id' => 1,
+                'id' => Types::IMAGE,
                 'name' => 'Image',
             ),
             array(
-                'id' => 2,
+                'id' => Types::AUDIO,
                 'name' => 'Audio',
             ),
             array(
-                'id' => 3,
+                'id' => Types::VIDEO,
                 'name' => 'Video',
             ),
             array(
-                'id' => 4,
+                'id' => Types::TEXT,
                 'name' => 'Text',
             ),
             array(
-                'id' => 5,
+                'id' => Types::EMBEDDED_SOUNDCLOUD,
                 'name' => 'Embedded SoundCloud',
             ),
         );

@@ -2,6 +2,9 @@
 
 use Illuminate\Database\Seeder;
 
+// Constant Helpers
+use App\Http\Helpers\Constants\Admin\Tools;
+
 class AdminToolsSeed extends Seeder
 {
     /**
@@ -13,22 +16,22 @@ class AdminToolsSeed extends Seeder
     {
         $tools = array(
             array(
-                'id' => 1,
+                'id' => Tools::ADMIN_USERS,
                 'name' => 'Admin Users',
                 'route_name' => 'admin.users',
             ),
             array(
-                'id' => 2,
+                'id' => Tools::REPORTED_POSTS,
                 'name' => 'Reported Posts',
                 'route_name' => 'admin.reported-posts',
             ),
             array(
-                'id' => 3,
+                'id' => Tools::POSTERS,
                 'name' => 'Posters',
                 'route_name' => 'admin.posters',
             ),
             array(
-                'id' => 4,
+                'id' => Tools::STATS,
                 'name' => 'Stats',
                 'route_name' => 'admin.stats',
             ),

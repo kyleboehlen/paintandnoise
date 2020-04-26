@@ -2,6 +2,8 @@
 
 use Illuminate\Database\Seeder;
 
+use App\Http\Helpers\Constants\Categories;
+
 class CategoriesSeed extends Seeder
 {
     /**
@@ -13,123 +15,123 @@ class CategoriesSeed extends Seeder
     {
         $categories = array(
             array(
-                'id' => 1,
+                'id' => Categories::MUSIC,
                 'name' => 'Music',
                 'parent_id' => null,
                 'color' => 'red',
             ),
             array(
-                'id' => 2,
+                'id' => Categories::VISUAL_ART_2D,
                 'name' => 'Visual Art (2D)',
                 'parent_id' => null,
                 'color' => 'violet',
             ),
             array(
-                'id' => 3,
+                'id' => Categories::VISUAL_ART_3D,
                 'name' => 'Visual Art (3D)',
                 'parent_id' => null,
                 'color' => 'indigo',
             ),
             array(
-                'id' => 4,
+                'id' => Categories::DIGITAL_ART,
                 'name' => 'Digital Art',
                 'parent_id' => null,
                 'color' => 'blue',
             ),
             array(
-                'id' => 5,
+                'id' => Categories::PERFORMANCE_ART,
                 'name' => 'Performance Art',
                 'parent_id' => null,
                 'color' => 'orange',
             ),
             array(
-                'id' => 6,
+                'id' => Categories::WRITTEN_ART,
                 'name' => 'Written Art',
                 'parent_id' => null,
                 'color' => 'green',
             ),
             array(
-                'id' => 7,
+                'id' => Categories::BODY_ART,
                 'name' => 'Body Art',
                 'parent_id' => null,
                 'color' => 'yellow',
             ),
             array(
-                'id' => 8,
+                'id' => Categories::EDM,
                 'name' => 'EDM',
-                'parent_id' => 1, // Music
+                'parent_id' => Categories::MUSIC,
                 'color' => null,
             ),
             array(
-                'id' => 9,
+                'id' => Categories::RAP_HIP_HOP,
                 'name' => 'Rap/Hip-Hop',
-                'parent_id' => 1, // Music
+                'parent_id' => Categories::MUSIC,
                 'color' => null,
             ),
             array(
-                'id' => 10,
+                'id' => Categories::R_AND_B,
                 'name' => 'R&B',
-                'parent_id' => 1, // Music
+                'parent_id' => Categories::MUSIC,
                 'color' => null,
             ),
             array(
-                'id' => 11,
+                'id' => Categories::POP,
                 'name' => 'Pop',
-                'parent_id' => 1, // Music
+                'parent_id' => Categories::MUSIC,
                 'color' => null,
             ),
             array(
-                'id' => 12,
+                'id' => Categories::INDIE,
                 'name' => 'Indie',
-                'parent_id' => 1, // Music
+                'parent_id' => Categories::MUSIC,
                 'color' => null,
             ),
             array(
-                'id' => 13,
+                'id' => Categories::REGGAE,
                 'name' => 'Reggae',
-                'parent_id' => 1, // Music
+                'parent_id' => Categories::MUSIC,
                 'color' => null,
             ),
             array(
-                'id' => 14,
+                'id' => Categories::ALTERNATIVE,
                 'name' => 'Alternative',
-                'parent_id' => 1, // Music
+                'parent_id' => Categories::MUSIC,
                 'color' => null,
             ),
             array(
-                'id' => 15,
+                'id' => Categories::ROCK,
                 'name' => 'Rock',
-                'parent_id' => 1, // Music
+                'parent_id' => Categories::MUSIC,
                 'color' => null,
             ),
             array(
-                'id' => 16,
+                'id' => Categories::METAL,
                 'name' => 'Metal',
-                'parent_id' => 1, // Music
+                'parent_id' => Categories::MUSIC,
                 'color' => null,
             ),
             array(
-                'id' => 17,
+                'id' => Categories::PHOTOGRAPHY,
                 'name' => 'Photography',
-                'parent_id' => 4, // Digital Art
+                'parent_id' => Categories::DIGITAL_ART,
                 'color' => null,
             ),
             array(
-                'id' => 18,
+                'id' => Categories::GRAPHIC_DESIGN,
                 'name' => 'Graphic Design',
-                'parent_id' => 4, // Digital Art
+                'parent_id' => Categories::DIGITAL_ART,
                 'color' => null,
             ),
             array(
-                'id' => 19,
-                'name' => 'Vidography',
-                'parent_id' => 4, // Digital Art
+                'id' => Categories::VIDEOGRAPHY,
+                'name' => 'Videography',
+                'parent_id' => Categories::DIGITAL_ART,
                 'color' => null,
             ),
             array(
-                'id' => 20,
+                'id' => Categories::PUNK,
                 'name' => 'Punk',
-                'parent_id' => 1, // Music
+                'parent_id' => Categories::MUSIC,
                 'color' => null,
             ),
         );

@@ -2,6 +2,9 @@
 
 use Illuminate\Database\Seeder;
 
+// Constant Helpers
+use App\Http\Helpers\Constants\Posters\Statuses;
+
 class PostersStatusesSeed extends Seeder
 {
     /**
@@ -13,27 +16,27 @@ class PostersStatusesSeed extends Seeder
     {
         $statuses = array(
             array(
-                'id' => 1,
+                'id' => Statuses::APPROVED,
                 'name' => 'Approved',
             ),
             array(
-                'id' => 2,
+                'id' => Statuses::UNDER_REVIEW,
                 'name' => 'Under Review',
             ),
             array(
-                'id' => 3,
+                'id' => Statuses::APPLIED,
                 'name' => 'Applied',
             ),
             array(
-                'id' => 4,
+                'id' => Statuses::DENIED,
                 'name' => 'Denied',
             ),
             array(
-                'id' => 5,
+                'id' => Statuses::REVISION_REQUIRED,
                 'name' => 'Revision Required',
             ),
             array(
-                'id' => 6,
+                'id' => Statuses::BANNED,
                 'name' => 'Banned',
             ),
         );
