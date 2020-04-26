@@ -34,5 +34,8 @@ class DatabaseSeeder extends Seeder
 
         // Seed posts types
         $this->call(PostsTypesSeed::class);
+
+        // Seed categories posts types
+        $this->call(CategoriesPostsTypesSeed::class);
     }
 }
