@@ -15,17 +15,12 @@ Before installing the site the following tools need to be installed:
 <br/>
 Start by cloning into the repository
 
-`git clone https://github.com/kyleboehlen/paintandnoise`
-
-<br/>
-cd into the project directory
-
-`cd paintandnoise`
+`cd /var/www/html && git clone https://github.com/kyleboehlen/paintandnoise`
 
 <br/>
 Install the required depdendencies
 
-`composer install`
+`cd /var/www/html/paintandnoise && composer install`
 
 `yarn install` DO NOT USE `npm install` until the laravel mix issue has been resolved
 
@@ -46,12 +41,9 @@ Generate the application encryption key
 
 <br/>
 Change the apache2 webroot to the laravel public folder
-- Change to the apache2 root directory
+- Change to the apache2 root directory and open the configuration file
 
-   `cd /etc/apache2/sites-available`
-- Open the configuation file
-
-   `sudo nano 000-default.conf`
+   `cd /etc/apache2/sites-available && sudo nano 000-default.conf`
 - Edit the document root option to:
 
    `DocumentRoot /var/www/html/paintandnoise/public`
@@ -63,9 +55,7 @@ Change the apache2 webroot to the laravel public folder
 In order to allow laravel to handle URLs, make sure the apache mod_rewrite extension is enabled and allow overrides
 - Edit apache2.conf to allow overrides
 
-   `cd etc/apache2/`
-
-   `sudo nano apache2.conf`
+   `cd etc/apache2/ && sudo nano apache2.conf`
 - Add the following to the directory settings
 
 ```
