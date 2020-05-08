@@ -64,6 +64,18 @@ class CategoriesPostsTypesSeed extends Seeder
                 'categories_id' => Categories::PERFORMANCE_ART,
                 'types_id' => Types::VIDEO,
             ),
+            array(
+                'categories_id' => Categories::WRITTEN_ART,
+                'types_id' => Types::TEXT,
+            ),
+            array(
+                'categories_id' => Categories::BODY_ART,
+                'types_id' => Types::IMAGE,
+            ),
+            array(
+                'categories_id' => Categories::BODY_ART,
+                'types_id' => Types::VIDEO,
+            ),
         );
 
         foreach($categories_posts_types as $categories_posts_type)

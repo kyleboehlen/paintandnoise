@@ -88,6 +88,6 @@ class DeployTest extends TestCase
         $this->assertTrue(DB::table('posts_types')->get()->count() == 5);
 
         // Verify all categories posts types seeded
-        $this->assertTrue(DB::table('categories_posts_types')->get()->count() == 12);
+        $this->assertTrue(DB::table('categories_posts_types')->get()->count() == 15);
     }
 }

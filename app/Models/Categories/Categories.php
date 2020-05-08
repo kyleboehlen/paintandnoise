@@ -29,4 +29,16 @@ class Categories extends Model
     {
         return $this->subCategories()->count();
     }
+
+    public function postsTypesIds()
+    {
+        $categories_posts_types = CategoriesPostsTypes::where('categories_id', $this->id)->get();
+
+        if($categories_posts_types->count() == 0)
+        {
+            $categories_posts_types = CategoriesPostsTypes::where('categories_id', $this->parent_id)->get();
+        }
+
+        return $categories_posts_types->pluck('types_id')->toArray();
+    }
 }

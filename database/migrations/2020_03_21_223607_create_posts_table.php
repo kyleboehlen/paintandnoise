@@ -25,7 +25,7 @@ class CreatePostsTable extends Migration
             $table->smallInteger('categories_id')->unsigned();
             $table->bigInteger('users_id')->unsigned();
             $table->tinyInteger('types_id')->unsigned();
-            $table->string('asset'); // For storing file URI/resource URL
+            $table->json('asset'); // For storing file URI/resource URL
             $table->boolean('nsfw')->default($value = false);
 
             // Constraints
