@@ -14,7 +14,7 @@ class Posts extends Model
     {
         $this->total_votes = Votes::where('posts_id', $this->id)->count();
 
-        if($this->save())
+        if(!$this->save())
         {
             Log::warning('Failed to cache votes for post.', [
                 'posts_id' => $this->id
