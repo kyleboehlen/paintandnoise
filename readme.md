@@ -80,12 +80,12 @@ In order to allow laravel to handle URLs, make sure the apache mod_rewrite exten
 <br/>
 Allow apache to serve the files
 
-`sudo chown -R www-data:{your_user_group} paintandnoise`
+`cd /var/www/html && sudo chown -R www-data:{your_user_group} paintandnoise`
 
 <br/>
 Create a symbolic link for the storage folder
 
-`php artisan storage:link`
+`cd /var/www/html/paintandnoise && php artisan storage:link`
 
 <br/>
 Create a nysql database and create a new user to grant all privliages to the database on. Be sure to fill out the DB .env vars
