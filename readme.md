@@ -117,6 +117,16 @@ Change the php.ini file to let Laravel handle file upload sizes
 `upload_max_filesize = 0`
 `post_max_size = 0`
 
+<br/>
+Run crontab -e and add the following line
+
+`* * * * * cd /var/www/html/paintandnoise && php artisan schedule:run >> /dev/null 2>&1`
+
+<br/>
+Change the file permissions ONLY for the logs file so that the console can also write log files
+
+`cd /var/www/html/paintandnoise/storage && chmod -R 775 logs`
+
 <br/><br/>
 ### _Make sure these steps are completed last_ 
 

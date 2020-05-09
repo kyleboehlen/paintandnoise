@@ -27,6 +27,7 @@ class CreatePostsTable extends Migration
             $table->tinyInteger('types_id')->unsigned();
             $table->json('asset'); // For storing file URI/resource URL
             $table->boolean('nsfw')->default($value = false);
+            $table->mediumInteger('total_votes')->unsigned()->default($value = 0);
 
             // Constraints
             $table->foreign('categories_id')->references('id')->on('categories');

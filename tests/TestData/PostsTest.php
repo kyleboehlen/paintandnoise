@@ -5,6 +5,7 @@ namespace Tests\TestData;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
+use Artisan;
 
 // Models
 use App\Models\Users;
@@ -61,5 +62,17 @@ class PostsTest extends TestCase
         }
 
         $this->assertTrue(Votes::all()->count() >= count($posts));
+    }
+
+    /**
+     * Cache total votes
+     *
+     * @return void
+     * @test
+     */
+    public function cacheVotesTest()
+    {
+        Artisan::call('votes:cache');
+        $this->assertTrue(Posts::all()->sum('total_votes') > 0);
     }
 }
