@@ -112,7 +112,11 @@ Run the database migration and seed it with the admin user
 `phpunit --filter Deploy`
 
 If the global install of phpunit does not work, is not installed, or throws an error use app local one
+
 `vendor/phpunit/phpunit/phpunit --filter Deploy`
+
+Or if you wanna be really big brain, just alias it
+`alias vendor_phpunit=vendor/phpunit/phpunit/phpunit`
 
 <br/>
 Change the php.ini file to let Laravel handle file upload sizes
