@@ -111,6 +111,9 @@ Run the database migration and seed it with the admin user
 
 `phpunit --filter Deploy`
 
+If the global install of phpunit does not work, is not installed, or throws an error use app local one
+`vendor/phpunit/phpunit/phpunit --filter Deploy`
+
 <br/>
 Change the php.ini file to let Laravel handle file upload sizes
 
@@ -125,7 +128,7 @@ Run crontab -e and add the following line
 <br/>
 Change the file permissions ONLY for the logs file so that the console can also write log files
 
-`cd /var/www/html/paintandnoise/storage && chmod -R 775 logs`
+`cd /var/www/html/paintandnoise/storage && sudo chmod -R 775 logs`
 
 <br/><br/>
 ### _Make sure these steps are completed last_ 
