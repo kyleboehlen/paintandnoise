@@ -55,7 +55,7 @@ Change the apache2 webroot to the laravel public folder
 In order to allow laravel to handle URLs, make sure the apache mod_rewrite extension is enabled and allow overrides
 - Edit apache2.conf to allow overrides
 
-   `cd etc/apache2/ && sudo nano apache2.conf`
+   `cd /etc/apache2/ && sudo nano apache2.conf`
 - Add the following to the directory settings
 
 ```
