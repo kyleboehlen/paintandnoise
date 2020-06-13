@@ -1,0 +1,124 @@
+@import 'app';
+
+.card
+{
+    .account-card-body
+    {
+        @extend .card-body;
+
+        font-size: 1.25em;
+
+        .account-profile-picture
+        {        
+            img
+            {
+                border: $thin-border solid $white;
+                border-radius: 50%;
+                cursor: pointer;
+                height: 100px;
+                padding: 10px;
+                width: auto;
+            }
+        }
+
+        #profile-picture-form
+        {
+            display: none;
+        }
+        
+        input[type="text"]
+        {
+            text-align: center;
+        }
+
+        input[type="submit"]
+        {
+            font-size: 1.25em;
+
+            @media only screen and (max-width: 600px)
+            {
+                font-size: 1.5em;
+            }
+        
+            @media only screen and (max-width: 500px)
+            {
+                font-size: 1.25em;
+            }
+        
+            @media only screen and (max-width: 400px)
+            {
+                font-size: 1em;
+            }
+        
+            @media only screen and (max-width: 300px)
+            {
+                font-size: .75em;
+            }
+        }
+
+        .nsfw
+        {
+            color: $red;
+        }
+
+        .checkbox-list
+        {
+            font-size: 1.5em;
+            margin-left: 25%;
+            text-align: left;
+    
+            label
+            {
+                color: $white;
+                font-family: $body-font;
+                font-size: 1.25em;
+                margin-top: 100px;
+    
+                input
+                {
+                    opacity: 0;
+                }
+    
+                span
+                {
+                    border-radius: 5px;
+                    border: $thin-border solid $white;
+                    padding: 4px;
+                }
+    
+                .checkbox-span
+                {
+                    border: none;
+                }
+            }
+    
+            @media screen and (max-width: 1400px)
+            {
+                margin-left: 15%;
+            }
+    
+            @media screen and (max-width: 1400px)
+            {
+                font-size: 1.25em;
+            }
+    
+            @media screen and (max-width: 400px)
+            {
+                font-size: 1em;
+            }
+    
+            @media screen and (max-width: 300px)
+            {
+                margin-left: 10%;
+            }
+        }
+
+        #categories-submit
+        {
+            @media screen and (max-width: 1400px)
+            {
+                width: 60%;
+            }
+        }
+    }
+}
