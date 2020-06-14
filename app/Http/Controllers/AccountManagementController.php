@@ -75,6 +75,7 @@ class AccountManagementController extends Controller
             $validator = Validator::make(['parent-slug' => $parent_slug], [
                 'parent-slug' => ['required', new ParentCategoriesSlug]
             ]);
+            
             if($validator->fails())
             {
                 return redirect()->route('account.categories')->withErrors($validator);
