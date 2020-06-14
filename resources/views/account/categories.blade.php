@@ -9,22 +9,22 @@
         <form method="POST" action="{{ route('account.categories.update') }}">
             @csrf
 
-                @if($parent_id === false)
+                @if(is_null($parent_id) || $parent_slug === false)
                     <label>What art do you vibe with?</label><br/>
                 @else
                     <label>What type of {{ App\Models\Categories\Categories::find($parent_id)->name }} do you like?</label>
-                    <input type="hidden" name="parent_id" value="{{ $parent_id }}" />
+                    <input type="hidden" name="parent-slug" value="{{ $parent_slug }}" />
                 @endif
 
                 <div class="checkbox-list">
                     @foreach($categories as $category)
                         <label>
-                            <input id="checkbox-input-{{ $category->id }}" type="checkbox" class="@if($errors->any()) is-invalid @endif" name="categories[]" value="{{ $category->id }}"
+                            <input id="checkbox-input-{{ $category->slug }}" type="checkbox" class="@if($errors->any()) is-invalid @endif" name="categories[]" value="{{ $category->slug }}"
                                 @if(in_array($category->id, $user_categories))
                                     checked
                                 @endif
                             />
-                            <span id="checkbox-span-{{ $category->id }}" class="{{ $category->color }}-hover">
+                            <span id="checkbox-span-{{ $category->slug }}" class="{{ $category->color }}-hover">
                                 <span class="checkbox-span @if(in_array($category->id, $user_categories)) checked @endif">{{ $category->name }}</span>
                             </span>
                         </label>
@@ -48,8 +48,8 @@
                 @if(is_null($next_parent_category))
                     <a href="{{ route('account') }}">Skip.</a><br/><br/><br/>
                 @else
-                    <a href="{{ route('account.subcategories', $next_parent_category->id) }}">Skip.</a><br/><br/><br/>
-                    <input type="hidden" name="next-parent-category" value="{{ $next_parent_category->id }}" />
+                    <a href="{{ route('account.subcategories', $next_parent_category->slug) }}">Skip.</a><br/><br/><br/>
+                    <input type="hidden" name="next-parent-category" value="{{ $next_parent_category->slug }}" />
                 @endif
         </form>
     </div>

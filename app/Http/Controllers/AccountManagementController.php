@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
+use Illuminate\Support\Facades\Validator;
 use Log;
 use Image;
 use Storage;
@@ -40,8 +42,10 @@ class AccountManagementController extends Controller
         ]);
     }
 
-    public function showCategories($parent_id = false)
+    public function showCategories($parent_slug = false)
     {
+        $parent_id = null;
+
         // Get all parent categories
         $parent_categories = Categories::whereNull('parent_id')->get();
 
@@ -56,14 +60,25 @@ class AccountManagementController extends Controller
             return ($a->usersCount() < $b->usersCount()) ? -1 : 1;
         })->values();
 
-        // Parent categories returned if parent id isn't set
-        if($parent_id === false)
+        // Parent categories returned if parent slug isn't set
+        if($parent_slug === false)
         {
             $categories = $parent_categories;
             $index = -1;
         }
         else
         {
+            // Validate parent slug
+            $validator = Validator::make(['parent-slug' => $parent_slug], [
+                'parent-slug' => ['required', Rule::in(config('categories.slugs'))]
+            ]);
+            if($validator->fails())
+            {
+                return redirect()->route('account.categories')->withErrors($validator);
+            }
+
+            $parent_id = array_search($parent_slug, config('categories.slugs'));
+
             // Search for the index of the parent category with an id matching param
             if(($index = $parent_categories->search(function($category) use ($parent_id){
                     return $category->id == $parent_id;
@@ -89,7 +104,7 @@ class AccountManagementController extends Controller
         $next_parent_category = $this->nextParentCategory($parent_categories, ++$index);
 
         // Redirect if they're not following that sub category
-        if($parent_id !== false && !in_array($parent_id, $users_categories))
+        if(!is_null($parent_id) && !in_array($parent_id, $users_categories))
         {
             if(is_null($next_parent_category))
             {
@@ -106,6 +121,7 @@ class AccountManagementController extends Controller
             [
                 'categories' => $categories,
                 'parent_id' => $parent_id,
+                'parent_slug' => $parent_slug,
                 'next_parent_category' => $next_parent_category,
                 'user_categories' => \Auth::user()->categoriesIdsArray(),
             ]
@@ -116,10 +132,10 @@ class AccountManagementController extends Controller
     {
         $parent_id = null;
 
-        // Get parent id, or lack thereof
-        if($request->has('parent_id'))
+        // Get parent slug, or lack thereof
+        if($request->has('parent-slug'))
         {
-            $parent_id = $request->get('parent_id');
+            $parent_id = array_search($request->get('parent-slug'), config('categories.slugs'));
         }
 
         // Delete current relationships for that parent category and user
@@ -134,8 +150,9 @@ class AccountManagementController extends Controller
         {
             if(is_array($request->get('categories'))) // Iterate through array if several IDs have been provided
             {
-                foreach($request->get('categories') as $category_id)
+                foreach($request->get('categories') as $category_slug)
                 {
+                    $category_id = array_search($category_slug, config('categories.slugs'));
                     $users_categories = new UsersCategories;
                     $users_categories->users_id = \Auth::user()->id;
                     $users_categories->categories_id = $category_id;
@@ -159,7 +176,7 @@ class AccountManagementController extends Controller
             {
                 $users_categories = new UsersCategories;
                 $users_categories->users_id = \Auth::user()->id;
-                $users_categories->categories_id = $request->get('categories');
+                $users_categories->categories_id = array_search($request->get('categories'), config('categories.slugs'));
                 if(!$users_categories->save())
                 {
                     Log::warning('Failed to update categories for user.', [

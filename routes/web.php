@@ -57,7 +57,7 @@ Route::prefix('/account')->group(function(){
     // Categories Flow
     Route::prefix('/categories')->group(function(){
         Route::get('/', 'AccountManagementController@showCategories')->name('account.categories');
-        Route::get('/{parent_id}', 'AccountManagementController@showCategories')->name('account.subcategories');
+        Route::get('/{parent_slug}', 'AccountManagementController@showCategories')->name('account.subcategories');
         Route::post('/update', 'AccountManagementController@updateCategories')->name('account.categories.update');
     });
 

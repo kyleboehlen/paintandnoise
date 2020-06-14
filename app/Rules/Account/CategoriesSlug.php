@@ -7,7 +7,7 @@ use Illuminate\Contracts\Validation\Rule;
 // Models
 use App\Models\Categories\Categories;
 
-class CategoriesId implements Rule
+class CategoriesSlug implements Rule
 {
     /**
      * Create a new rule instance.
@@ -28,14 +28,21 @@ class CategoriesId implements Rule
      */
     public function passes($attribute, $value)
     {
-        // Iterate if value is an array of Cateogry IDs to add
+        // Iterate if value is an array of Cateogry slugs to add
         if(is_array($value))
         {
             $parent_id = null; // For validating sub categories are all of the same parent
             $first = true; // First loop flag
 
-            foreach($value as $category_id)
+            foreach($value as $category_slug)
             {
+                // Convert slug to an id
+                $category_id = array_search($category_slug, config('categories.slugs'));
+                if($category_id === false)
+                {
+                    return false; // Slug was not a valid slug
+                }
+
                 // Get a validated category including checking parent id
                 if($first)
                 {

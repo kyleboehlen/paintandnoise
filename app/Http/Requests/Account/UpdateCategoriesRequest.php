@@ -5,7 +5,8 @@ namespace App\Http\Requests\Account;
 use Illuminate\Foundation\Http\FormRequest;
 
 // Rules
-use App\Rules\Account\CategoriesId;
+use App\Rules\Account\CategoriesSlug;
+use App\Rules\Account\ParentCategoriesSlug;
 
 class UpdateCategoriesRequest extends FormRequest
 {
@@ -27,7 +28,9 @@ class UpdateCategoriesRequest extends FormRequest
     public function rules()
     {
         return [
-            'categories' => [new CategoriesId, ],
+            'categories' => [new CategoriesSlug, ],
+            'next-parent-slug' => [new ParentCategoriesSlug, ],
+            'parent-slug' => [new ParentCategoriesSlug, ],
         ];
     }
 }
