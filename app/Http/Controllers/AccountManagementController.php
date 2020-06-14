@@ -15,6 +15,9 @@ use App\Http\Requests\Account\UpdateCategoriesRequest;
 use App\Http\Requests\Account\UpdateNameRequest;
 use App\Http\Requests\Account\UpdateProfilePictureRequest;
 
+// Rules
+use App\Rules\Account\ParentCategoriesSlug;
+
 // Models
 use App\Models\Categories\Categories;
 use App\Models\Categories\UsersCategories;
@@ -70,7 +73,7 @@ class AccountManagementController extends Controller
         {
             // Validate parent slug
             $validator = Validator::make(['parent-slug' => $parent_slug], [
-                'parent-slug' => ['required', Rule::in(config('categories.slugs'))]
+                'parent-slug' => ['required', new ParentCategoriesSlug]
             ]);
             if($validator->fails())
             {
