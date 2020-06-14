@@ -13,9 +13,7 @@ class CreateCategoriesTable extends Migration
      */
     public function up()
     {
-        $colors = [
-            'blue', 'green', 'indigo', 'orange', 'red', 'violet', 'yellow',
-        ];
+        $colors = array_values(config('categories.colors'));
 
         Schema::create('categories', function (Blueprint $table) use ($colors) {
             // PK
@@ -25,6 +23,7 @@ class CreateCategoriesTable extends Migration
             $table->string('name', 100);
             $table->smallInteger('parent_id')->unsigned()->nullable(); // References parent category ID
             $table->enum('color', $colors)->nullable();
+            $table->string('slug')->unique(); // As to not expose the category IDs
 
             // Constraints
             $table->foreign('parent_id')->references('id')->on('categories'); // See, it references parent category ID right here! Wow!
