@@ -1,37 +1,40 @@
 <?php
+use App\Http\Helpers\Constants\Posts\Types;
+use App\Http\Helpers\Constants\Socials;
+
 return [
     'social_handles' => array(
-        1 => [ // Facebook
+        Socials::FACEBOOK => [
             'username' => 'itsadiidas',
         ],
-        2 => [ // Twitter
+        Socials::TWITTER => [
             'username' => 'Electric_Hawk',
         ],
-        3 => [ // Instagram
+        Socials::INSTAGRAM => [
             'username' => 'telenaut',
         ],
-        4 => [ // Youtube
+        Socials::YOUTUBE => [
             'username' => 'StephenRidleyTV',
         ],
-        5 => [ // Soundcloud
+        Socials::SOUNDCLOUD => [
             'username' => 'soundslikesprout',
         ],
-        6 => [ // Spotify
+        Socials::SPOTIFY => [
             'type' => 'artist',
             'uid' => '5LXoYRwmW0t66mFpPWJiha?si=ZMTNhCGWQOS0XbaDFePDbA',
         ],
     ),
     'assets' => array(
-        1 => [ // Image
+        Types::IMAGE => [
             'filename' => 'flowers.jpeg',
         ],
-        2 => [ // Audio
+        Types::AUDIO => [
             'filename' => 'dubstep.mp3',
         ],
-        3 => [ // Video
+        Types::VIDEO => [
             'video_id' => '8e93be5dae47ac48c3c4993fd2a07e3f',
         ],
-        4 => [ // Text
+        Types::TEXT => [
             'value' => 'And then the day came,
             when the risk
             to remain tight
@@ -41,7 +44,7 @@ return [
             it took
             to blossom.',
         ],
-        5 => [ // Soundcloud
+        Types::EMBEDDED_SOUNDCLOUD => [
             'song_slug' => 'good-feelin-feat-alan-watts',
         ],
     )

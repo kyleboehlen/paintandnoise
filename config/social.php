@@ -1,15 +1,17 @@
 <?php
+use App\Http\Helpers\Constants\Socials;
+
 return [
-    1 => [ // Facebook
+    Socials::FACEBOOK => [
         'username' => env('FACEBOOK_USERNAME', 'paintandnoise'),
     ],
-    2 => [ // Twitter
+    Socials::TWITTER => [
         'username' => env('TWITTER_USERNAME', 'paintandnoise'),
     ],
-    3 => [ // Instagram
+    Socials::INSTAGRAM => [
         'username' => env('INSTAGRAM_USERNAME', 'paintandnoise'),
     ],
-    6 => [ // Spotify
+    Socials::SPOTIFY => [
         'type' => env('SPOTIFY_TYPE', 'user'),
         'uid' => env('SPOTIFY_UID', '06hpbv4kf4wq8ncu95k61l41c?si=rWYCcURlQGGyxtZMnsEgrw'),
     ],
