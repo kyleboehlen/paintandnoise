@@ -41,7 +41,7 @@ header
     .title
     {
         display: inline-block;
-        font-family: $title_font;
+        font-family: $title-font;
         font-size: 5em;
         margin-bottom: 0%;
         margin-left: 20%;
@@ -78,7 +78,7 @@ header
         border-radius: 10px;
         color: $white;
         float: right;
-        font-family: $tool_font;
+        font-family: $tool-font;
         font-size: 2.5em;
         margin-right: 2.5%;
         margin-top: 15px;
@@ -521,7 +521,7 @@ footer
     .card-header
     {
         color: $white;
-        font-family: $header_font;
+        font-family: $header-font;
         font-size: 3.25em;
 
         @media only screen and (max-width: 400px)
@@ -539,7 +539,7 @@ footer
     {
         label
         {
-            font-family: $tool_font;
+            font-family: $tool-font;
             font-size: 2.25em;
             line-height: 175%;
     
@@ -585,7 +585,7 @@ footer
             background-color: $black;
             color: $white;
             cursor: pointer;
-            font-family: $tool_font;
+            font-family: $tool-font;
             font-size: 2.5em;
             padding: 5px;
             width: 45%;
