@@ -18,7 +18,7 @@
         <h2>How Does It Work?</h2>
         <div class="container">
             <p>
-                When artists share their work the community, not some magic algorithm, decides what gets voted to the top.<br/><br/>
+                When artists share their work the community, not some magic algorithm, decides what gets voted to the <a href="{{ route('top') }}">top.</a><br/><br/>
                 Anybody can sign up to browse content, or vote on which posts they like.<br/><br/>
                 Posts only last {{ config('posts.timeout') }} days so content stays fresh.
             </p>
@@ -32,9 +32,9 @@
         <div class="container">
             <img src="{{ route('assets.why') }}" title="Photo by {{ config('media.why_attribution') }}"/>
             <p>
-                We're always on the hunt for fresh art, and 'underground' artists are often our favorite.<br/><br/>
+                We're always on the hunt for fresh art, and "underground" artists are often our favorite.<br/><br/>
                 Current social media platforms cater to those that already have a large audience and isn't condusive for discovering artists at all.<br/><br/>
-                We figured we couldn't be the only ones bugged by the status quo, and P&N was born!
+                Check out the current artists at the <a href="{{ route('top') }}">top</a>, or <a href="{{ route('register') }}">sign up</a> to discover more.
             </p>
         </div>
     </div>

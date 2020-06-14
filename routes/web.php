@@ -129,3 +129,10 @@ Route::prefix('/admin')->group(function(){
 
 // Spotify redirect
 Route::get('/spotify', 'RedirectController@spotify');
+
+// Top
+Route::prefix('/top')->group(function(){
+    
+    // Root
+    Route::get('/', 'TopController@index')->name('top');
+});
