@@ -2,65 +2,8 @@
 
 .card
 {
-    .account-card-body
+    .card-body
     {
-        @extend .card-body;
-
-        font-size: 1.25em;
-
-        .account-profile-picture
-        {        
-            img
-            {
-                border: $thin-border solid $white;
-                border-radius: 50%;
-                cursor: pointer;
-                height: 100px;
-                padding: 10px;
-                width: auto;
-            }
-        }
-
-        #profile-picture-form
-        {
-            display: none;
-        }
-        
-        input[type="text"]
-        {
-            text-align: center;
-        }
-
-        input[type="submit"]
-        {
-            font-size: 1.25em;
-
-            @media only screen and (max-width: 600px)
-            {
-                font-size: 1.5em;
-            }
-        
-            @media only screen and (max-width: 500px)
-            {
-                font-size: 1.25em;
-            }
-        
-            @media only screen and (max-width: 400px)
-            {
-                font-size: 1em;
-            }
-        
-            @media only screen and (max-width: 300px)
-            {
-                font-size: .75em;
-            }
-        }
-
-        .nsfw
-        {
-            color: $red;
-        }
-
         .checkbox-list
         {
             font-size: 1.5em;
@@ -119,6 +62,66 @@
             {
                 width: 60%;
             }
+        }
+    }
+
+    .account-card-body
+    {
+        @extend .card-body;
+
+        font-size: 1.25em;
+
+        .account-profile-picture
+        {        
+            img
+            {
+                border: $thin-border solid $white;
+                border-radius: 50%;
+                cursor: pointer;
+                height: 100px;
+                padding: 10px;
+                width: auto;
+            }
+        }
+
+        #profile-picture-form
+        {
+            display: none;
+        }
+        
+        input[type="text"]
+        {
+            text-align: center;
+        }
+
+        input[type="submit"]
+        {
+            font-size: 1.25em;
+
+            @media only screen and (max-width: 600px)
+            {
+                font-size: 1.5em;
+            }
+        
+            @media only screen and (max-width: 500px)
+            {
+                font-size: 1.25em;
+            }
+        
+            @media only screen and (max-width: 400px)
+            {
+                font-size: 1em;
+            }
+        
+            @media only screen and (max-width: 300px)
+            {
+                font-size: .75em;
+            }
+        }
+
+        .nsfw
+        {
+            color: $red;
         }
     }
 }

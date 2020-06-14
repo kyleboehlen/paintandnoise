@@ -26,6 +26,10 @@ class ViewServiceProvider extends ServiceProvider
     {
         /** ACCOUNT */
         View::composer(
+            'account.categories', 'App\Http\Composers\AccountComposer'
+        );
+        
+        View::composer(
             'account.index', 'App\Http\Composers\AccountComposer'
         );
 
@@ -41,6 +45,11 @@ class ViewServiceProvider extends ServiceProvider
         /** ABOUT */
         View::composer(
             'about', 'App\Http\Composers\AboutComposer'
+        );
+
+        /** TOP */
+        View::composer(
+            'top', 'App\Http\Composers\TopComposer'
         );
     }
 }
