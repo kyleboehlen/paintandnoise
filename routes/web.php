@@ -135,4 +135,7 @@ Route::prefix('/top')->group(function(){
     
     // Root
     Route::get('/', 'TopController@index')->name('top');
+
+    // Specific Categories (and subcategories)
+    Route::get('/{category_slug}', 'TopController@viewCategory')->middleware('auth')->middleware('verified')->name('top.category');
 });

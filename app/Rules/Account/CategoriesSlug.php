@@ -66,7 +66,14 @@ class CategoriesSlug implements Rule
         }
         else
         {
-            $category = self::validatedCategoryById($value); // Get a validated category
+            $category_id = array_search($value, config('categories.slugs'));
+
+            if($category_id === false)
+            {
+                return false; // Slug was not a valid slug
+            }
+
+            $category = self::validatedCategoryById($category_id); // Get a validated category
 
             // Check if validation failed
             if($category === false)

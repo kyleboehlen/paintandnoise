@@ -16,4 +16,5 @@ mix.js('resources/js/app.js', 'public/js')
     .sass('resources/sass/account.scss', 'public/css')
     .sass('resources/sass/admin.scss', 'public/css')
     .sass('resources/sass/app.scss', 'public/css')
-    .sass('resources/sass/mail.scss', '../resources/views/vendor/mail/html/themes/default.css');
+    .sass('resources/sass/mail.scss', '../resources/views/vendor/mail/html/themes/default.css')
+    .sass('resources/sass/top.scss', 'public/css');
