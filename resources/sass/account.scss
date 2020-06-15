@@ -32,6 +32,16 @@
                 .checkbox-span
                 {
                     border: none;
+
+                    &.checked:hover
+                    {
+                        color: $white;
+                    }
+
+                    &:hover
+                    {
+                        cursor: pointer;
+                    }
                 }
             }
     
