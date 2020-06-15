@@ -28,24 +28,24 @@ class AccountManagementTest extends TestCase
         $response->assertStatus(200);
 
         // Get categories ids with sub categories
-        $categories_ids = Categories::all()->filter(function($category){
+        $categories = Categories::all()->filter(function($category){
             return $category->subCategoriesCount() > 0;
-        })->values()->pluck('id')->toArray();
+        })->all();
 
-        foreach($categories_ids as $category_id)
+        foreach($categories as $category)
         {
             // Test subcategory pages give redirects with no categories for user
-            $response = $this->actingAs($user)->get("/account/categories/$category_id");
+            $response = $this->actingAs($user)->get("/account/categories/$category->slug");
             $response->assertStatus(302);
 
             // Add categories for user that have subcategories
             $users_categories = new UsersCategories;
             $users_categories->users_id = $user->id;
-            $users_categories->categories_id = $category_id;
+            $users_categories->categories_id = $category->id;
             $this->assertTrue($users_categories->save());
 
             // Test subcategory pages can be reached after adding categories for user
-            $response = $this->actingAs($user)->get("/account/categories/$category_id");
+            $response = $this->actingAs($user)->get("/account/categories/$category->slug");
             $response->assertStatus(200);
         }
     }
