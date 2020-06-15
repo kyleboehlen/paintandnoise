@@ -50,6 +50,6 @@ class ParentCategoriesSlug implements Rule
      */
     public function message()
     {
-        return 'Invalid next-parent-slug.';
+        return 'Invalid parent-slug.';
     }
 }

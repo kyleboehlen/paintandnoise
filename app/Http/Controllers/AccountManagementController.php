@@ -104,7 +104,8 @@ class AccountManagementController extends Controller
             }
         }
 
-        // Set next parent category
+        // Set next parent categories
+        $parent_category = Categories::find($parent_id);
         $next_parent_category = $this->nextParentCategory($parent_categories, ++$index);
 
         // Redirect if they're not following that sub category
@@ -116,7 +117,7 @@ class AccountManagementController extends Controller
             }
             else
             {
-                return redirect()->route('account.subcategories', $next_parent_category->id);
+                return redirect()->route('account.subcategories', $next_parent_category->slug);
             }
         }
         
@@ -124,8 +125,7 @@ class AccountManagementController extends Controller
         return view('account.categories')->with(
             [
                 'categories' => $categories,
-                'parent_id' => $parent_id,
-                'parent_slug' => $parent_slug,
+                'parent_category' => $parent_category,
                 'next_parent_category' => $next_parent_category,
                 'user_categories' => \Auth::user()->categoriesIdsArray(),
             ]

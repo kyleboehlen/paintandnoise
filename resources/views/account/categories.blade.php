@@ -9,11 +9,11 @@
         <form method="POST" action="{{ route('account.categories.update') }}">
             @csrf
 
-                @if(is_null($parent_id) || $parent_slug === false)
+                @if(is_null($parent_category))
                     <label>What art do you vibe with?</label><br/>
                 @else
-                    <label>What type of {{ App\Models\Categories\Categories::find($parent_id)->name }} do you like?</label>
-                    <input type="hidden" name="parent-slug" value="{{ $parent_slug }}" />
+                    <label>What type of {{ $parent_category->name }} do you like?</label>
+                    <input type="hidden" name="parent-slug" value="{{ $parent_category->slug }}" />
                 @endif
 
                 <div class="checkbox-list">
