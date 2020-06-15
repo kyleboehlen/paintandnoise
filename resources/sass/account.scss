@@ -81,6 +81,11 @@
                 height: 100px;
                 padding: 10px;
                 width: auto;
+
+                &:hover
+                {
+                    border: $thin-border solid $red;
+                }
             }
         }
 
