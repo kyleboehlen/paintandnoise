@@ -101,6 +101,12 @@ Add the mail api details
 - MAILGUN_SECRET=
 
 <br/>
+Add the zipwise api key if enabling the local feed
+
+- LOCAL_FEED_ENABLED=true
+- ZIP_WISE_API_KEY=
+
+<br/>
 Set the super admin details
 
 - SUPER_ADMIN_EMAIL="admin_email@domain.com"
