@@ -26,5 +26,6 @@ $factory->define(Users::class, function (Faker $faker) {
         'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
         'remember_token' => Str::random(10),
         'profile_picture' => "/test/$test_pic.jpg",
+        'zip_code' => rand(0, 3) ? null : substr($faker->postcode, 0, 5), // 75% of users will have a zip code
     ];
 });

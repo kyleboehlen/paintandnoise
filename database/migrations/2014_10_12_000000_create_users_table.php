@@ -36,7 +36,7 @@ class CreateUsersTable extends Migration
             $table->boolean('can_vote')->default($value = 0); // For restricting voting, ghost ban config possible?
             $table->boolean('show_nsfw')->default($value = 0); // For showing nsfw posts or nah
 
-            $table->string('zip_code', 5)->nullable(); // For location filtering in browsing
+            $table->string('zip_code', 5)->nullable(); // For location filtering in browsing, needs to be updated to 6 digits for Canada
 
             $table->string('profile_picture')->nullable(); // Obvs...
         });
