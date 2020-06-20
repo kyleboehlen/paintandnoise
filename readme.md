@@ -152,4 +152,9 @@ Optimize route loading
    `php artisan route:cache`
 
 <br/><br/>
-To-do/Notes:
+### Current External Service List:
+- Cloudflare (streaming and CDN)
+- Mailgun (email)
+- Papertrail (logging)
+- Nexmo (sms)
+- zipwise (ZIP code services)
