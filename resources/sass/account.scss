@@ -27,16 +27,21 @@
                     border-radius: 5px;
                     border: $thin-border solid $white;
                     padding: 4px;
+
+                    &:hover
+                    {
+                        border: $thin-border solid $dark-grey;
+
+                        .checkbox-span
+                        {
+                            border: none;
+                        }
+                    }
                 }
     
                 .checkbox-span
                 {
                     border: none;
-
-                    &.checked:hover
-                    {
-                        color: $white;
-                    }
 
                     &:hover
                     {
