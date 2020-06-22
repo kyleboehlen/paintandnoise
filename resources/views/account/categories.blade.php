@@ -1,57 +1,57 @@
 @extends('layouts.semantic')
 
 @section('body')
-<div class="card">
-    <br/><br/>
-    <div class="card-header">P&N Categories</div><br/><br/>
+    <div class="card">
+        <br/><br/>
+        <div class="card-header">P&N Categories</div><br/><br/>
 
-    <div class="card-body">
-        <form method="POST" action="{{ route('account.categories.update') }}">
-            @csrf
+        <div class="card-body">
+            <form method="POST" action="{{ route('account.categories.update') }}">
+                @csrf
 
-                @if(is_null($parent_category))
-                    <label>What art do you vibe with?</label><br/>
-                @else
-                    <label>What type of {{ $parent_category->name }} do you like?</label>
-                    <input type="hidden" name="parent-slug" value="{{ $parent_category->slug }}" />
-                @endif
+                    @if(is_null($parent_category))
+                        <label>What art do you vibe with?</label><br/>
+                    @else
+                        <label>What type of {{ $parent_category->name }} do you like?</label>
+                        <input type="hidden" name="parent-slug" value="{{ $parent_category->slug }}" />
+                    @endif
 
-                <div class="checkbox-list">
-                    @foreach($categories as $category)
-                        <label>
-                            <input id="checkbox-input-{{ $category->slug }}" type="checkbox" class="@if($errors->any()) is-invalid @endif" name="categories[]" value="{{ $category->slug }}"
-                                @if(in_array($category->id, $user_categories))
-                                    checked
-                                @endif
-                            />
-                            <span id="checkbox-span-{{ $category->slug }}" class="{{ $category->color }}-hover">
-                                <span class="checkbox-span @if(in_array($category->id, $user_categories)) checked @endif">{{ $category->name }}</span>
-                            </span>
-                        </label>
-                        <br/>
-                    @endforeach
-                </div>
-                <br/>
-
-
-                @if($errors->any())
-                    <span class="invalid-feedback" role="alert">
-                        @foreach($errors->all() as $error)
-                            <strong>{{ $error }}</strong>
+                    <div class="checkbox-list">
+                        @foreach($categories as $category)
+                            <label>
+                                <input id="checkbox-input-{{ $category->slug }}" type="checkbox" class="@if($errors->any()) is-invalid @endif" name="categories[]" value="{{ $category->slug }}"
+                                    @if(in_array($category->id, $user_categories))
+                                        checked
+                                    @endif
+                                />
+                                <span id="checkbox-span-{{ $category->slug }}" class="{{ $category->color }}-hover">
+                                    <span class="checkbox-span @if(in_array($category->id, $user_categories)) checked @endif">{{ $category->name }}</span>
+                                </span>
+                            </label>
+                            <br/>
                         @endforeach
-                    </span>
-                    <br/><br/>
-                @endif
+                    </div>
+                    <br/>
 
-                <input id="categories-submit" type="submit" value="Submit" /><br/><br/><br/><br/>
 
-                @if(is_null($next_parent_category))
-                    <a href="{{ route('account') }}">Skip.</a><br/><br/><br/>
-                @else
-                    <a href="{{ route('account.subcategories', $next_parent_category->slug) }}">Skip.</a><br/><br/><br/>
-                    <input type="hidden" name="next-parent-category" value="{{ $next_parent_category->slug }}" />
-                @endif
-        </form>
+                    @if($errors->any())
+                        <span class="invalid-feedback" role="alert">
+                            @foreach($errors->all() as $error)
+                                <strong>{{ $error }}</strong>
+                            @endforeach
+                        </span>
+                        <br/><br/>
+                    @endif
+
+                    <input id="categories-submit" type="submit" value="Submit" /><br/><br/><br/><br/>
+
+                    @if(is_null($next_parent_category))
+                        <a href="{{ route('account') }}">Skip.</a><br/><br/><br/>
+                    @else
+                        <a href="{{ route('account.subcategories', $next_parent_category->slug) }}">Skip.</a><br/><br/><br/>
+                        <input type="hidden" name="next-parent-category" value="{{ $next_parent_category->slug }}" />
+                    @endif
+            </form>
+        </div>
     </div>
-</div>
 @endsection
