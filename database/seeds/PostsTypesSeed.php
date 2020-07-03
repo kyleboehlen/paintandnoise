@@ -2,8 +2,12 @@
 
 use Illuminate\Database\Seeder;
 
-// Constant Helpers
+// Helpers
 use App\Http\Helpers\Constants\Posts\Types;
+use App\Http\Helpers\Functions\SeedHelper;
+
+// Models
+use App\Models\Posts\PostsTypes;
 
 class PostsTypesSeed extends Seeder
 {
@@ -37,22 +41,33 @@ class PostsTypesSeed extends Seeder
             ),
         );
 
+        $failures = 0;
         foreach($types as $type)
         {
-            try
+            $post_type = PostsTypes::find($type['id']);
+
+            if(!is_null($post_type))
             {
-                // Insert types
-                DB::table('posts_types')->insert(array($type));
+                $post_type->fill($type);
             }
-            catch(\Exception $e)
+            else
             {
-                // Set message vars
+                $post_type = new PostsTypes($type);
+            }
+
+            // Error handling if model fails to save
+            if(!$post_type->save())
+            {
+                $failures++;
+
+                // Log Error
                 $id = $type['id'];
                 $name = $type['name'];
-
-                // Print duplicate error message to console
-                echo "Posts type $id ($name) already exsists in the database, skipping...\n";
+                Log::error("Failed to seed posts type $id ($name)");
             }
         }
+
+        // Print failures
+        SeedHelper::printFailures($failures);
     }
 }

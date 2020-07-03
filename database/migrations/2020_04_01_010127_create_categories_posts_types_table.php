@@ -4,8 +4,13 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
+// Helpers
+use App\Http\Helpers\Functions\SeedHelper;
+
 class CreateCategoriesPostsTypesTable extends Migration
 {
+    const SEED_CLASS = 'CategoriesPostsTypesSeed';
+
     /**
      * Run the migrations.
      *
@@ -25,6 +30,8 @@ class CreateCategoriesPostsTypesTable extends Migration
             $table->foreign('types_id')->references('id')->on('posts_types');
             $table->primary(['categories_id', 'types_id']);
         });
+
+        SeedHelper::seedClass(self::SEED_CLASS);
     }
 
     /**

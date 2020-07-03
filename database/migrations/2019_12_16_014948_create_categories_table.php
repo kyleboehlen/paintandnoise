@@ -4,8 +4,13 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
+// Helpers
+use App\Http\Helpers\Functions\SeedHelper;
+
 class CreateCategoriesTable extends Migration
 {
+    const SEED_CLASS = 'CategoriesSeed';
+
     /**
      * Run the migrations.
      *
@@ -28,6 +33,8 @@ class CreateCategoriesTable extends Migration
             // Constraints
             $table->foreign('parent_id')->references('id')->on('categories'); // See, it references parent category ID right here! Wow!
         });
+
+        SeedHelper::seedClass(self::SEED_CLASS);
     }
 
     /**

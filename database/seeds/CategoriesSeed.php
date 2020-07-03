@@ -2,7 +2,12 @@
 
 use Illuminate\Database\Seeder;
 
+// Helpers
 use App\Http\Helpers\Constants\Categories;
+use App\Http\Helpers\Functions\SeedHelper;
+
+// Models
+use App\Models\Categories\Categories as CategoryModel;
 
 class CategoriesSeed extends Seeder
 {
@@ -158,6 +163,7 @@ class CategoriesSeed extends Seeder
             ),
         );
 
+        $failures = 0;
         foreach($categories as $category)
         {
             // Set parent color for sub categories
@@ -166,20 +172,30 @@ class CategoriesSeed extends Seeder
                 $category['color'] = $categories[$category['parent_id'] - 1]['color'];
             }
 
-            try
+            $category_model = CategoryModel::find($category['id']);
+
+            if(!is_null($category_model))
             {
-                // Insert category
-                DB::table('categories')->insert(array($category));
+                $category_model->fill($category);
             }
-            catch(\Exception $e)
+            else
             {
-                // Set message vars
+                $category_model = new CategoryModel($category);
+            }
+
+            // Error handling if model fails to save
+            if(!$category_model->save())
+            {
+                $failures++;
+
+                // Log error
                 $id = $category['id'];
                 $name = $category['name'];
-
-                // Print duplicate error message to console
-                echo "Category $id ($name) already exsists in the database, skipping...\n";
+                Log::error("Failed to seed category: $id ($name)");
             }
         }
+
+        // Print failures
+        SeedHelper::printFailures($failures);
     }
 }

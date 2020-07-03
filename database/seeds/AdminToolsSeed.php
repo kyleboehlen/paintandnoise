@@ -2,8 +2,12 @@
 
 use Illuminate\Database\Seeder;
 
-// Constant Helpers
+// Helpers
 use App\Http\Helpers\Constants\Admin\Tools;
+use App\Http\Helpers\Functions\SeedHelper;
+
+// Models
+use App\Models\Admin\AdminTools;
 
 class AdminToolsSeed extends Seeder
 {
@@ -37,22 +41,33 @@ class AdminToolsSeed extends Seeder
             ),
         );
 
+        $failures = 0;
         foreach($tools as $tool)
         {
-            try
+            $admin_tool = AdminTools::find($tool['id']);
+
+            if(!is_null($admin_tool))
             {
-                // Insert admin tool
-                DB::table('admin_tools')->insert(array($tool));
+                $admin_tool->fill($tool);
             }
-            catch(\Exception $e)
+            else
             {
-                // Set message vars
+                $admin_tool = new AdminTools($tool);
+            }
+
+            // Error handling if model fails to save
+            if(!$admin_tool->save())
+            {
+                $failures++;
+
+                // Log error
                 $id = $tool['id'];
                 $name = $tool['name'];
-
-                // Print duplicate error message to console
-                echo "Admin tool $id ($name) already exsists in the database, skipping...\n";
+                Log::error("Failed to seed admin tool: $id ($name)");
             }
         }
+
+        // Print failures
+        SeedHelper::printFailures($failures);
     }
 }

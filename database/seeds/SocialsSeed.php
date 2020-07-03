@@ -2,8 +2,12 @@
 
 use Illuminate\Database\Seeder;
 
-// Constant Helpers
+// Helpers
 use App\Http\Helpers\Constants\Socials;
+use App\Http\Helpers\Functions\SeedHelper;
+
+// Models
+use App\Models\Socials\Socials as SocialModel;
 
 class SocialsSeed extends Seeder
 {
@@ -59,22 +63,33 @@ class SocialsSeed extends Seeder
             ),
         );
 
+        $failures = 0;
         foreach($socials as $social)
         {
-            try
+            $social_model = SocialModel::find($social['id']);
+
+            if(!is_null($social_model))
             {
-                // Insert social
-                DB::table('socials')->insert(array($social));
+                $social_model->fill($social);
             }
-            catch(\Exception $e)
+            else
             {
-                // Set message vars
+                $social_model = new SocialModel($social);
+            }
+
+            // Error handling if model fails to save
+            if(!$social_model->save())
+            {
+                $failures++;
+
+                // Log error
                 $id = $social['id'];
                 $name = $social['name'];
-
-                // Print duplicate error message to console
-                echo "Social $id ($name) already exsists in the database, skipping...\n";
+                Log::error("Failed to seed social $id ($name)");
             }
         }
+
+        // Print failures
+        SeedHelper::printFailures($failures);
     }
 }

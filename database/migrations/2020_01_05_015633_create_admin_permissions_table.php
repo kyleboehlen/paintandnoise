@@ -4,8 +4,13 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
+// Helpers
+use App\Http\Helpers\Functions\SeedHelper;
+
 class CreateAdminPermissionsTable extends Migration
 {
+    const SEED_CLASS = 'AdminPermissionsSeed';
+
     /**
      * Run the migrations.
      *
@@ -25,6 +30,8 @@ class CreateAdminPermissionsTable extends Migration
             // Constraints
             $table->foreign('tools_id')->references('id')->on('admin_tools');
         });
+
+        SeedHelper::seedClass(self::SEED_CLASS);
     }
 
     /**

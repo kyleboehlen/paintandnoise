@@ -17,6 +17,8 @@ class SuperAdminPermissionsSeed extends Seeder
     {
         $permissions = AdminPermissions::all();
 
+        $duplicates = 0;
+        $new_permissions = 0;
         foreach($permissions as $permission)
         {
             $array = [
@@ -30,16 +32,30 @@ class SuperAdminPermissionsSeed extends Seeder
             {
                 // Insert admin permission
                 DB::table('admin_users_permissions')->insert(array($array));
+
+                // If it doesn't fail, increment new permissions counter and log the addition
+                $new_permissions++;
+                Log::info("Added Super Admin permission $id ($name)");
             }
             catch(\Exception $e)
             {
-                // Set message vars
+                $duplicates++;
+
+                // Log duplicate
                 $id = $permission->id;
                 $name = $permission->name;
-
-                // Print duplicate error message to console
-                echo "Super Admin already has permission $id ($name), skipping...\n";
+                Log::warning("Super Admin already has permission $id ($name)");
             }
+        }
+
+        if($new_permissions > 0)
+        {
+            echo "\e[32mNew Permissions:\e[0m see info log for details ($new_permissions new permissions)\n";
+        }
+
+        if($duplicates > 0)
+        {
+            echo "\e[31mDuplicates:\e[0m see warning log for details ($duplicates duplicate permissions)\n";
         }
     }
 }

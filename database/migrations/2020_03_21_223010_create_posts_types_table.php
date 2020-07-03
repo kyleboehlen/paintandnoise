@@ -4,8 +4,13 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
+// Helpers
+use App\Http\Helpers\Functions\SeedHelper;
+
 class CreatePostsTypesTable extends Migration
 {
+    const SEED_CLASS = 'PostsTypesSeed';
+
     /**
      * Run the migrations.
      *
@@ -20,6 +25,8 @@ class CreatePostsTypesTable extends Migration
             // Other Columns
             $table->string('name', 255);
         });
+
+        SeedHelper::seedClass(self::SEED_CLASS);
     }
 
     /**

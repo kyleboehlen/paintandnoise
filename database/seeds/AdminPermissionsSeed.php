@@ -2,9 +2,13 @@
 
 use Illuminate\Database\Seeder;
 
-// Constant Helpers
+// Helpers
 use App\Http\Helpers\Constants\Admin\Tools;
 use App\Http\Helpers\Constants\Admin\Permissions;
+use App\Http\Helpers\Functions\SeedHelper;
+
+// Models
+use App\Models\Admin\AdminPermissions;
 
 class AdminPermissionsSeed extends Seeder
 {
@@ -84,22 +88,33 @@ class AdminPermissionsSeed extends Seeder
             ),
         );
 
+        $failures = 0;
         foreach($permissions as $permission)
         {
-            try
+            $admin_permission = AdminPermissions::find($permission['id']);
+            
+            if(!is_null($admin_permission))
             {
-                // Insert admin permission
-                DB::table('admin_permissions')->insert(array($permission));
+                $admin_permission->fill($permission);
             }
-            catch(\Exception $e)
+            else
             {
-                // Set message vars
+                $admin_permission = new AdminPermissions($permission);
+            }
+
+            // Error handling if model fails to save
+            if(!$admin_permission->save())
+            {
+                $failures++;
+
+                // Log Error
                 $id = $permission['id'];
                 $name = $permission['name'];
-
-                // Print duplicate error message to console
-                echo "Admin permission $id ($name) already exsists in the database, skipping...\n";
+                Log::error("Failed to seed admin permission: $id ($name)");
             }
+
+            // Print failures
+            SeedHelper::printFailures($failures);
         }
     }
 }

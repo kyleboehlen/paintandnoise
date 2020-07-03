@@ -2,9 +2,13 @@
 
 use Illuminate\Database\Seeder;
 
-// Constant Helpers
+// Helpers
 use App\Http\Helpers\Constants\Categories;
 use App\Http\Helpers\Constants\Posts\Types;
+use App\Http\Helpers\Functions\SeedHelper;
+
+// Models
+use App\Models\Categories\CategoriesPostsTypes;
 
 class CategoriesPostsTypesSeed extends Seeder
 {
@@ -78,6 +82,10 @@ class CategoriesPostsTypesSeed extends Seeder
             ),
         );
 
+        // Truncate the table and reinsert (easier than trying to update w/ a compound PK)
+        CategoriesPostsTypes::truncate();
+
+        $failures = 0;
         foreach($categories_posts_types as $categories_posts_type)
         {
             try
@@ -87,13 +95,16 @@ class CategoriesPostsTypesSeed extends Seeder
             }
             catch(\Exception $e)
             {
-                // Set message vars
+                $failures++;
+
+                // Log Error
                 $categories_id = $categories_posts_type['categories_id'];
                 $types_id = $categories_posts_type['types_id'];
-
-                // Print duplicate error message to console
-                echo "Categories posts type ($categories_id, $types_id) already exsists in the database, skipping...\n";
+                Log::error("Failed to seed categories posts type ($categories_id, $types_id)");
             }
         }
+
+        // Print failures
+        SeedHelper::printFailures($failures);
     }
 }

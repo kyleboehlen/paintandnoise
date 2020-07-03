@@ -31,8 +31,9 @@ class SuperAdminSeed extends Seeder
         }
         catch(\Exception $e)
         {
-            // Print duplicate error message to console
-            echo "Super Admin already exsists as a user...\n";
+            // Log warning and print message
+            Log::warning("Super Admin already exsists as a user, can not seed super admin");
+            echo "\e[31mWarning:\e[0m Super Admin already exsists as a user...\n";
         }
 
         // Check if super admin password needs to be rehashed
@@ -49,7 +50,11 @@ class SuperAdminSeed extends Seeder
                 ]);
             }
             catch(\Exception $e)
-            { /* Do nothing and let PHPUnit handle the failure test case */ }
+            {
+                // Log error and print error message
+                Log::error("Failed to rehash Super Admin password");
+                echo "\e[31mFailure:\e[0m could not rehash Super Admin password...\n";
+            }
         }
     }
 }

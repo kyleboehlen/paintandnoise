@@ -11,6 +11,8 @@ use App\Models\Posts\Posts;
 
 class Categories extends Model
 {
+    public $timestamps = false;
+    
     public function users()
     {
         return $this->belongsToMany(Users::class, UsersCategories::class);

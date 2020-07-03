@@ -4,8 +4,13 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
+// Helpers
+use App\Http\Helpers\Functions\SeedHelper;
+
 class CreateSocialsTable extends Migration
 {
+    const SEED_CLASS = 'SocialsSeed';
+
     /**
      * Run the migrations.
      *
@@ -24,6 +29,8 @@ class CreateSocialsTable extends Migration
             $table->string('icon_identifier', 255);
             $table->string('profile_link_pattern', 255);
         });
+
+        SeedHelper::seedClass(self::SEED_CLASS);
     }
 
     /**

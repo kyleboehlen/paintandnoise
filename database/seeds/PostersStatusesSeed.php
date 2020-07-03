@@ -2,8 +2,12 @@
 
 use Illuminate\Database\Seeder;
 
-// Constant Helpers
+// Helpers
 use App\Http\Helpers\Constants\Posters\Statuses;
+use App\Http\Helpers\Functions\SeedHelper;
+
+// Models
+use App\Models\Posters\PostersStatuses;
 
 class PostersStatusesSeed extends Seeder
 {
@@ -41,22 +45,33 @@ class PostersStatusesSeed extends Seeder
             ),
         );
 
+        $failures = 0;
         foreach($statuses as $status)
         {
-            try
+            $poster_status = PostersStatuses::find($status['id']);
+
+            if(!is_null($poster_status))
             {
-                // Insert status
-                DB::table('posters_statuses')->insert(array($status));
+                $poster_status->fill($status);
             }
-            catch(\Exception $e)
+            else
             {
-                // Set message vars
+                $poster_status = new PostersStatuses($status);
+            }
+
+            // Error handling if model fails to save
+            if(!$poster_status->save())
+            {
+                $failures++;
+
+                // Log error
                 $id = $status['id'];
                 $name = $status['name'];
-
-                // Print duplicate error message to console
-                echo "Posters Status $id ($name) already exsists in the database, skipping...\n";
+                Log::error("Failed to seed posters status $id ($name)");
             }
         }
+
+        // Print failures
+        SeedHelper::printFailures($failures);
     }
 }
