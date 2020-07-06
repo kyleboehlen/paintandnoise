@@ -52,7 +52,6 @@ Route::prefix('assets')->group(function(){
 
 // Account management
 Route::prefix('account')->group(function(){
-    // Root
     Route::get('/', 'AccountManagementController@index')->name('account');
 
     // Categories Flow
@@ -73,9 +72,9 @@ Route::prefix('account')->group(function(){
 
 // Admin
 Route::prefix('admin')->group(function(){
-
-    // Root
     Route::get('/', 'Admin\AdminController@index')->name('admin');
+
+    // Home
     Route::get('home', 'Admin\AdminController@home')->middleware('auth:admin')->name('admin.home');
 
     // Login Routes
