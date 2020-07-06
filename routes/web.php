@@ -12,10 +12,10 @@
 */
 
 // php.ini
-Route::get('/phpinfo', 'Debug\DebugController@phpInfo')->name('debug.phpinfo');
+Route::get('phpinfo', 'Debug\DebugController@phpInfo')->name('debug.phpinfo');
 
 // Test
-Route::get('/test', 'Debug\DebugController@test')->name('debug.test');
+Route::get('test', 'Debug\DebugController@test')->name('debug.test');
 
 // Auth
 Auth::routes(['verify' => true]);
@@ -24,118 +24,117 @@ Auth::routes(['verify' => true]);
 Route::get('/', 'HomeController@index')->name('root');
 
 // Home Route
-Route::get('/home', 'HomeController@home')->middleware('auth')->middleware('verified')->name('home');
+Route::get('home', 'HomeController@home')->middleware('auth')->middleware('verified')->name('home');
 
 // About Route
-Route::get('/about', 'HomeController@about')->name('about');
+Route::get('about', 'HomeController@about')->name('about');
 
 // Assets
-Route::prefix('/assets')->group(function(){
+Route::prefix('assets')->group(function(){
+
     // Main logo
-    Route::get('/logo', 'AssetController@logo')->name('assets.logo');
+    Route::get('logo', 'AssetController@logo')->name('assets.logo');
 
     // About Page Images
-    Route::get('/about', 'AssetController@about')->name('assets.about');
-    Route::get('/how', 'AssetController@how')->name('assets.how');
-    Route::get('/why', 'AssetController@why')->name('assets.why');
+    Route::get('about', 'AssetController@about')->name('assets.about');
+    Route::get('how', 'AssetController@how')->name('assets.how');
+    Route::get('why', 'AssetController@why')->name('assets.why');
     
     // Icons
-    Route::get('/icon/{identifier}', 'AssetController@icon')->name('assets.icon');
+    Route::get('icon/{identifier}', 'AssetController@icon')->name('assets.icon');
 
     // Team Member Pictures
-    Route::get('/team/{name}', 'AssetController@team')->name('assets.team');
+    Route::get('team/{name}', 'AssetController@team')->name('assets.team');
 
     // User Profile Pictures
-    Route::get('/user/profile-picture', 'AssetController@profilePicture')->middleware('auth')->name('assets.profile-picture');
+    Route::get('user/profile-picture', 'AssetController@profilePicture')->middleware('auth')->name('assets.profile-picture');
 });
 
 // Account management
-Route::prefix('/account')->group(function(){
+Route::prefix('account')->group(function(){
     // Root
     Route::get('/', 'AccountManagementController@index')->name('account');
 
     // Categories Flow
-    Route::prefix('/categories')->group(function(){
+    Route::prefix('categories')->group(function(){
         Route::get('/', 'AccountManagementController@showCategories')->name('account.categories');
         Route::get('/{parent_slug}', 'AccountManagementController@showCategories')->name('account.subcategories');
-        Route::post('/update', 'AccountManagementController@updateCategories')->name('account.categories.update');
+        Route::post('update', 'AccountManagementController@updateCategories')->name('account.categories.update');
     });
 
     // Update Account Info
-    Route::prefix('/update')->group(function(){
-        Route::post('/name', 'AccountManagementController@updateName')->name('account.update.name');
-        Route::post('/profile-picture', 'AccountManagementController@updateProfilePicture')->name('account.update.profile-picture');
-        Route::post('/nsfw', 'AccountManagementController@updateNSFW')->name('account.update.nsfw');
-        Route::post('/password', 'AccountManagementController@updatePassword')->name('account.update.password');
+    Route::prefix('update')->group(function(){
+        Route::post('name', 'AccountManagementController@updateName')->name('account.update.name');
+        Route::post('profile-picture', 'AccountManagementController@updateProfilePicture')->name('account.update.profile-picture');
+        Route::post('nsfw', 'AccountManagementController@updateNSFW')->name('account.update.nsfw');
+        Route::post('password', 'AccountManagementController@updatePassword')->name('account.update.password');
     });
 });
 
 // Admin
-Route::prefix('/admin')->group(function(){
+Route::prefix('admin')->group(function(){
 
     // Root
     Route::get('/', 'Admin\AdminController@index')->name('admin');
-    Route::get('/home', 'Admin\AdminController@home')->middleware('auth:admin')->name('admin.home');
+    Route::get('home', 'Admin\AdminController@home')->middleware('auth:admin')->name('admin.home');
 
     // Login Routes
-    Route::get('/login','Admin\LoginController@showLoginForm')->name('admin.login');
-    Route::post('/login','Admin\LoginController@login');
-    Route::post('/logout','Admin\LoginController@logout')->name('admin.logout');
+    Route::get('login','Admin\LoginController@showLoginForm')->name('admin.login');
+    Route::post('login','Admin\LoginController@login');
+    Route::post('logout','Admin\LoginController@logout')->name('admin.logout');
 
     // Password Routes
-    Route::prefix('/password')->group(function(){
-        Route::get('/reset/{token}', 'Admin\ResetPasswordController@showResetForm')->name('admin.password.reset');
-        Route::post('/reset', 'Admin\ResetPasswordController@reset')->name('admin.password.update');
+    Route::prefix('password')->group(function(){
+        Route::get('reset/{token}', 'Admin\ResetPasswordController@showResetForm')->name('admin.password.reset');
+        Route::post('reset', 'Admin\ResetPasswordController@reset')->name('admin.password.update');
     });
 
     // Admin Users Tool
-    Route::prefix('/users')->group(function(){
+    Route::prefix('users')->group(function(){
         Route::get('/', 'Admin\AdminUsersController@index')->name('admin.users');
 
         // Redirect 
-        Route::post('/redirect', 'Admin\AdminUsersController@redirect')->name('admin.users.redirect');
+        Route::post('redirect', 'Admin\AdminUsersController@redirect')->name('admin.users.redirect');
 
         // View
-        Route::get('/view/{id}', 'Admin\AdminUsersController@view')->name('admin.users.view');
+        Route::get('view/{id}', 'Admin\AdminUsersController@view')->name('admin.users.view');
 
         // Create
-        Route::post('/create', 'Admin\AdminUsersController@create')->name('admin.users.create');
+        Route::post('create', 'Admin\AdminUsersController@create')->name('admin.users.create');
 
         // Update
-        Route::post('/update/{id}', 'Admin\AdminUsersController@update')->name('admin.users.update');
+        Route::post('update/{id}', 'Admin\AdminUsersController@update')->name('admin.users.update');
 
         // Delete
-        Route::post('/delete/{id}', 'Admin\AdminUsersController@delete')->name('admin.users.delete');
+        Route::post('delete/{id}', 'Admin\AdminUsersController@delete')->name('admin.users.delete');
 
         // Reset Password
-        Route::post('/password/{id}', 'Admin\AdminUsersController@resetPassword')->name('admin.users.password');
+        Route::post('password/{id}', 'Admin\AdminUsersController@resetPassword')->name('admin.users.password');
     });
 
     // Admin Reported Posts Tool
-    Route::prefix('/reported-posts')->group(function(){
+    Route::prefix('reported-posts')->group(function(){
         Route::get('/', 'Admin\ReportedPostsController@index')->name('admin.reported-posts');
     });
 
     // Admin Poster Users
-    Route::prefix('/posters')->group(function(){
+    Route::prefix('posters')->group(function(){
         Route::get('/', 'Admin\PostersController@index')->name('admin.posters');
     });
 
     // Admin Stats Page
-    Route::prefix('/stats')->group(function(){
+    Route::prefix('stats')->group(function(){
         Route::get('/', 'Admin\StatsController@index')->name('admin.stats');
     });
 });
 
 // Spotify redirect
-Route::get('/spotify', 'RedirectController@spotify');
+Route::get('spotify', 'RedirectController@spotify');
 
 // Top
-Route::prefix('/top')->group(function(){
-    
-    // Root
+Route::prefix('top')->group(function(){
     Route::get('/', 'TopController@index')->name('top');
 
     // Specific Categories (and subcategories)
-    Route::get('/{category_slug}', 'TopController@viewCategory')->middleware('auth')->middleware('verified')->name('top.category');
+    Route::get('{category_slug}', 'TopController@viewCategory')->middleware('auth')->middleware('verified')->name('top.category');
 });
