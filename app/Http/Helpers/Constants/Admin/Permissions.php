@@ -22,4 +22,7 @@ class Permissions
 
     // Stats Tool
     const VIEW_APP_STATS = 11;
+
+    // FAQ Tool
+    const MANAGE_FAQS = 12;
 }

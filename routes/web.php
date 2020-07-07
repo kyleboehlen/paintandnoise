@@ -88,6 +88,20 @@ Route::prefix('admin')->group(function(){
         Route::post('reset', 'Admin\ResetPasswordController@reset')->name('admin.password.update');
     });
 
+    // Admin FAQ Tool
+    Route::prefix('faq')->group(function(){
+        Route::get('/', 'Admin\FaqController@index')->name('admin.faq');
+
+        // Create
+        Route::post('create', 'Admin\FaqController@create')->name('admin.faq.create');
+
+        // Update
+        Route::post('update', 'Admin\FaqController@update')->name('admin.faq.update');
+
+        // Delete
+        Route::post('delete', 'Admin\FaqController@delete')->name('admin.faq.delete');
+    });
+
     // Admin Users Tool
     Route::prefix('users')->group(function(){
         Route::get('/', 'Admin\AdminUsersController@index')->name('admin.users');
@@ -126,6 +140,9 @@ Route::prefix('admin')->group(function(){
         Route::get('/', 'Admin\StatsController@index')->name('admin.stats');
     });
 });
+
+// FAQ
+Route::get('faq', 'FaqController@index')->name('faq');
 
 // Spotify redirect
 Route::get('spotify', 'RedirectController@spotify');

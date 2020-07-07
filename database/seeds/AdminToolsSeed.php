@@ -39,6 +39,11 @@ class AdminToolsSeed extends Seeder
                 'name' => 'Stats',
                 'route_name' => 'admin.stats',
             ),
+            array(
+                'id' => Tools::FAQS,
+                'name' => 'FAQs',
+                'route_name' => 'admin.faq',
+            ),
         );
 
         $failures = 0;

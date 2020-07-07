@@ -86,6 +86,12 @@ class AdminPermissionsSeed extends Seeder
                 'name' => 'View App Stats',
                 'description' => 'Admin User allowed to view stats about the app status and such.',
             ),
+            array(
+                'id' => Permissions::MANAGE_FAQS,
+                'tools_id' => Tools::FAQS,
+                'name' => 'Manage FAQs',
+                'description' => 'Admin User allowed to create, update, and delete FAQs.',
+            ),
         );
 
         $failures = 0;

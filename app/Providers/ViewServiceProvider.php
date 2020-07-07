@@ -47,9 +47,9 @@ class ViewServiceProvider extends ServiceProvider
             'admin.users', 'App\Http\Composers\Admin\UsersComposer'
         );
 
-        /** ABOUT */
+        /** FAQ */
         View::composer(
-            'about', 'App\Http\Composers\AboutComposer'
+            'faq', 'App\Http\Composers\FaqComposer'
         );
 
         /** TOP */
