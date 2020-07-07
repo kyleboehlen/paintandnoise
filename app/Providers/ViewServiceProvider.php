@@ -24,6 +24,11 @@ class ViewServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+        /** ABOUT */
+        View::composer(
+            'about', 'App\Http\Composers\AboutComposer'
+        );
+        
         /** ACCOUNT */
         View::composer(
             'account.categories', 'App\Http\Composers\AccountComposer'
