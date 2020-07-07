@@ -63,11 +63,11 @@ class DeployTest extends TestCase
         // Check if there are 20 categories seeded
         $this->assertTrue(DB::table('categories')->get()->count() == 20);
 
-        // Check for 4 admin tools
-        $this->assertTrue(DB::table('admin_tools')->get()->count() == 4);
+        // Check for 5 admin tools
+        $this->assertTrue(DB::table('admin_tools')->get()->count() == 5);
 
-        // Check for 11 admin permissions
-        $this->assertTrue(DB::table('admin_permissions')->get()->count() == 11);
+        // Check for 12 admin permissions
+        $this->assertTrue(DB::table('admin_permissions')->get()->count() == 12);
 
         // Check for 6 poster statuses
         $this->assertTrue(DB::table('posters_statuses')->get()->count() == 6);
@@ -83,8 +83,8 @@ class DeployTest extends TestCase
         $this->assertTrue($super_admin->password == Hash::check($super_admin_config['password'], $super_admin->password));
         $this->assertFalse(Hash::needsRehash($super_admin->password));
 
-        // Verify super admin has all 11 admin permissions
-        $this->assertTrue(DB::table('admin_users_permissions')->where('users_id', 1)->get()->count() == 11);
+        // Verify super admin has all 12 admin permissions
+        $this->assertTrue(DB::table('admin_users_permissions')->where('users_id', 1)->get()->count() == 12);
 
         // Check for 5 posts types
         $this->assertTrue(DB::table('posts_types')->get()->count() == 5);
