@@ -47,5 +47,15 @@ return [
         Types::EMBEDDED_SOUNDCLOUD => [
             'song_slug' => 'good-feelin-feat-alan-watts',
         ],
-    )
+    ),
+    'word_list' => array(
+        'art'        , 'music'   , 'question', 'if'       , 'will'    , 'how'    , 'new'    ,
+        'and'        , 'when'    , 'paint'   , 'noise'    , 'account' , 'set'    , 'spotify',
+        'up'         , 'events'  , 'near'    , 'me'       , 'log'     , 'in'     , 'out'    ,
+        'artist'     , 'sign'    , 'up'      , 'email'    , 'kyle'    , 'jody'   , 'unity'  ,
+        'platform'   , 'discover', 'edm'     , 'community', 'inspired', 'respect', 'always' ,
+        'do'         , 'we'      , 'support' , 'collab'   , 'good'    , 'share'  , 'post'   ,
+        'browse'     , 'need'    , 'fresh'   , 'content'  , 'social'  , 'media'  , 'update' ,
+        'underground', 'cost'    , 'free'    , 'team'     , 'love'    , 'peace'  , 'app'    ,
+    ),
 ];
