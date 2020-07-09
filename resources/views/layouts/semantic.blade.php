@@ -20,7 +20,7 @@
             @if(isset($show) && in_array('header_filters', $show))
                 {{-- placeholder for filters that will replace the title --}}
             @else
-                <h1 class="title">{{ config('app.name', 'P&N') }}</h1>
+                <h1 class="title">{{ config('app.name', 'P&N') }} @isset($secondary_title) {{ $secondary_title }} @endisset</h1>
             @endif
 
             @if(Auth::check())

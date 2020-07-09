@@ -19,6 +19,7 @@ class FaqComposer
     {
         $view->with([
             'faqs' => Faqs::all(),
+            'secondary_title' => 'FAQ',
             'stylesheet' => 'faq'
         ]);
     }
