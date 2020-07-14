@@ -5,7 +5,7 @@ namespace App\Http\Requests\Admin\Users;
 use Illuminate\Foundation\Http\FormRequest;
 
 // Permissions
-use App\Http\Permissions\Admin;
+use App\Http\Helpers\Constants\Admin\Permissions;
 
 class DeleteRequest extends FormRequest
 {
@@ -16,7 +16,7 @@ class DeleteRequest extends FormRequest
      */
     public function authorize()
     {
-        return \Auth::guard('admin')->user()->checkPermissions(Admin::DELETE_ADMINS);
+        return \Auth::guard('admin')->user()->checkPermissions(Permissions::DELETE_ADMIN);
     }
 
     /**

@@ -27,13 +27,13 @@ class AdminPermissionsSeed extends Seeder
                 'description' => 'Admin User allowed to create another P&N Admin User.',
             ),
             array(
-                'id' => Permissions::GRANT_PERMISSIONS,
+                'id' => Permissions::GRANT_ADMIN_PERMISSIONS,
                 'tools_id' => Tools::ADMIN_USERS,
                 'name' => 'Grant Permissions',
                 'description' => 'Admin User allowed to grant admin permissions to other Admin Users.',
             ),
             array(
-                'id' => Permissions::RESET_PASSWORD,
+                'id' => Permissions::RESET_ADMIN_PASSWORD,
                 'tools_id' => Tools::ADMIN_USERS,
                 'name' => 'Reset Password',
                 'description' => 'Admin User allowed to reset another Admin Users password.',

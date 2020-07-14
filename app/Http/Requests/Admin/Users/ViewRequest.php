@@ -5,7 +5,7 @@ namespace App\Http\Requests\Admin\Users;
 use Illuminate\Foundation\Http\FormRequest;
 
 // Permissions
-use App\Http\Permissions\Admin;
+use App\Http\Helpers\Constants\Admin\Permissions;
 
 class ViewRequest extends FormRequest
 {
@@ -16,7 +16,7 @@ class ViewRequest extends FormRequest
      */
     public function authorize()
     {
-        return \Auth::guard('admin')->user()->checkPermissions(Admin::VIEW_ADMINS);
+        return \Auth::guard('admin')->user()->checkPermissions(Permissions::VIEW_ADMIN);
     }
 
     /**

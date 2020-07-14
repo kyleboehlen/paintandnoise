@@ -5,7 +5,7 @@ namespace App\Http\Requests\Admin\Users;
 use Illuminate\Foundation\Http\FormRequest;
 
 // Permissions
-use App\Http\Permissions\Admin;
+use App\Http\Helpers\Constants\Admin\Permissions;
 
 class CreateRequest extends FormRequest
 {
@@ -16,7 +16,7 @@ class CreateRequest extends FormRequest
      */
     public function authorize()
     {
-        return \Auth::guard('admin')->user()->checkPermissions(Admin::CREATE_ADMINS);
+        return \Auth::guard('admin')->user()->checkPermissions(Permissions::CREATE_ADMIN);
     }
 
     /**

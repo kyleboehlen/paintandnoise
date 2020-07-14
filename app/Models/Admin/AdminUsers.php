@@ -185,9 +185,9 @@ class AdminUsers extends Authenticatable
         {
             foreach($permissions as $permission)
             {
-                if($this->checkPermission($permission))
+                if(!$this->checkPermission($permission))
                 {
-                    return true;
+                    return false;
                 }
             }
         }
@@ -196,7 +196,7 @@ class AdminUsers extends Authenticatable
             return $this->checkPermission($permissions);
         }
 
-        return false;
+        return true;
     }
 
     /**

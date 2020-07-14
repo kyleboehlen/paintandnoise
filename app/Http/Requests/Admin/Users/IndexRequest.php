@@ -5,7 +5,7 @@ namespace App\Http\Requests\Admin\Users;
 use Illuminate\Foundation\Http\FormRequest;
 
 // Permissions
-use App\Http\Permissions\Admin;
+use App\Http\Helpers\Constants\Admin\Permissions;
 
 class IndexRequest extends FormRequest
 {
@@ -16,7 +16,7 @@ class IndexRequest extends FormRequest
      */
     public function authorize()
     {
-        return \Auth::guard('admin')->user()->checkPermissions(Admin::ADMIN_USER_TOOL_PERMISSIONS);
+        return \Auth::guard('admin')->user()->checkPermissions(Permissions::ADMIN_USER_TOOL_PERMISSIONS);
     }
 
     /**
