@@ -10,12 +10,12 @@
 
         <div class="card-body">
             @if($show == 'index')
-                @if($admin->checkPermissions(\App\Http\Permissions\Admin::VIEW_ADMINS))
+                @if($admin->checkPermissions($permissions::VIEW_ADMIN))
                     <form action="{{ route('admin.users.redirect') }}" method="POST">
                         @csrf
 
                         <select name="user-id" class="@if($errors->has('user-id')) is-invalid @endif">
-                            @foreach(\App\Models\Admin\AdminUsers::all()->sortBy('name') as $admin_user)
+                            @foreach($admin_users::all()->sortBy('name') as $admin_user)
                                 @if($admin_user->id != 1) {{-- Don't display super admin --}}
                                     <option value="{{ $admin_user->id }}">
                                         {{ $admin_user->name }}
@@ -41,7 +41,7 @@
                     </form>
                 @endif
 
-                @if($admin->checkPermissions(\App\Http\Permissions\Admin::CREATE_ADMINS))
+                @if($admin->checkPermissions($permissions::CREATE_ADMIN))
                     <p> -- or -- </p>
                     <form action="{{ route('admin.users.create') }}" method="POST">
                         @csrf
@@ -82,7 +82,7 @@
                     </form>
                 @endif
             @elseif($show == 'view')
-                @if($admin->checkPermissions(\App\Http\Permissions\Admin::DELETE_ADMINS))
+                @if($admin->checkPermissions($permissions::DELETE_ADMIN))
                     <form id="delete-form" action="{{ route('admin.users.delete', $user->id) }}" method="POST">
                         @csrf
                     </form>
@@ -100,7 +100,7 @@
                     </a><br/><br/>
                 @endif
 
-                @if($admin->checkPermissions(\App\Http\Permissions\Admin::RESET_ADMIN_PASSWORDS))
+                @if($admin->checkPermissions($permissions::RESET_ADMIN_PASSWORD))
                     <form id="reset-password-form" action="{{ route('admin.users.password', $user->id) }}" method="POST">
                         @csrf
                     </form>
@@ -124,14 +124,14 @@
                     <p class="permissions-label">Permissions</p>
 
                     <div class="permissions-container">
-                        @foreach(\App\Models\Admin\AdminPermissions::all() as $permission)
+                        @foreach($admin_permissions::all() as $permission)
                             <span class="permissions-item" title="{{ $permission->description }}">
                                 <input type="checkbox" name="permissions[]" value="{{ $permission->id }}"
                                     @if($user->checkPermissions($permission->id))
                                         checked
                                     @endif
 
-                                    @if(!$admin->checkPermissions(\App\Http\Permissions\Admin::GRANT_ADMIN_PERMISSIONS))
+                                    @if(!$admin->checkPermissions($permissions::GRANT_ADMIN_PERMISSIONS))
                                         disabled
                                     @endif
                                 >&nbsp;&nbsp;{{ $permission->name }}
@@ -139,7 +139,7 @@
                         @endforeach
                     </div>
 
-                    @if($admin->checkPermissions(\App\Http\Permissions\Admin::GRANT_ADMIN_PERMISSIONS))
+                    @if($admin->checkPermissions($permissions::GRANT_ADMIN_PERMISSIONS))
                         <input type="submit" value="Update" /><br/><br/>
                     @endif
                 </form><br/>
