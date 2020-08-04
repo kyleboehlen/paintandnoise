@@ -26,7 +26,7 @@
                 {{-- Add row --}}
                 <tr>
                     <td><textarea name="question" placeholder="Question..." rows="2"></textarea></td>
-                    <td><textarea name="answer" placeholder="Answer..." rows="2">></textarea></td>
+                    <td><textarea name="answer" placeholder="Answer..." rows="2"></textarea></td>
                     <td><input type="image" name="submit" src="{{ route('assets.icon', ['identifier' => 'add']) }}" alt="Submit"></td>
                 </tr>
 
