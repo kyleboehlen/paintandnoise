@@ -139,7 +139,7 @@ class AdminUsersController extends Controller
             {
                 if(!in_array($current_permission, $permissions_array))
                 {
-                    $admin_users_permission = AdminUsersPermissions::where('users_id', $id)->where('admin_permissions_id', $current_permission->id)->first();
+                    $admin_users_permission = AdminUsersPermissions::where('users_id', $id)->where('permissions_id', $current_permission->id)->first();
 
                     if(!$admin_users_permission->delete())
                     {
@@ -161,13 +161,13 @@ class AdminUsersController extends Controller
 
             if(!is_null($permission))
             {
-                $admin_users_permission = AdminUsersPermissions::withTrashed()->where('users_id', $id)->where('admin_permissions_id', $permission->id)->first();
+                $admin_users_permission = AdminUsersPermissions::withTrashed()->where('users_id', $id)->where('permissions_id', $permission->id)->first();
 
                 if(is_null($admin_users_permission))
                 {
                     $attributes_array = [
                         'users_id' => $user->id,
-                        'admin_permissions_id' => $permission->id,
+                        'permissions_id' => $permission->id,
                     ];
     
                     if($request->has('expires'))
