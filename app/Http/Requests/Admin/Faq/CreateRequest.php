@@ -27,7 +27,8 @@ class CreateRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'question' => 'required|max:65535',
+            'answer' => 'required|max:65535',
         ];
     }
 }
