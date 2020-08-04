@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Log;
 
 // Models
 use App\Models\Faqs;
@@ -29,7 +30,35 @@ class FaqController extends Controller
 
     public function create(CreateRequest $request)
     {
+        // Get admin user for logging
+        $user = \Auth::guard('admin')->user();
 
+        // Create new FAQ
+        $faq = new Faqs([
+            'question' => $request->question,
+            'answer' => $request->answer,
+        ]);
+
+        // Save new FAQ
+        if($faq->save())
+        {
+            // Log creation
+            Log::info("Created new FAQ created by $user->name", [
+                'faq_id' => $faq->id,
+                'admin_user_id' => $user->id,
+            ]);
+        }
+        else
+        {
+            // Log failure
+            Log::warning("Failed to create new FAQ by $user->name", [
+                'question' => $request->question,
+                'answer' => $request->answer,
+                'admin_user_id' => $user->id,
+            ]);
+        }
+
+        return redirect()->route('admin.faq');
     }
 
     public function update(UpdateRequest $reqest)
