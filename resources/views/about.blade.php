@@ -8,7 +8,7 @@
             <img src="{{ route('assets.about') }}" title="Photo by {{ config('media.about_attribution') }}"/>
             <p>
                 Paint and Noise is a platform where you can discover artists, share your art, and affect the creative world.<br/><br/>
-                By being a community of like minded people and inspired creators we'd like to spark a collaboration and provide a foundation for artists to present their work to an audience as a whole.
+                More questions? Take a look at our <a href="{{ route('faq') }}">FAQ page</a>.
             </p>
         </div>
     </div>
