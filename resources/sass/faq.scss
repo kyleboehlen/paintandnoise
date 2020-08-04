@@ -15,6 +15,7 @@
     {
         @extend %flex-item;
 
+        flex-grow: 1;
         padding-bottom: 0;
         padding-top: 0;
 
@@ -58,6 +59,7 @@
             color: $white;
             font-family: $body-font;
             font-size: 1.5em;
+            text-align: left;
 
             @media only screen and (max-width: 850px)
             {
