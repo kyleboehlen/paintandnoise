@@ -18,6 +18,7 @@ class CreateFaqsTable extends Migration
             $table->smallIncrements('id');
 
             // Laravel columns
+            $table->softDeletes();
             $table->timestamps();
 
             // More columns
