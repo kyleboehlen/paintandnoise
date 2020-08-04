@@ -40,6 +40,10 @@ class ViewServiceProvider extends ServiceProvider
 
         /** ADMIN */
         View::composer(
+            'admin.faq', 'App\Http\Composers\Admin\FaqComposer'
+        );
+
+        View::composer(
             'admin.home', 'App\Http\Composers\Admin\HomeComposer'
         );
 

@@ -100,6 +100,9 @@ Route::prefix('admin')->group(function(){
 
         // Delete
         Route::post('delete', 'Admin\FaqController@delete')->name('admin.faq.delete');
+
+        // View
+        Route::get('view/{id}', 'Admin\FaqController@view')->name('admin.faq.view');
     });
 
     // Admin Users Tool
