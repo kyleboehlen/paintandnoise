@@ -5,6 +5,19 @@
         <br/><br/>
         <div class="card-header">FAQs</div><br/><br/>
 
+        {{-- Alerts --}}
+        @if(session('failed-deletion'))
+            <div class="invalid-feedback" role="alert">
+                <p>Failed to delete FAQ.</p>
+            </div>
+        @endif
+
+        @if(session('created-faq'))
+            <div class="alert-success" role="alert">
+                <p>New FAQ created!</p>
+            </div>
+        @endif
+
         {{-- Delete Forms --}}
         @foreach($faqs as $faq)
             <form id="delete-form-{{ $faq->id }}" action="{{ route('admin.faq.delete') }}" method="POST">

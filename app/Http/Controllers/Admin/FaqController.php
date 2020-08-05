@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Log;
+use Session;
 
 // Models
 use App\Models\Faqs;
@@ -42,6 +43,9 @@ class FaqController extends Controller
         // Save new FAQ
         if($faq->save())
         {
+            // Flash alert
+            Session::flash('created-faq', true);
+
             // Log creation
             Log::info("Created new FAQ created by $user->name", [
                 'faq_id' => $faq->id,
@@ -84,6 +88,9 @@ class FaqController extends Controller
         }
         else
         {
+            // Flash alert
+            Session::flash('failed-deletion', true);
+
             // Log failure
             Log::warning("$user->name failed to delete a FAQ", [
                 'faq_id' => $faq->id,
