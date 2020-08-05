@@ -61,14 +61,37 @@ class FaqController extends Controller
         return redirect()->route('admin.faq');
     }
 
-    public function update(UpdateRequest $reqest)
+    public function update(UpdateRequest $request)
     {
 
     }
 
     public function delete(DeleteRequest $request)
     {
+        // Get admin user for logging
+        $user = \Auth::guard('admin')->user();
 
+        // Get FAQ to delete
+        $faq = Faqs::find($request->get('faq-id'));
+
+        if($faq->delete())
+        {
+            // Log deletion
+            Log::info("$user->name deleted a FAQ", [
+                'faq_id' => $faq->id,
+                'admin_user_id' => $user->id,
+            ]);
+        }
+        else
+        {
+            // Log failure
+            Log::warning("$user->name failed to delete a FAQ", [
+                'faq_id' => $faq->id,
+                'admin_user_id' => $user->id,
+            ]);
+        }
+
+        return redirect()->route('admin.faq');
     }
 
     public function view(ViewRequest $request, $id)

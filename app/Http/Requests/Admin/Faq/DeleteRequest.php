@@ -3,6 +3,10 @@
 namespace App\Http\Requests\Admin\Faq;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
+
+// Models
+use App\Models\Faqs;
 
 // Permissions
 use App\Http\Helpers\Constants\Admin\Permissions;
@@ -27,7 +31,7 @@ class DeleteRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'faq-id' => ['required', 'integer', Rule::in(Faqs::all()->modelKeys())] // Verify it is a valid ID
         ];
     }
 }
