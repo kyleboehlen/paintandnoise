@@ -26,7 +26,7 @@ class FaqController extends Controller
 
     public function index(IndexRequest $request)
     {
-        return view('admin.faq');
+        return view('admin.faq')->with(['show' => 'index']);
     }
 
     public function create(CreateRequest $request)
@@ -67,7 +67,36 @@ class FaqController extends Controller
 
     public function update(UpdateRequest $request)
     {
+        // Get admin user for logging
+        $user = \Auth::guard('admin')->user();
 
+        // Hydrate FAQ and update properties from request
+        $faq = Faqs::find($request->get('faq-id'));
+        $faq->fill($request->all());
+
+        // Save FAQ updates
+        if($faq->save())
+        {
+            // Flash alert
+            Session::flash('updated-faq', true);
+
+            // Log update
+            Log::info("FAQ updated by $user->name", [
+                'faq_id' => $faq->id,
+                'admin_user_id' => $user->id,
+            ]);
+        }
+        else
+        {
+            // Log failure
+            Log::warning("Failed to update FAQ by $user->name", [
+                'question' => $request->question,
+                'answer' => $request->answer,
+                'admin_user_id' => $user->id,
+            ]);
+        }
+        
+        return redirect()->route('admin.faq');
     }
 
     public function delete(DeleteRequest $request)
@@ -103,6 +132,19 @@ class FaqController extends Controller
 
     public function view(ViewRequest $request, $id)
     {
+        // Get FAQ
+        $faq = Faqs::find($id);
 
+        // Back to index if ID is invalid
+        if(is_null($faq))
+        {
+            return redirect()->route('admin.faq');
+        }
+
+        // Return view page
+        return view('admin.faq')->with([
+            'faq' => $faq,
+            'show' => 'view',
+        ]);
     }
 }
