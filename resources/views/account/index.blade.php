@@ -29,12 +29,14 @@
                     <input type="submit" name="update" value="Update" /><br/><br/>
                 </form>
 
-                {{-- Update name --}}
-                <form id="name-form" action="{{ route('account.update.name') }}" method="POST">
+                {{-- Update info --}}
+                <form id="info-form" action="{{ route('account.update.info') }}" method="POST">
                     @csrf
 
                     <label for="name">Name</label><br/>
-                    <input id="name" type="text" class="@error('name') is-invalid @enderror" name="name" value="{{ $user->name }}" max="255" required>
+                    <input id="name" type="text" class="@error('name') is-invalid @enderror" name="name" value="{{ $user->name }}" maxlength="255" required><br/>
+                    <label for="zip">Zip Code</label><br/>
+                    <input id="zip" type="text" class="@error('zip') is-invalid @enderror" name="zip" value="{{ $user->zip_code }}" maxlength="5" pattern="^\d{5}">
                     <br/><br/>
 
                     @error('name')

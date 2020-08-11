@@ -4,7 +4,7 @@ namespace App\Http\Requests\Account;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class UpdateNameRequest extends FormRequest
+class UpdateInfoRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -25,6 +25,7 @@ class UpdateNameRequest extends FormRequest
     {
         return [
             'name' => 'required|string|max:255',
+            'zip' => 'numeric|digits:5|nullable',
         ];
     }
 }

@@ -63,7 +63,7 @@ Route::prefix('account')->group(function(){
 
     // Update Account Info
     Route::prefix('update')->group(function(){
-        Route::post('name', 'AccountManagementController@updateName')->name('account.update.name');
+        Route::post('info', 'AccountManagementController@updateInfo')->name('account.update.info');
         Route::post('profile-picture', 'AccountManagementController@updateProfilePicture')->name('account.update.profile-picture');
         Route::post('nsfw', 'AccountManagementController@updateNSFW')->name('account.update.nsfw');
         Route::post('password', 'AccountManagementController@updatePassword')->name('account.update.password');

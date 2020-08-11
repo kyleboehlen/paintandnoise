@@ -12,7 +12,7 @@ use Storage;
 // Requests
 use App\Http\Requests\Account\ShowCategoriesRequest;
 use App\Http\Requests\Account\UpdateCategoriesRequest;
-use App\Http\Requests\Account\UpdateNameRequest;
+use App\Http\Requests\Account\UpdateInfoRequest;
 use App\Http\Requests\Account\UpdateProfilePictureRequest;
 
 // Rules
@@ -206,25 +206,37 @@ class AccountManagementController extends Controller
         return redirect()->route('account');
     }
 
-    public function updateName(UpdateNameRequest $request)
+    public function updateInfo(UpdateInfoRequest $request)
     {
         // Get user
         $user = \Auth::user();
 
         // Set new name
         $user->name = $request->get('name');
+
+        // Check for zip code
+        $zip = null;
+        if($request->has('zip'))
+        {
+            $zip = $request->get('zip');
+            $user->zip_code = $request->get('zip');
+        }
+
+        // Save and log errors
         if(!$user->save())
         {
-            Log::warning('Failed to update categories for user.', [
+            Log::warning('Failed to update info for user.', [
                 'user_id' => $user->id,
                 'name', $request->get('name'),
+                'zip' => $zip ?? 'N/A',
             ]);
         }
         else
         {
-            Log::info('User updated name', [
+            Log::info('User updated info', [
                 'user_id' => $user->id,
                 'name', $request->get('name'),
+                'zip' => $zip ?? 'N/A',
             ]);
         }
 
