@@ -160,38 +160,120 @@
     margin-top: 3%;
     width: 90%;
 
+    @media only screen and (max-width: 650px)
+    {
+        margin-left: 1%;
+        margin-right: 2%;
+        width: 97%;
+    }
+
     %textarea
     {
         font-family: $body-font;
         font-size: 1.5em;
         width: 98%;
+
+        @media only screen and (max-width: 900px)
+        {
+            font-size: 1.25em;
+        }
+
+        @media only screen and (max-width: 650px)
+        {
+            font-size: 1em;
+        }
+
+        @media only screen and (max-width: 600px)
+        {
+            margin-left: 5%;
+            margin-right: 5%;
+            width: 90%;
+        }
     }
 
     .faq-table
     {
         @extend %base-table;
 
-        tr td
+        @media only screen and (max-width: 650px)
         {
-            font-family: $body-font;
-            font-size: 1.5em;
-            min-width: 175px;
+            border-bottom: none;
+            border-left: none;
+            border-right: none;
+            margin-bottom: 0%;
+            margin-left: 0%;
+            margin-right: 0%;
+            width: 100%;
+        }
 
-            img, input[type=image]
+        tr
+        {
+            th
             {
-                margin-left: 0px;
-                margin-top: 1px;
-                width: 75px;
+                @media only screen and (max-width: 800px)
+                {
+                    font-size: 2.5em;
+                }
+
+                @media only screen and (max-width: 650px)
+                {
+                    font-size: 2em;
+                }
+
+                @media only screen and (max-width: 600px)
+                {
+                    font-size: 1.75em;
+                }
             }
 
-            a
+            td
             {
-                text-decoration: none;
-            }
+                font-family: $body-font;
+                font-size: 1.5em;
+                min-width: 175px;
 
-            textarea
-            {
-                @extend %textarea;
+                @media only screen and (max-width: 900px)
+                {
+                    font-size: 1.25em;
+                }
+
+                @media only screen and (max-width: 650px)
+                {
+                    font-size: 1em;
+                    min-width: auto;
+                }
+
+                img, input[type=image]
+                {
+                    margin-left: 0px;
+                    margin-top: 1px;
+                    width: 75px;
+
+                    @media only screen and (max-width: 800px)
+                    {
+                        width: 50px;
+                    }
+
+                    @media only screen and (max-width: 650px)
+                    {
+                        width: 50px;
+                    }
+
+                    @media only screen and (max-width: 600px)
+                    {
+                        margin: 0px;
+                    }
+                }
+
+                a
+                {
+                    text-decoration: none;
+                }
+
+                textarea
+                {
+                    @extend %textarea;
+                }
             }
         }
     }
@@ -207,7 +289,18 @@
         textarea
         {
             @extend %textarea;
+
             width: 75%;
+
+            @media only screen and (max-width: 800px)
+            {
+                min-height: 100px;
+            }
+
+            @media only screen and (max-width: 600px)
+            {
+                min-height: 150px;
+            }
         }
     }
 }
