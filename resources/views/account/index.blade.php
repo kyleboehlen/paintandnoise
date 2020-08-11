@@ -14,7 +14,9 @@
                 <form id="profile-picture-form" action="{{ route('account.update.profile-picture') }}" method="POST" enctype="multipart/form-data">
                     @csrf
 
-                    <label for="profile-picture-input">Profile Picture</label><br/>
+                    <label class="account-profile-picture" for="profile-picture-input">
+                        <img src="{{ route('assets.profile-picture') }}" />
+                    </label><br/>
                     <input id="profile-picture-input" type="file" name="profile-picture" accept=".png,.jpg,.jpeg" required />
                     <br/><br/>
 
@@ -24,7 +26,7 @@
                         </span><br/><br/>
                     @enderror
 
-                    <input type="submit" value="Update" /><br/><br/>
+                    <input type="submit" name="update" value="Update" /><br/><br/>
                 </form>
 
                 {{-- Update name --}}

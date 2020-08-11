@@ -6,9 +6,13 @@ $(document).ready(function(){
         $(this).toggleClass('checked');
     });
 
-    // Profile picture span toggle input
+    // Profile picture toggle input
     $('.account-profile-picture').click(function(){
-        $('#profile-picture-form').toggle();
-        $('#name-form').toggle();
+        $('#profile-picture-input').click();
+    });
+
+    // Profile picture submits form
+    $('#profile-picture-input').change(function(){
+        $('#profile-picture-form').submit();
     });
 });
