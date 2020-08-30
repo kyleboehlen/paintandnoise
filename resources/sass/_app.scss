@@ -791,12 +791,12 @@ nav
             }
         }
 
-        .left
+        li:first-of-type
         {
             border-radius: 0px 0px 0px 10px;
         }
 
-        .right
+        li:last-of-type
         {
             border-radius: 0px 0px 10px 0px;
         }

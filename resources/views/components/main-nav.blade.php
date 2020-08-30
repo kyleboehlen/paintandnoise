@@ -1,6 +1,6 @@
 <nav>
     <ul>
-        <li class="left @if($highlight == 'trending') highlight @endif">
+        <li @if($highlight == 'trending') class="highlight" @endif>
             <a @if($highlight == 'trending') href="#" @else href="{{ route('trending') }}" @endif>Trending</a>
         </li>
 
@@ -12,7 +12,7 @@
             <a @if($highlight == 'local') href="#" class="highlight" @else href="{{ route('local') }}" @endif>Local</a>
         </li>
 
-        <li class="right @if($highlight == 'vote') highlight @endif">
+        <li @if($highlight == 'vote') class="highlight" @endif>
             <a @if($highlight == 'vote') href="#" class="highlight" @else href="{{ route('voting') }}" @endif>Vote</a>
         </li>
 
