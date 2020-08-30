@@ -724,6 +724,27 @@ nav
     margin-left: 12.5%;
     margin-right: 12.5%;
     width: 75%;
+
+    @media only screen and (max-width: 975px)
+    {
+        width: 70%;
+        margin-left: 15%;
+        margin-right: 15%;
+    }
+
+    @media only screen and (max-width: 650px)
+    {
+        width: 65%;
+        margin-left: 17.5%;
+        margin-right: 17.5%;
+    }
+
+    @media only screen and (max-width: 600px)
+    {
+        width: 90%;
+        margin-left: 4%;
+        margin-right: 6%;
+    }
     
     ul
     {
@@ -734,6 +755,12 @@ nav
         margin: 0;
         padding: 0;
         width: 100%;
+
+        @media only screen and (max-width: 600px)
+        {
+            flex-direction: row;
+            flex-wrap: wrap;
+        }
 
         li
         {
@@ -747,6 +774,14 @@ nav
             padding-top: 1px;
             padding-bottom: 1px;
 
+            @media only screen and (max-width: 600px)
+            {
+                flex: 1 25%;
+                margin-top: .5%;
+                padding-top: 2px;
+                padding-bottom: 2px;
+            }
+
             a
             {
                 display: block;
@@ -757,6 +792,36 @@ nav
                 text-align: center;
                 text-decoration: none;
                 width: 100%;
+
+                @media only screen and (max-width: 975px)
+                {
+                    font-size: 1.75em;
+                }
+
+                @media only screen and (max-width: 925px)
+                {
+                    font-size: 1.5em;
+                }
+
+                @media only screen and (max-width: 850px)
+                {
+                    font-size: 1.25em;
+                }
+
+                @media only screen and (max-width: 725px)
+                {
+                    font-size: 1em;
+                }
+
+                @media only screen and (max-width: 650px)
+                {
+                    font-size: .75em;
+                }
+
+                @media only screen and (max-width: 600px)
+                {
+                    font-size: 1.25em;
+                }
             }
 
             &:hover
@@ -794,6 +859,19 @@ nav
         li:first-of-type
         {
             border-radius: 0px 0px 0px 10px;
+
+            @media only screen and (max-width: 600px)
+            {
+                border-radius: 0px 0px 0px 0px;
+            }
+        }
+
+        li:nth-last-of-type(2)
+        {
+            @media only screen and (max-width: 600px)
+            {
+                border-radius: 0px 0px 0px 10px;
+            }
         }
 
         li:last-of-type
