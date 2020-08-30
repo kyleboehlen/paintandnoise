@@ -14,6 +14,11 @@
 
         <!-- Styles -->
         <link href="@isset($stylesheet) {{ asset("css/$stylesheet.css") }} @else {{ asset('css/app.css') }} @endisset" rel="stylesheet">
+
+        {{-- HTML5 Shiv --}}
+        <!--[if lt IE 9]>
+            <script src="bower_components/html5shiv/dist/html5shiv.js"></script>
+        <![endif]-->
     </head>
         @yield('template')
 </html>
