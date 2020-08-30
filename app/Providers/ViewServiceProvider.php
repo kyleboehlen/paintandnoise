@@ -56,9 +56,24 @@ class ViewServiceProvider extends ServiceProvider
             'faq', 'App\Http\Composers\FaqComposer'
         );
 
+        /** LOCAL */
+        View::composer(
+            'local', 'App\Http\Composers\LocalComposer'
+        );
+
         /** TOP */
         View::composer(
             'top', 'App\Http\Composers\TopComposer'
+        );
+
+        /** TRENDING */
+        View::composer(
+            'trending', 'App\Http\Composers\TrendingComposer'
+        );
+
+        /** VOTE */
+        View::composer(
+            'voting', 'App\Http\Composers\VotingComposer'
         );
     }
 }

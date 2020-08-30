@@ -4,7 +4,7 @@ namespace App\Http\Composers;
 
 use Illuminate\View\View;
 
-class TopComposer
+class LocalComposer
 {
     /**
      * Bind data to the view.
@@ -15,8 +15,7 @@ class TopComposer
     public function compose(View $view)
     {
         $view->with([
-            'nav_highlight' => 'top',
-            'stylesheet' => 'top',
+            'nav_highlight' => 'local',
         ]);
     }
 }

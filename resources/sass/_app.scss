@@ -714,3 +714,91 @@ footer
     font-family: $body-font;
     font-size: 1.25em;
 }
+
+nav
+{
+    background-color: $white;
+    border: $medium-border solid $white;
+    border-radius: 0px 0px 10px 10px;
+    margin-bottom: 1px;
+    margin-left: 12.5%;
+    margin-right: 12.5%;
+    width: 75%;
+    
+    ul
+    {
+        @extend %flex-container;
+
+        justify-content: center;
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+        width: 100%;
+
+        li
+        {
+            @extend %flex-item;
+
+            background-color: $white;
+            border: $thin-border solid $black;
+            flex-grow: 1;
+            margin-left: .5%;
+            margin-right: .5%;
+            padding-top: 1px;
+            padding-bottom: 1px;
+
+            a
+            {
+                display: block;
+                color: $black;
+                font-family: $header-font;
+                font-size: 2em;
+                height: 100%;
+                text-align: center;
+                text-decoration: none;
+                width: 100%;
+            }
+
+            &:hover
+            {
+                background-color: $black;
+                font-style: italic;
+
+                a
+                {
+                    color: $white;
+                }
+            }
+        }
+
+        .highlight
+        {
+            background-color: $black;
+            font-style: italic;
+            font-weight: bold;
+
+            a
+            {
+                color: $white;
+            }
+
+            &:hover
+            {
+                a
+                {
+                    text-decoration: underline;
+                }
+            }
+        }
+
+        .left
+        {
+            border-radius: 0px 0px 0px 10px;
+        }
+
+        .right
+        {
+            border-radius: 0px 0px 10px 0px;
+        }
+    }
+}
