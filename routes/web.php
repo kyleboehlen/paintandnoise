@@ -26,8 +26,14 @@ Route::get('/', 'HomeController@index')->name('root');
 // Home Route
 Route::get('home', 'HomeController@home')->middleware('auth')->middleware('verified')->name('home');
 
+// Trending Route
+Route::get('trending', 'HomeController@trending')->middleware('auth')->middleware('verified')->name('trending');
+
 // About Route
 Route::get('about', 'HomeController@about')->name('about');
+
+// Local Route
+Route::get('local', 'LocalController@index')->name('local');
 
 // Assets
 Route::prefix('assets')->group(function(){
@@ -156,4 +162,9 @@ Route::prefix('top')->group(function(){
 
     // Specific Categories (and subcategories)
     Route::get('{category_slug}', 'TopController@viewCategory')->middleware('auth')->middleware('verified')->name('top.category');
+});
+
+// Voting
+Route::prefix('vote')->group(function(){
+    Route::get('/', 'VotingController@index')->name('voting');
 });

@@ -17,11 +17,13 @@ class TopController extends Controller
     /** PUBLIC FUNCTIONS */
     public function index()
     {
+        // TO-DO: If logged in return only top categories user follows
         return view('top')->with([
             'parent_categories' => Categories::whereNull('parent_id')->get(),
         ]);
     }
 
+    // TO-DO: Filter by users categories
     public function viewCategory($category_slug)
     {
         // Validate is a valid slug

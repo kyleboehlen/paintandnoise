@@ -20,8 +20,16 @@ class HomeController extends Controller
 
     public function home()
     {
+        return redirect()->route('trending');
+    }
+
+    public function trending()
+    {
         // Create and return home view
-        return 'home';
+        return view('trending')->with([
+            // To-do: add trending posts
+            'nav_highlight' => 'trending',
+        ]);
     }
 
     public function about()
