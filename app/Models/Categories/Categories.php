@@ -44,10 +44,4 @@ class Categories extends Model
 
         return $categories_posts_types->pluck('types_id')->toArray();
     }
-
-    // Return the top post for that category
-    public function topPost()
-    {
-        return Posts::where('id', $this->id)->orWhere('parent_id', $this->id)->orderBy('votes', 'desc')->first();
-    }
 }

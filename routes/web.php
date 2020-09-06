@@ -161,7 +161,7 @@ Route::prefix('top')->group(function(){
     Route::get('/', 'TopController@index')->name('top');
 
     // Specific Categories (and subcategories)
-    Route::get('{category_slug}', 'TopController@viewCategory')->middleware('auth')->middleware('verified')->name('top.category');
+    Route::get('{category_slug}', 'TopController@viewCategory')->name('top.category');
 });
 
 // Voting
