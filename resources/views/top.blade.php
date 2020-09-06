@@ -2,5 +2,12 @@
 
 @section('body')
     <x-main-nav :highlight="$nav_highlight" />
-    {{-- TO-DO Iterate through parent categories and display ->topPost() or iterate through posts --}}
+    
+    @foreach($posts as $post)
+        <x-post :post="$post" :category_link="true" />
+    @endforeach
+
+    @if(method_exists($posts,'links'))
+        {{ $posts->links() }}
+    @endif 
 @endsection
