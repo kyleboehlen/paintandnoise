@@ -15,7 +15,7 @@ class CreatePostsTable extends Migration
     {
         Schema::create('posts', function (Blueprint $table) {
             // PK
-            $table->bigIncrements('id');
+            $table->uuid('id')->primary(); // UID to use without exposing user_ids
 
             // Laravel Columns
             $table->timestamps();
@@ -23,15 +23,16 @@ class CreatePostsTable extends Migration
 
             // More Columns
             $table->smallInteger('categories_id')->unsigned();
-            $table->bigInteger('users_id')->unsigned();
+            $table->uuid('posters_id');
             $table->tinyInteger('types_id')->unsigned();
             $table->json('asset'); // For storing file URI/resource URL
             $table->boolean('nsfw')->default($value = false);
             $table->mediumInteger('total_votes')->unsigned()->default($value = 0);
+            $table->char('vote_token', 16); // Alpha numeric
 
             // Constraints
             $table->foreign('categories_id')->references('id')->on('categories');
-            $table->foreign('users_id')->references('id')->on('users');
+            $table->foreign('posters_id')->references('id')->on('posters');
             $table->foreign('types_id')->references('id')->on('posts_types');
         });
     }

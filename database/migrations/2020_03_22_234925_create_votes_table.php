@@ -17,7 +17,7 @@ class CreateVotesTable extends Migration
             // PK is composite, see constraints
             
             // More Columns
-            $table->bigInteger('posts_id')->unsigned(); // References ID on posts
+            $table->uuid('posts_id'); // References ID on posts
             $table->bigInteger('users_id')->unsigned(); // References ID on users
 
             // Constraints

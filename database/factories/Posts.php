@@ -17,10 +17,12 @@ $factory->define(Posts::class, function (Faker $faker) {
     $asset_array = config('test.assets');
 
     return [
-        'users_id' => $poster->users_id,
+        'id' => $faker->uuid,
+        'posters_id' => $poster->id,
         'categories_id' => $categories_id,
         'types_id' => $types_id,
         'asset' => json_encode($asset_array[$types_id]),
         'nsfw' => random_int(0, 1),
+        'vote_token' => $faker->regexify('[a-zA-Z0-9]{16}'),
     ];
 });

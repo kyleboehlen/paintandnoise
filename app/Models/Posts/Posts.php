@@ -10,6 +10,8 @@ use App\Models\Posts\Votes;
 
 class Posts extends Model
 {
+    public $incrementing = false;
+    
     public function cacheVotes()
     {
         $this->total_votes = Votes::where('posts_id', $this->id)->count();
