@@ -134,6 +134,7 @@ class AccountManagementController extends Controller
 
     public function updateCategories(UpdateCategoriesRequest $request)
     {
+        $user_id = \Auth::user()->id;
         $parent_id = null;
 
         // Get parent slug, or lack thereof
@@ -146,7 +147,7 @@ class AccountManagementController extends Controller
         $category_ids = Categories::where('parent_id', $parent_id)->get()->pluck('id')->toArray();
         if(!is_null($category_ids))
         {
-            UsersCategories::where('users_id', \Auth::user()->id)->whereIn('categories_id', $category_ids)->delete();
+            UsersCategories::where('users_id', $user_id)->whereIn('categories_id', $category_ids)->delete();
         }
 
         // Insert categories for user
@@ -158,19 +159,19 @@ class AccountManagementController extends Controller
                 {
                     $category_id = array_search($category_slug, config('categories.slugs'));
                     $users_categories = new UsersCategories;
-                    $users_categories->users_id = \Auth::user()->id;
+                    $users_categories->users_id = $user_id;
                     $users_categories->categories_id = $category_id;
                     if(!$users_categories->save())
                     {
                         Log::warning('Failed to update categories for user.', [
-                            'user_id' => \Auth::user()->id,
+                            'user_id' => $user_id,
                             'category_id' => $category_id,
                         ]);
                     }
                     else
                     {
                         Log::info('Added category for user.', [
-                            'user_id' => \Auth::user()->id,
+                            'user_id' => $user_id,
                             'category_id' => $category_id,
                         ]);
                     }
@@ -179,19 +180,19 @@ class AccountManagementController extends Controller
             else // Single ID
             {
                 $users_categories = new UsersCategories;
-                $users_categories->users_id = \Auth::user()->id;
+                $users_categories->users_id = $user_id;
                 $users_categories->categories_id = array_search($request->get('categories'), config('categories.slugs'));
                 if(!$users_categories->save())
                 {
                     Log::warning('Failed to update categories for user.', [
-                        'user_id' => \Auth::user()->id,
+                        'user_id' => $user_id,
                         'category_id' => $category_id,
                     ]);
                 }
                 else
                 {
                     Log::info('Added category for user.', [
-                        'user_id' => \Auth::user()->id,
+                        'user_id' => $user_id,
                         'category_id' => $category_id,
                     ]);
                 }
