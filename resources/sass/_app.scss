@@ -346,7 +346,7 @@ body
 
 .c-violet
 {
-    color: $c-violet;
+    background-color: $c-violet;
 }
 
 .c-violet-hover
@@ -364,7 +364,7 @@ body
 
 .c-indigo
 {
-    color: $c-indigo;
+    background-color: $c-indigo;
 }
 
 .c-indigo-hover
@@ -930,5 +930,46 @@ nav
     @media only screen and (max-width: 400px)
     {
         width: 97.5%;
+    }
+}
+
+.post
+{
+    border: $thin-border solid $white;
+    margin-left: 25%;
+    margin-right: 25%;
+    width: 50%;
+
+    .category-header
+    {
+        border-bottom: $thin-border solid $white;
+        color: $black;
+        font-family: $tool-font;
+        font-size: 2em;
+        font-weight: 1000;
+        line-height: 115%;
+        text-align: center;
+
+        a
+        {
+            color: $black;
+            text-decoration: none;
+
+            &:hover
+            {
+                text-decoration: underline;
+                font-style: italic;
+            }
+        }
+    }
+    
+    .content
+    {
+
+    }
+
+    .artist-footer
+    {
+
     }
 }

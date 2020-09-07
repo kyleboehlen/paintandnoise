@@ -4,10 +4,10 @@
     <x-main-nav :highlight="$nav_highlight" />
     
     @foreach($posts as $post)
-        <x-post :post="$post" :category_link="true" />
+        <x-post :post="$post" :link="$category_link" />
     @endforeach
 
-    @if(method_exists($posts,'links'))
+    @if(method_exists($posts, 'links'))
         {{ $posts->links() }}
-    @endif 
+    @endif
 @endsection

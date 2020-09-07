@@ -15,6 +15,7 @@ class TopComposer
     public function compose(View $view)
     {
         $view->with([
+            'category_link' => true,
             'nav_highlight' => 'top',
             'stylesheet' => 'top',
         ]);

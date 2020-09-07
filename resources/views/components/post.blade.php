@@ -1,12 +1,17 @@
-<div>
+<div class="post">
     {{-- Category Header --}}
-    <div class="c-{{ $post->category['color'] }}">
-        {{-- TO-DO: Add anchor tag for top page categories link --}}
+    <div class="category-header c-{{ $post->category['color'] }}">
+        @if($category_link)
+            <a href="{{ route('top.category', ['category_slug' => $post->category['slug']]) }}">
+        @endif
         {{ $post->category['name'] }}
+        @if($category_link)
+            </a>
+        @endif
     </div>
 
     {{-- Post content --}}
-    <div>
+    <div class="content">
         @switch($post->types_id)
             @case($types::IMAGE)
                 Image post
@@ -31,7 +36,8 @@
     </div>
 
     {{-- Artist footer --}}
-    <div>
+    <div class="artist-footer">
         Artist shit goes here
     </div>
 </div>
+<br/>
