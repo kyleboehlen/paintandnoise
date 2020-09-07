@@ -2,6 +2,7 @@
 
 /** @var \Illuminate\Database\Eloquent\Factory $factory */
 
+use Carbon\Carbon;
 use App\Models\Categories\Categories;
 use App\Models\Posts\Posts;
 use App\Models\Posters\Posters;
@@ -24,5 +25,6 @@ $factory->define(Posts::class, function (Faker $faker) {
         'asset' => json_encode($asset_array[$types_id]),
         'nsfw' => random_int(0, 1),
         'vote_token' => $faker->regexify('[a-zA-Z0-9]{16}'),
+        'created_at' => Carbon::now()->subHours(rand(0, 23))->subMinutes(rand(0, 59))->subSeconds(rand(0, 59))->toDatetimeString(),
     ];
 });

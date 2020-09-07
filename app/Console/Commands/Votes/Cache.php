@@ -22,7 +22,7 @@ class Cache extends Command
      *
      * @var string
      */
-    protected $description = 'Cache the total number of votes for each post.';
+    protected $description = 'Cache the total number of votes for each post and calculate the trending score.';
 
     /**
      * Create a new command instance.
