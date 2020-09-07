@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+// Models
+use App\Models\Posts\Posts;
+
 class HomeController extends Controller
 {
     public function index()
@@ -25,10 +28,21 @@ class HomeController extends Controller
 
     public function trending()
     {
+        // Get posts filtered by users categories
+        $user = \Auth::user();
+        $posts = Posts::whereIn('categories_id', $user->categoriesIdsArray());
+
+        // Check users NSFW settings
+        if(!$user->show_nsfw)
+        {
+            $posts = $posts->where('nsfw', $user->show_nsfw);
+        }
+
         // Create and return home view
         return view('trending')->with([
-            // To-do: add trending posts
+            'category_link' => false,
             'nav_highlight' => 'trending',
+            'posts' => $posts->orderBy('trending_score', 'desc')->simplePaginate(config('posts.paginate')),
         ]);
     }
 
