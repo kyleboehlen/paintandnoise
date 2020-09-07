@@ -7,6 +7,8 @@ use Carbon\Carbon;
 use Log;
 
 // Models
+use App\Models\Categories\Categories;
+use App\Models\Posters\Posters;
 use App\Models\Posts\Votes;
 
 class Posts extends Model
@@ -34,5 +36,17 @@ class Posts extends Model
                 'posts_id' => $this->id
             ]);
         }
+    }
+
+    // Poster
+    public function poster()
+    {
+        return $this->hasOne(Posters::class, 'id', 'posters_id');
+    }
+
+    // Category
+    public function category()
+    {
+        return $this->hasOne(Categories::class, 'id', 'categories_id');
     }
 }
