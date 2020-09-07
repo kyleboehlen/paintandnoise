@@ -72,6 +72,9 @@ class TopController extends Controller
             // Replace category name w/ parent category name
             $top_post->category['name'] = $category->name;
 
+            // Replace category slug w/ parent category slug
+            $top_post->category['slug'] = $category->slug;
+
             // Push top post to collection
             $posts->add($top_post);
         }
