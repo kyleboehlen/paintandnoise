@@ -147,6 +147,13 @@ class AccountManagementController extends Controller
         $category_ids = Categories::where('parent_id', $parent_id)->get()->pluck('id')->toArray();
         if(!is_null($category_ids))
         {
+            // If parent categories, delete child categories as well
+            if(is_null($parent_id))
+            {
+                $category_ids = array_merge($category_ids, Categories::whereIn('parent_id', $category_ids)->get()->pluck('id')->toArray());
+            }
+
+            // Delete users categories
             UsersCategories::where('users_id', $user_id)->whereIn('categories_id', $category_ids)->delete();
         }
 
