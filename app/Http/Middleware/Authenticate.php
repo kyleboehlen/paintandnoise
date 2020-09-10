@@ -20,6 +20,10 @@ class Authenticate extends Middleware
             {
                 return route('admin');
             }
+            elseif($request->is('trending') || $request->is('top/*') || $request->is('local') || $request->is('vote'))
+            {
+                return route('login');
+            }
 
             return route('root'); // Redirects to home when unauthenticated so the redirect can be handled in the home controller
         }
