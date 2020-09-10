@@ -30,7 +30,7 @@ class AuthTest extends TestCase
         $response->assertRedirect('/about');
 
         // Create user
-        $user = $user = factory(Users::class)->create();
+        $user = Users::factory()->make();
 
         // Unverify user email
         $user->email_verified_at = null;
@@ -81,7 +81,7 @@ class AuthTest extends TestCase
         $response->assertRedirect('/admin/login');
 
         // Create admin user
-        $admin = factory(AdminUsers::class)->create();
+        $admin = AdminUsers::factory()->create();
 
         // Call admin
         $response = $this->actingAs($admin, 'admin')->get('/admin');
@@ -109,7 +109,7 @@ class AuthTest extends TestCase
     public function testAdminPermissions()
     {
         // Create admin user
-        $admin = factory(AdminUsers::class)->create();
+        $admin = AdminUsers::factory()->create();
 
         // Get a random permission
         $permission = AdminPermissions::all()->random();

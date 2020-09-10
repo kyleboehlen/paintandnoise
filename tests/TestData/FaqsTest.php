@@ -20,7 +20,7 @@ class FaqsTest extends TestCase
     public function faqsTest()
     {
         // Create random Faqs
-        $faqs = factory(Faqs::class, mt_rand(4, 8))->create();
+        $faqs = Faqs::factory(mt_rand(4, 8))->create();
 
         // Verify there are more than 4
         $this->assertTrue(count($faqs) >= 4);

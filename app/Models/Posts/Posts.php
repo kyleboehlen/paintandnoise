@@ -3,6 +3,7 @@
 namespace App\Models\Posts;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Carbon\Carbon;
 use Log;
 
@@ -13,6 +14,8 @@ use App\Models\Posts\Votes;
 
 class Posts extends Model
 {
+    use HasFactory;
+    
     public $incrementing = false;
     
     public function cacheVotes()

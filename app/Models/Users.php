@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Auth\Notifications\ResetPassword as ResetPasswordNotification;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Carbon\Carbon;
@@ -16,6 +17,7 @@ use App\Models\Categories\UsersCategories;
 
 class Users extends Authenticatable implements MustVerifyEmail
 {
+    use HasFactory;
     use Notifiable;
     use SoftDeletes;
 

@@ -22,7 +22,7 @@ class AdminsTest extends TestCase
     public function adminsTest()
     {
         // Create random admin users using admin factory
-        $admins = factory(AdminUsers::class, mt_rand(10, 20))->create();
+        $admins = AdminUsers::factory(mt_rand(10, 20))->create();
 
         // Verify there are more than 10
         $this->assertTrue(count($admins) >= 10);
@@ -44,7 +44,7 @@ class AdminsTest extends TestCase
         {
             try
             {
-                factory(AdminUsersPermissions::class)->create();
+                AdminUsersPermissions::factory()->create();
                 $i++;
             }
             catch(\Exception $e)

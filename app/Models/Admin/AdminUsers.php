@@ -2,6 +2,7 @@
 
 namespace App\Models\Admin;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -15,6 +16,7 @@ use App\Models\Admin\AdminUsersPermissions;
 
 class AdminUsers extends Authenticatable
 {
+    use HasFactory;
     use Notifiable;
     use SoftDeletes;
 

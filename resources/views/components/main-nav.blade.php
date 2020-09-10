@@ -8,9 +8,11 @@
             <a @if($highlight == 'top') href="#" @else href="{{ route('top') }}" @endif>Top</a>
         </li>
 
-        <li @if($highlight == 'local') class="highlight" @endif>
-            <a @if($highlight == 'local') href="#" class="highlight" @else href="{{ route('local') }}" @endif>Local</a>
-        </li>
+        @if(config('local.enabled'))
+            <li @if($highlight == 'local') class="highlight" @endif>
+                <a @if($highlight == 'local') href="#" class="highlight" @else href="{{ route('local') }}" @endif>Local</a>
+            </li>
+        @endif
 
         <li @if($highlight == 'vote') class="highlight" @endif>
             <a @if($highlight == 'vote') href="#" class="highlight" @else href="{{ route('voting') }}" @endif>Vote</a>

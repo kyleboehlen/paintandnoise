@@ -24,7 +24,7 @@ class PostersTest extends TestCase
     public function postersTest()
     {
         // Create random posters using posters factory
-        $posters = factory(Posters::class, mt_rand(250, 500))->create(); // Do not go over 1000 posters in case there are not enough users_ids
+        $posters = Posters::factory(mt_rand(250, 500))->create(); // Do not go over 1000 posters in case there are not enough users_ids
 
         // Verify there are more than 500
         $this->assertTrue(count($posters) >= 250);

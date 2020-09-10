@@ -1,5 +1,9 @@
 <?php
 
+namespace Database\Seeders;
+use DB;
+use Log;
+
 use Illuminate\Database\Seeder;
 use Carbon\Carbon;
 

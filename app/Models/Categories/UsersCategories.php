@@ -2,13 +2,15 @@
 
 namespace App\Models\Categories;
 
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+
 // Traits
 use App\Models\Traits\HasCompositePrimaryKey;
 
-use Illuminate\Database\Eloquent\Model;
-
 class UsersCategories extends Model
 {
+    use HasFactory;
     use HasCompositePrimaryKey;
 
     public $incrementing = false;

@@ -1,7 +1,12 @@
 <?php
 
+namespace Database\Seeders;
+
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\Hash;
 use Carbon\Carbon;
+use DB;
+use Log;
 
 // Models
 use App\Models\Admin\AdminUsers;

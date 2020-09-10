@@ -21,7 +21,7 @@ class AccountManagementTest extends TestCase
     public function categoriesTest()
     {
         // Create a user with no categories
-        $user = factory(Users::class)->create();
+        $user = Users::factory()->create();
 
         // Test user can reach categories page
         $response = $this->actingAs($user)->get('/account/categories');

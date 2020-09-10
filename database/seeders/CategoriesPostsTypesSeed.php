@@ -1,6 +1,10 @@
 <?php
 
+namespace Database\Seeders;
+
 use Illuminate\Database\Seeder;
+use DB;
+use Log;
 
 // Helpers
 use App\Http\Helpers\Constants\Categories;
