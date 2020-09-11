@@ -12,6 +12,7 @@ use App\Models\Posters\Posters;
 use App\Models\Posters\PostersCategories;
 use App\Models\Posters\PostersSocials;
 use App\Models\Socials\Socials;
+use App\Models\Users;
 
 class PostersTest extends TestCase
 {
@@ -24,10 +25,16 @@ class PostersTest extends TestCase
     public function postersTest()
     {
         // Create random posters using posters factory
-        $posters = Posters::factory(mt_rand(250, 500))->create(); // Do not go over 1000 posters in case there are not enough users_ids
+        $posters =
+            Posters::factory()->count(
+                mt_rand(
+                    intval(Users::all()->count() * config('test.min_percent_users_post')),
+                    intval(Users::all()->count() * config('test.max_percent_users_post'))
+                )
+            )->create();
 
-        // Verify there are more than 500
-        $this->assertTrue(count($posters) >= 250);
+        // Verify there are X% of users as posters
+        $this->assertTrue(Posters::all()->count() >= intval(Users::all()->count() * config('test.min_percent_users_post')));
     }
 
     /**
@@ -40,26 +47,31 @@ class PostersTest extends TestCase
     {
         // Create at least one relationship per poster
         $posters = Posters::all();
+        $categories = collect();
+        
+        foreach(Categories::all() as $category)
+        {
+            if($category->subCategoriesCount() == 0)
+            {
+                $categories->add($category);
+            }
+        }
 
+        $insert = array();
         foreach($posters as $poster)
         {
-            for($i = 0; $i < mt_rand(1, 3); $i++)
+            foreach($categories->random(mt_rand(1, 3)) as $category)
             {
-                $category = Categories::whereNotIn('id', 
-                    Categories::whereNotNull('parent_id')->groupBy('parent_id')->pluck('parent_id')->toArray()
-                )->get()->random();
-                $ids = array(
+                array_push($insert, [
                     'posters_id' => $poster->id,
                     'categories_id' => $category->id,
-                );
-                $poster_category = new PostersCategories($ids);
-                try
-                {
-                    $poster_category->save();
-                }
-                catch(\Exception $e)
-                { /* skipping duplicate relationship */ }
+                ]);
             }
+        }
+        
+        foreach(array_chunk($insert, config('app.chunk_insert_size')) as $chunk_insert)
+        {
+            PostersCategories::insert($chunk_insert);
         }
 
         $this->assertTrue(PostersCategories::all()->count() >= count($posters));
@@ -76,22 +88,25 @@ class PostersTest extends TestCase
         // Give posters a random number of social media links
         $posters = Posters::all();
         $handles = config('test.social_handles');
+        $socials = Socials::all();
 
+        $insert = array();
         foreach($posters as $poster)
         {
-            $socials = Socials::all()->random(mt_rand(1, 6));
-            foreach($socials as $social)
+            foreach($socials->random(mt_rand(1, $socials->count())) as $social)
             {
-                $attr = array(
+                array_push($insert, [
                     'posters_id' => $poster->id,
                     'socials_id' => $social->id,
                     'value' => json_encode($handles[$social->id]),
                     'verified' => 1, // Verified = true
-                );
-
-                $poster_social = new PostersSocials($attr);
-                $poster_social->save();
+                ]);
             }
+        }
+
+        foreach(array_chunk($insert, config('app.chunk_insert_size')) as $chunk_insert)
+        {
+            PostersSocials::insert($chunk_insert);
         }
 
         $this->assertTrue(PostersSocials::all()->count() >= count($posters));

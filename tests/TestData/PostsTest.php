@@ -9,6 +9,7 @@ use Artisan;
 
 // Models
 use App\Models\Users;
+use App\Models\Posters\Posters;
 use App\Models\Posts\Posts;
 use App\Models\Posts\Votes;
 
@@ -24,7 +25,13 @@ class PostsTest extends TestCase
     public function postsTest()
     {
         // Create random posts
-        $posts = Posts::factory(mt_rand(50, 200))->create(); // Do not go over 250 in case there are not enough posters
+        $posts = 
+            Posts::factory(
+                mt_rand(
+                    intval(Posters::all()->count() * config('test.min_percent_posters_post')),
+                    intval(Posters::all()->count() * config('test.max_percent_posters_post'))
+                )
+            )->create();
 
         // Verify there are more than 50
         $this->assertTrue(count($posts) >= 50);
@@ -42,23 +49,21 @@ class PostsTest extends TestCase
         $posts = Posts::all();
         $users = Users::all();
 
+        $insert = array();
         foreach($posts as $post)
         {
-            for($i = 0; $i < mt_rand(1, intval($users->count() / 10)); $i++)
+            foreach($users->random(mt_rand(1, intval($users->count() / 10))) as $user)
             {
-                $user = $users->random();
-                $ids = array(
+                array_push($insert, [
                     'posts_id' => $post->id,
                     'users_id' => $user->id,
-                );
-                $vote = new Votes($ids);
-                try
-                {
-                    $vote->save();
-                }
-                catch(\Exception $e)
-                { /* skipping duplicate relationship */ }
+                ]);
             }
+        }
+
+        foreach(array_chunk($insert, config('app.chunk_insert_size')) as $chunk_insert)
+        {
+            Votes::insert($chunk_insert);
         }
 
         $this->assertTrue(Votes::all()->count() >= count($posts));

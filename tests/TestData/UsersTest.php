@@ -21,9 +21,10 @@ class UsersTest extends TestCase
     public function usersTest()
     {
         // Create random users using users factory
-        $users = Users::factory(mt_rand(1000, 2000))->create();
-        // Verify there are more than 100
-        $this->assertTrue(count($users) >= 1000);
+        $users = Users::factory()->count(mt_rand(config('test.min_test_users'), config('test.max_test_users')))->create();
+
+        // Verify there are more than the minimum test users
+        $this->assertTrue(count($users) >= config('test.min_test_users'));
     }
 
     /**
@@ -33,22 +34,35 @@ class UsersTest extends TestCase
      */
     public function usersCategoriesTest()
     {
-        // Create an average of 3 relationships per user
-        $num_relationships = Users::all()->count() * 3;
-        $i = 0;
-
-        while($i < $num_relationships)
+        $users = Users::all();
+        $categories = collect();
+        
+        foreach(Categories::all() as $category)
         {
-            try
+            if($category->subCategoriesCount() == 0)
             {
-                UsersCategories::factory()->create();
-                $i++;
+                $categories->add($category);
             }
-            catch(\Exception $e)
-            { /* skipping duplicate relationship */ }
+        }
+
+        $insert = array();
+        foreach($users as $user)
+        {
+            foreach($categories->random(mt_rand(3, $categories->count())) as $category)
+            {
+                array_push($insert, [
+                    'users_id' => $user->id,
+                    'categories_id' => $category->id,
+                ]);
+            }
+        }
+
+        foreach(array_chunk($insert, config('app.chunk_insert_size')) as $chunk_insert)
+        {
+            UsersCategories::insert($chunk_insert);
         }
         
         // Verify there are the proper amount
-        $this->assertTrue(UsersCategories::all()->count() == $num_relationships);
+        $this->assertTrue(UsersCategories::all()->count() >= ($users->count() * 3));
     }
 }

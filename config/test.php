@@ -58,4 +58,10 @@ return [
         'browse'     , 'need'    , 'fresh'   , 'content'  , 'social'  , 'media'  , 'update' ,
         'underground', 'cost'    , 'free'    , 'team'     , 'love'    , 'peace'  , 'app'    ,
     ),
+    'min_test_users' => env('MIN_TEST_USERS'),
+    'max_test_users' => env('MAX_TEST_USERS'),
+    'min_percent_users_post' => env('MIN_PERCENT_POSTERS') / 100,
+    'max_percent_users_post' => env('MAX_PERCENT_POSTERS') / 100,
+    'min_percent_posters_post' => env('MIN_PERCENT_POSTS') / 100,
+    'max_percent_posters_post' => env('MAX_PERCENT_POSTS') / 100,
 ];
