@@ -33,8 +33,8 @@ class PostsTest extends TestCase
                 )
             )->create();
 
-        // Verify there are more than 50
-        $this->assertTrue(count($posts) >= 50);
+        // Verify there are the correct amount
+        $this->assertTrue(count($posts) >= intval(Posters::all()->count() * config('test.min_percent_posters_post')));
     }
 
     /**
