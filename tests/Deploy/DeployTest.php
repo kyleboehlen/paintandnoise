@@ -46,6 +46,8 @@ class DeployTest extends TestCase
         $this->assertTrue(Schema::hasTable('posts'));
         $this->assertTrue(Schema::hasTable('votes'));
         $this->assertTrue(Schema::hasTable('categories_posts_types'));
+        $this->assertTrue(Schema::hasTable('cached_zip_searches'));
+        $this->assertTrue(Schema::hasTable('cached_zip_codes'));
     }
 
     /**

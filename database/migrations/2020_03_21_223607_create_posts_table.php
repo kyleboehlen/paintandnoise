@@ -30,6 +30,7 @@ class CreatePostsTable extends Migration
             $table->mediumInteger('total_votes')->unsigned()->default($value = 0);
             $table->char('vote_token', 16); // Alpha numeric
             $table->float('trending_score', 12, 8)->unsigned()->default($value = 0); // 9999.12345678
+            $table->string('zip_code', 5)->nullable();
 
             // Constraints
             $table->foreign('categories_id')->references('id')->on('categories');
