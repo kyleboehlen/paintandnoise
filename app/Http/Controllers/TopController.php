@@ -69,14 +69,17 @@ class TopController extends Controller
             // Get top post
             $top_post = $top_post->with('poster')->with('category')->orderBy('total_votes', 'desc')->first();
 
-            // Replace category name w/ parent category name
-            $top_post->category['name'] = $category->name;
+            if(!is_null($top_post))
+            {
+                // Replace category name w/ parent category name
+                $top_post->category['name'] = $category->name;
 
-            // Replace category slug w/ parent category slug
-            $top_post->category['slug'] = $category->slug;
+                // Replace category slug w/ parent category slug
+                $top_post->category['slug'] = $category->slug;
 
-            // Push top post to collection
-            $posts->add($top_post);
+                // Push top post to collection
+                $posts->add($top_post);
+            }
         }
 
         return view('top')->with([
