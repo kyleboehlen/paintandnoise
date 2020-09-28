@@ -1,4 +1,4 @@
-<div class="post">
+<div class="post" id="post-{{ $id }}">
     {{-- Category Header --}}
     <div class="category-header c-{{ $post->category['color'] }}">
         @if($category_link)

@@ -3,8 +3,8 @@
 @section('body')
     <x-main-nav :highlight="$nav_highlight" />
     
-    @foreach($posts as $post)
-        <x-post :post="$post" :link="$category_link" />
+    @foreach($posts as $key => $post)
+        <x-post :id="$key" :post="$post" :link="$category_link" />
     @endforeach
 
     @if(method_exists($posts, 'links'))

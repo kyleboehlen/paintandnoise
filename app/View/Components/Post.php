@@ -14,6 +14,7 @@ use App\Models\Posts\Posts;
 class Post extends Component
 {
     public $category_link;
+    public $id;
     public $post;
     public $types = Types::class;
 
@@ -22,8 +23,9 @@ class Post extends Component
      *
      * @return void
      */
-    public function __construct(Posts $post, $link)
+    public function __construct($id, Posts $post, $link)
     {
+        $this->id = $id;
         $this->post = $post;
         $this->category_link = (bool) $link;
     }
