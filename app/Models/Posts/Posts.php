@@ -31,7 +31,15 @@ class Posts extends Model
         }
 
         // Calculate trending score
-        $this->trending_score = $this->total_votes / Carbon::now()->diffInMinutes(Carbon::parse($this->created_at));
+        $minutes_since_posted = Carbon::now()->diffInMinutes(Carbon::parse($this->created_at));
+        if($minutes_since_posted > 0)
+        {
+            $this->trending_score = $this->total_votes / $minutes_since_posted;
+        }
+        else
+        {
+            $this->trending_score = 0;
+        }
 
         if(!$this->save())
         {
