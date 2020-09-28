@@ -23,11 +23,24 @@ class AuthTest extends TestCase
      */
     public function testUserGaurd()
     {
-        // Call root
+        // Call root and assert redirect to about
         $response = $this->get('/');
-
-        // Assert redirect to about
         $response->assertRedirect('/about');
+
+        // Assert ok to top
+        $response = $this->get('/top');
+        $response->assertStatus(200);
+
+        // Assert redirects for top/{slug}, trending, and local
+        $response = $this->get('/top/music');
+        $response->assertRedirect('/login');
+        $response = $this->get('/trending');
+        $response->assertRedirect('/login');
+        if(config('local.enabled'))
+        {
+            $response = $this->get('/local');
+            $response->assertRedirect('/login');
+        }
 
         // Create user
         $user = Users::factory()->make();
@@ -36,10 +49,8 @@ class AuthTest extends TestCase
         $user->email_verified_at = null;
         $this->assertTrue($user->save());
 
-        // Call root
+        // Call root and assert redirect to home
         $response = $this->actingAs($user)->get('/');
-
-        // Assert redirect
         $response->assertRedirect('/home');
 
         // Test email verification redirect
@@ -53,6 +64,17 @@ class AuthTest extends TestCase
         // Test logged in redirect
         $response = $this->actingAs($user)->get('/');
         $response->assertRedirect('/home');
+
+        // Assert ok for top/{slug}, trending, and local
+        $response = $this->actingAs($user)->get('/top/music');
+        $response->assertStatus(200);
+        $response = $this->actingAs($user)->get('/trending');
+        $response->assertStatus(200);
+        if(config('local.enabled'))
+        {
+            $response = $this->actingAs($user)->get('/local');
+            $response->assertStatus(200);
+        }
 
         // Verify user session destroyed on user delete
         $this->assertTrue($user->delete());
