@@ -45,3 +45,14 @@
         }
     }
 }
+
+%links
+{
+    color: $light-grey;
+    font-family: $title-font;
+    
+    &:hover
+    {
+        color: $red;
+    }
+}

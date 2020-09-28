@@ -1,15 +1,5 @@
 @import 'app';
 
-%links
-{
-    color: $light-grey;
-    font-family: $title-font;
-    
-    &:hover
-    {
-        color: $red;
-    }
-}
 .about-page-section
 {
     border-top: 5px solid $white;

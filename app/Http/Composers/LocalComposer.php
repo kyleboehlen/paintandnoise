@@ -16,6 +16,7 @@ class LocalComposer
     {
         $view->with([
             'nav_highlight' => 'local',
+            'category_link' => false,
         ]);
     }
 }
