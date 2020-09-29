@@ -43,11 +43,17 @@ class Cache extends Command
     {
         $posts = Posts::all();
 
+        $failures = 0;
         foreach($posts as $post)
         {
-            $post->cacheVotes();
+            if(!$post->cacheVotes())
+            {
+                $failures++;
+            }
         }
 
-        Log::info('Cached votes for posts.');
+        $message = "Cached votes for posts. $failures failures.";
+        Log::info($message);
+        echo $message . "\n";
     }
 }
