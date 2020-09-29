@@ -4,6 +4,7 @@ namespace App\Models\Posts;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Carbon\Carbon;
 use Log;
 
@@ -15,6 +16,7 @@ use App\Models\Posts\Votes;
 class Posts extends Model
 {
     use HasFactory;
+    use SoftDeletes;
     
     public $incrementing = false;
     
@@ -46,7 +48,11 @@ class Posts extends Model
             Log::warning('Failed to calculate trending score for post.', [
                 'posts_id' => $this->id
             ]);
+
+            return false; // Failure
         }
+
+        return true; // Sucess
     }
 
     // Poster
@@ -60,4 +66,11 @@ class Posts extends Model
     {
         return $this->hasOne(Categories::class, 'id', 'categories_id');
     }
+
+    public function isExpired()
+    {
+        
+        return Carbon::now()->diffInDays(Carbon::parse($this->created_at)) >= config('posts.timeout');
+    }
+
 }
