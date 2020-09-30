@@ -94,7 +94,7 @@ class AssetController extends Controller
             $response->header('Last-Modified', $time);
         }
 
-        $response->header('Cache-Control', 'public, max-age=' . $this->cached_assets_timeout);
+        $response->header('Cache-Control', 'public, max-age=86400, immutable' . $this->cached_assets_timeout);
 
         return $response;
     }
