@@ -28,10 +28,6 @@
             @case($types::TEXT)
                 Text Post
                 @break
-
-            @case($types::EMBEDDED_SOUNDCLOUD)
-                Soundcloud Post
-                @break
         @endswitch
     </div>
 

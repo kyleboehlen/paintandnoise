@@ -33,10 +33,6 @@ class CategoriesPostsTypesSeed extends Seeder
                 'types_id' => Types::VIDEO,
             ),
             array(
-                'categories_id' => Categories::MUSIC,
-                'types_id' => Types::EMBEDDED_SOUNDCLOUD,
-            ),
-            array(
                 'categories_id' => Categories::VISUAL_ART_2D,
                 'types_id' => Types::IMAGE,
             ),

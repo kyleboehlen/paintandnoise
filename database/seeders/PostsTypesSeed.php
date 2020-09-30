@@ -38,10 +38,6 @@ class PostsTypesSeed extends Seeder
                 'id' => Types::TEXT,
                 'name' => 'Text',
             ),
-            array(
-                'id' => Types::EMBEDDED_SOUNDCLOUD,
-                'name' => 'Embedded SoundCloud',
-            ),
         );
 
         $failures = 0;

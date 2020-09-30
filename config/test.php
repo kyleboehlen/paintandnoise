@@ -44,9 +44,6 @@ return [
             it took
             to blossom.',
         ],
-        Types::EMBEDDED_SOUNDCLOUD => [
-            'song_slug' => 'good-feelin-feat-alan-watts',
-        ],
     ),
     'word_list' => array(
         'art'        , 'music'   , 'question', 'if'       , 'will'    , 'how'    , 'new'    ,

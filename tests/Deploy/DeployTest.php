@@ -89,9 +89,9 @@ class DeployTest extends TestCase
         $this->assertTrue(DB::table('admin_users_permissions')->where('users_id', 1)->get()->count() == 12);
 
         // Check for 5 posts types
-        $this->assertTrue(DB::table('posts_types')->get()->count() == 5);
+        $this->assertTrue(DB::table('posts_types')->get()->count() == 4);
 
         // Verify all categories posts types seeded
-        $this->assertTrue(DB::table('categories_posts_types')->get()->count() == 15);
+        $this->assertTrue(DB::table('categories_posts_types')->get()->count() == 14);
     }
 }
