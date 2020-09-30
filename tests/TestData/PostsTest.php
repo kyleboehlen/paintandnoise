@@ -77,7 +77,7 @@ class PostsTest extends TestCase
      */
     public function cacheVotesTest()
     {
-        Artisan::call('votes:cache');
+        Artisan::call('votes:cache --silent');
         $this->assertTrue(Posts::all()->sum('total_votes') > 0);
     }
 }

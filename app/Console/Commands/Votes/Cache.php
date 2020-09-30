@@ -15,7 +15,7 @@ class Cache extends Command
      *
      * @var string
      */
-    protected $signature = 'votes:cache';
+    protected $signature = 'votes:cache {--silent}';
 
     /**
      * The console command description.
@@ -41,6 +41,9 @@ class Cache extends Command
      */
     public function handle()
     {
+        // Get silent option
+        $silent = $this->option('silent');
+
         $posts = Posts::all();
 
         $failures = 0;
@@ -54,6 +57,11 @@ class Cache extends Command
 
         $message = "Cached votes for posts. $failures failures.";
         Log::info($message);
-        echo $message . "\n";
+
+        // Echo message if silent option not selected
+        if(!$silent)
+        {
+            echo $message . "\n";
+        }
     }
 }
