@@ -4,7 +4,9 @@ namespace Tests\TestData;
 
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
+use Illuminate\Support\Facades\Hash;
 use Tests\TestCase;
+use Carbon\Carbon;
 
 // Models
 use App\Models\Users;
@@ -64,5 +66,25 @@ class UsersTest extends TestCase
         
         // Verify there are the proper amount
         $this->assertTrue(UsersCategories::all()->count() >= ($users->count() * 3));
+    }
+
+    /**
+     * Create a test user so I don't have to make one every time I run tests
+     * 
+     * @test
+     */
+    public function testUserTest()
+    {
+        $attr = [
+            'name' => 'Test User',
+            'email' => 'test@test.com',
+            'password' => Hash::make('testtesttest'),
+        ];
+
+        $test_user = new Users($attr);
+        $test_user->email_verified_at = Carbon::now()->toDatetimeString();
+
+        $this->assertTrue($test_user->save());
+
     }
 }
