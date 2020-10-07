@@ -26,23 +26,47 @@ return [
     ),
     'assets' => array(
         Types::IMAGE => [
-            'filename' => 'flowers.jpeg',
+            [
+                'filename' => 'test/birb.jpg',
+            ],
+            [
+                'filename' => 'test/plane.jpg',
+            ],
+            [
+                'filename' => 'test/portrait1.jpg',
+            ],
+            [
+                'filename' => 'test/portrait2.jpg',
+            ],
+            [
+                'filename' => 'test/shadow.jpg',
+            ],
+            [
+                'filename' => 'test/train.jpg',
+            ],
         ],
         Types::AUDIO => [
-            'filename' => 'dubstep.mp3',
+            [
+                'filename' => 'dubstep.mp3',
+            ],
         ],
         Types::VIDEO => [
-            'video_id' => '8e93be5dae47ac48c3c4993fd2a07e3f',
+            [
+                'video_id' => '8e93be5dae47ac48c3c4993fd2a07e3f',
+            ],
         ],
         Types::TEXT => [
-            'value' => 'And then the day came,
-            when the risk
-            to remain tight
-            in a bud
-            was more painful
-            than the risk
-            it took
-            to blossom.',
+            [
+                'value' =>
+                    'And then the day came,
+                    when the risk
+                    to remain tight
+                    in a bud
+                    was more painful
+                    than the risk
+                    it took
+                    to blossom.',
+            ],
         ],
     ),
     'word_list' => array(

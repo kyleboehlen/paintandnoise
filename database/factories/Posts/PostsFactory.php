@@ -55,13 +55,14 @@ class PostsFactory extends Factory
         }
         $types_id = $this->categories_posts_types[$category->id][array_rand($this->categories_posts_types[$category->id])];
         $asset_array = config('test.assets');
+        $asset = $asset_array[$types_id][array_rand($asset_array[$types_id])];
 
         return [
             'id' => $this->faker->uuid,
             'posters_id' => $poster->id,
             'categories_id' => $category->id,
             'types_id' => $types_id,
-            'asset' => json_encode($asset_array[$types_id]),
+            'asset' => $asset,
             'nsfw' => random_int(0, 1),
             'vote_token' => $this->faker->regexify('[a-zA-Z0-9]{16}'),
             'created_at' => Carbon::now()->subHours(rand(0, 23))->subMinutes(rand(0, 59))->subSeconds(rand(0, 59))->toDatetimeString(),
