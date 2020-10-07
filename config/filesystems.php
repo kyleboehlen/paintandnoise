@@ -48,10 +48,24 @@ return [
             'root' => '/',
         ],
 
-        'public' => [
+        'audio' => [
             'driver' => 'local',
-            'root' => storage_path('app/public'),
-            'url' => env('APP_URL').'/storage',
+            'root' => storage_path('app/public/assets/audio'),
+            'url' => env('APP_URL').'/audio',
+            'visibility' => 'public',
+        ],
+
+        'images' => [
+            'driver' => 'local',
+            'root' => storage_path('app/public/assets/images'),
+            'url' => env('APP_URL').'/images',
+            'visibility' => 'public',
+        ],
+
+        'video' => [
+            'driver' => 'local',
+            'root' => storage_path('app/public/assets/video'),
+            'url' => env('APP_URL').'/video',
             'visibility' => 'public',
         ],
 
@@ -64,6 +78,12 @@ return [
             'url' => env('AWS_URL'),
         ],
 
+    ],
+
+    'links' => [
+        public_path('audio') => storage_path('app/public/assets/audio'),
+        public_path('images') => storage_path('app/public/assets/images'),
+        public_path('video') => storage_path('app/public/assets/video'),
     ],
 
 ];
