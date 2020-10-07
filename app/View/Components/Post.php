@@ -25,9 +25,9 @@ class Post extends Component
      */
     public function __construct($id, Posts $post, $link)
     {
-        $this->id = $id;
-        $this->post = $post;
-        $this->category_link = (bool) $link;
+        $this->id = $id; // ID on page for anchor tags #
+        $this->post = $post; // Post object
+        $this->category_link = (bool) $link; // Whether or not the category header links to more posts of that category
     }
 
     /**
