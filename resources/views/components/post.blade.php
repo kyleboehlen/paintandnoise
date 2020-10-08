@@ -11,25 +11,25 @@
     </div>
 
     {{-- Post content --}}
-    <div class="content">
-        @switch($post->types_id)
-            @case($types::IMAGE)
-                Image post
-                @break
+    @switch($post->types_id)
+        @case($types::IMAGE)
+            <div class="img-content">
+                <img src="{{ asset('images/' . $post->asset['filename']) }}" />
+            </div>
+            @break
 
-            @case($types::AUDIO)
-                Audio Post
-                @break
+        @case($types::AUDIO)
+            Audio Post
+            @break
 
-            @case($types::VIDEO)
-                Video Post
-                @break
+        @case($types::VIDEO)
+            Video Post
+            @break
 
-            @case($types::TEXT)
-                Text Post
-                @break
-        @endswitch
-    </div>
+        @case($types::TEXT)
+            Text Post
+            @break
+    @endswitch
 
     {{-- Artist footer --}}
     <div class="artist-footer">

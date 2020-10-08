@@ -18,6 +18,10 @@ class Posts extends Model
     use HasFactory;
     use SoftDeletes;
     
+    protected $casts = [
+        'asset' => 'array', // Cast stored json to array
+    ];
+
     public $incrementing = false;
     
     public function cacheVotes()

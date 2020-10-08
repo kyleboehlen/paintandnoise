@@ -943,7 +943,7 @@ nav
     .category-header
     {
         border-bottom: $thin-border solid $white;
-        color: $black;
+        color: $white;
         font-family: $tool-font;
         font-size: 2.5em;
         font-weight: 1000;
@@ -952,7 +952,7 @@ nav
 
         a
         {
-            color: $black;
+            color: $white;
             text-decoration: none;
 
             &:hover
@@ -978,9 +978,20 @@ nav
         }
     }
     
-    .content
+    .img-content
     {
+        display: block;
+        height: 80vh;
+        text-align: center;
+        width: 100%;
 
+        img
+        {
+            height: 100%;
+            object-fit: contain;
+            padding: 1%;
+            width: 98%;
+        }
     }
 
     .artist-footer
