@@ -81,8 +81,9 @@ class UsersTest extends TestCase
             'password' => Hash::make('testtesttest'),
         ];
 
-        $test_user = new Users($attr);
-        $test_user->email_verified_at = Carbon::now()->toDatetimeString();
+        $test_user = new Users($attr); // Instantiate model
+        $test_user->email_verified_at = Carbon::now()->toDatetimeString(); // Verify email (not fillable)
+        $test_user->profile_picture = '/test/' . rand(0, 12) . '.jpg';
 
         $this->assertTrue($test_user->save());
 
