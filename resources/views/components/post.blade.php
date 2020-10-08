@@ -27,7 +27,11 @@
             @break
 
         @case($types::TEXT)
-            Text Post
+            <div class="txt-content">
+                @foreach(explode(PHP_EOL, $post->asset['value']) as $line)
+                    <p>{{ $line }}</p>
+                @endforeach
+            </div>
             @break
     @endswitch
 

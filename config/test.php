@@ -67,6 +67,73 @@ return [
                     it took
                     to blossom.',
             ],
+            [
+                'value' =>
+                    'Be patient with life, despite its cruelty.
+                    Often it seems careless of our pain,
+                    But just as often brings us hope again.
+                    
+                    Remember, I wanted happiness for you.
+                    Under every foolish word this still was true.
+                    Be happy, then, without, as you would with me.
+                    In your life many sweet events remain.
+                    Not in anguish, but in joy remember me.',
+            ],
+            [
+                'value' =>
+                    'Why am I the mirror of your heart,
+                    Reflecting without depth your deepest pain,
+                    Revisiting your hell again, again,
+                    As though you were a well-wrought work of art?
+                    Why do I vicariously take part
+                    In suffering you barely can sustain,
+                    Witnessing your agony in vain,
+                    Tracing chaos too profound to chart?
+                    Each night obsessively I come to you,
+                    Eager to devour your bitter fruit,
+                    Uneasy through the doldrums of my day.
+                    Watching is, alas, what I can do,
+                    As though my gaze were contribution mute,
+                    Sharing your unease in some small way.',
+            ],
+            [
+                'value' =>
+                    'For us there is no death.
+                    Rest here merely bones.
+                    Around you love\'s in flower,
+                    Zero though our breath,
+                    Etched into these stones.
+                    Read and feel its power.',
+            ],
+            [
+                'value' =>
+                    'Sinners all, we ask for Your forgiveness
+                    As we await the hour of Your return.
+                    If only grace were something one could earn!
+                    Nor can we hope to imitate Your goodness.
+                    The saints know well the hopelessness of being
+                    Put upon the pedestal of faith
+                    As though we had already gained Your grace.
+                    The heart is naked to Your restless seeking.
+                    Regard us all, then, equally with love:
+                    In saints and vicious pederasts find lovers,
+                    Cherishing not one above the others,
+                    Knowing none has anything to prove.',
+            ],
+            [
+                'value' =>
+                    'All I wanted was to find the truth,
+                    Subtle and elusive though it be,
+                    However insusceptible to proof,
+                    Ever stranger than the world we see,
+                    Revealed to us as probability.
+                    
+                    And so I found in humor a fit foil,
+                    Rendering the world a tad askew.
+                    I would with relish expectations roil,
+                    And with a wry pun pertly turn the soil,
+                    Not distant from a different kind of true.',
+            ],
         ],
     ),
     'word_list' => array(

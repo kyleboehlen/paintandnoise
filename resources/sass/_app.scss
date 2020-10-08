@@ -999,6 +999,27 @@ nav
         }
     }
 
+    .txt-content
+    {
+        display: table;
+        height: auto;
+        margin: 0 auto;
+        padding: 2.5%;
+        width: auto;
+
+        p
+        {
+            color: $white;
+            font-family: $body-font;
+            font-size: 1.25em;
+
+            @media only screen and (max-width: 425px)
+            {
+                font-size: 1em;
+            }
+        }
+    }
+
     .artist-footer
     {
 
