@@ -80,6 +80,10 @@ class CategoriesPostsTypesSeed extends Seeder
                 'categories_id' => Categories::BODY_ART,
                 'types_id' => Types::VIDEO,
             ),
+            array(
+                'categories_id' => Categories::PHOTOGRAPHY,
+                'types_id' => Types::IMAGE,
+            ),
         );
 
         // Truncate the table and reinsert (easier than trying to update w/ a compound PK)
