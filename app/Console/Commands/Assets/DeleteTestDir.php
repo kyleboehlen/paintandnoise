@@ -38,12 +38,7 @@ class DeleteTestDir extends Command
      */
     public function handle()
     {
-        // Delete test audio
-        Storage::disk('audio')->deleteDirectory('test');
-
-        // Delete test images
-        Storage::disk('images')->deleteDirectory('test');
-
-        return 1;
+        // Delete test audio/images
+        return Storage::disk('audio')->deleteDirectory('test') && Storage::disk('images')->deleteDirectory('test');
     }
 }
