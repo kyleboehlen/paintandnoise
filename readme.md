@@ -122,7 +122,13 @@ If the global install of phpunit does not work, is not installed, or throws an e
 `vendor/phpunit/phpunit/phpunit --filter Deploy`
 
 Or if you wanna be really big brain, just alias it
+
 `alias vendor_phpunit=vendor/phpunit/phpunit/phpunit`
+
+<br/>
+Delete the test assets if launching in production
+
+`php artisan assets:delete-test-dir`
 
 <br/>
 Change the php.ini file to let Laravel handle file upload sizes
