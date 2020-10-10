@@ -14,6 +14,7 @@
 
         <!-- Styles -->
         <link href="@isset($stylesheet) {{ asset("css/$stylesheet.css") }} @else {{ asset('css/app.css') }} @endisset" rel="stylesheet">
+        <link href="{{ asset('css/progress-bar.css') }}" rel="stylesheet">
 
         {{-- HTML5 Shiv --}}
         <!--[if lt IE 9]>

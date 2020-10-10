@@ -1,0 +1,58 @@
+
+*,
+*:after,
+*:before {
+    box-sizing             : border-box;
+    -webkit-box-sizing     : border-box;
+    -moz-box-sizing        : border-box;
+    -webkit-font-smoothing : antialiased;
+    -moz-font-smoothing    : antialiased;
+    -o-font-smoothing      : antialiased;
+    font-smoothing         : antialiased;
+    text-rendering         : optimizeLegibility;
+}
+
+.audio-content .control {
+    opacity        : 0; /* transition: opacity .2s linear; */
+    pointer-events : none;
+    cursor         : pointer;
+}
+
+.audio-content .not-started .play, .audio-content .paused .play {
+    opacity : 1;
+
+}
+
+.audio-content .playing .pause {
+    opacity : 1;
+
+}
+
+.audio-content .playing .play {
+    opacity : 0;
+}
+
+.audio-content .ended .stop {
+    opacity        : 1;
+    pointer-events : none;
+}
+
+.audio-content .precache-bar .done {
+    opacity : 0;
+}
+
+.audio-content .not-started .progress-bar, .audio-content .ended .progress-bar {
+    display : none;
+}
+
+.audio-content .ended .progress-track {
+    stroke-opacity : 1;
+}
+
+.audio-content .progress-bar,
+.audio-content .precache-bar {
+    transition        : stroke-dashoffset 500ms;
+
+    stroke-dasharray  : 298.1371428256714;
+    stroke-dashoffset : 298.1371428256714;
+}

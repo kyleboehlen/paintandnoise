@@ -19,7 +19,9 @@
             @break
 
         @case($types::AUDIO)
-            Audio Post
+            <div class="audio-content">
+                <audio class="listen" preload="none" data-size="200" src="{{ asset('audio/' . $post->asset['filename']) }}"></audio>
+            </div>
             @break
 
         @case($types::VIDEO)

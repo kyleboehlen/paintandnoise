@@ -47,7 +47,37 @@ return [
         ],
         Types::AUDIO => [
             [
-                'filename' => 'dubstep.mp3',
+                'filename' => 'test/dubstep.mp3',
+            ],
+            [
+                'filename' => 'test/energy.mp3',
+            ],
+            [
+                'filename' => 'test/epic.mp3',
+            ],
+            [
+                'filename' => 'test/tomorrow.mp3',
+            ],
+            [
+                'filename' => 'test/moose.mp3',
+            ],
+            [
+                'filename' => 'test/endless.mp3',
+            ],
+            [
+                'filename' => 'test/sexy.mp3',
+            ],
+            [
+                'filename' => 'test/groovy.mp3',
+            ],
+            [
+                'filename' => 'test/action.mp3',
+            ],
+            [
+                'filename' => 'test/octane.mp3',
+            ],
+            [
+                'filename' => 'test/dreams.mp3',
             ],
         ],
         Types::VIDEO => [

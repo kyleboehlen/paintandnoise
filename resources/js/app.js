@@ -1,4 +1,5 @@
 require('./bootstrap');
+require('./player.js');
 
 $(document).ready(function(){
     // Checkbox span toggle input
@@ -15,4 +16,7 @@ $(document).ready(function(){
     $('#profile-picture-input').change(function(){
         $('#profile-picture-form').submit();
     });
+
+    // Set up audio content players
+    $('.audio-content').mediaPlayer();
 });

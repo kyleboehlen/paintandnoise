@@ -12,6 +12,7 @@ const mix = require('laravel-mix');
  */
 
 mix.js('resources/js/app.js', 'public/js')
+    .copy('resources/css/progress-bar.css', 'public/css')
     .sass('resources/sass/about.scss', 'public/css')
     .sass('resources/sass/account.scss', 'public/css')
     .sass('resources/sass/admin.scss', 'public/css')
