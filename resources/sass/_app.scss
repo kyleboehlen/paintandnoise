@@ -865,15 +865,15 @@ nav
         {
             border-radius: 0px 0px 0px 10px;
 
-            @media only screen and (max-width: 600px)
+            @media only screen and (max-width: 625px)
             {
                 border-radius: 0px 0px 0px 0px;
             }
         }
 
-        li:nth-last-of-type(2)
+        li:nth-of-type(3) // This will need to change if store is added to nav options
         {
-            @media only screen and (max-width: 600px)
+            @media only screen and (max-width: 475px)
             {
                 border-radius: 0px 0px 0px 10px;
             }
@@ -882,6 +882,16 @@ nav
         li:last-of-type
         {
             border-radius: 0px 0px 10px 0px;
+
+            @media only screen and (max-width: 625px)
+            {
+                border-radius: 0px 0px 10px 10px;
+            }
+
+            @media only screen and (max-width: 475px)
+            {
+                border-radius: 0px 0px 10px 0px;
+            }
         }
 
         li.disabled
