@@ -22,7 +22,7 @@ Install the required depdendencies
 
 `cd /var/www/html/paintandnoise && composer install`
 
-`yarn install` DO NOT USE `npm install` until the laravel mix issue has been resolved
+`npm install`
 
 <br/>
 Generate the .css and .js files
