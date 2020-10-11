@@ -54,6 +54,9 @@ Route::prefix('assets')->group(function(){
 
     // User Profile Pictures
     Route::get('user/profile-picture', 'AssetController@profilePicture')->middleware('auth')->name('assets.profile-picture');
+
+    // Artist Profile Pictures
+    Route::get('artist/profile-picture/{uuid}', 'AssetController@artistProfilePicture')->name('assets.artist-profile-picture');
 });
 
 // Account management

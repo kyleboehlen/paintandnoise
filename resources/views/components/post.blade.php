@@ -38,8 +38,11 @@
     @endswitch
 
     {{-- Artist footer --}}
-    <div class="artist-footer">
-        Artist shit goes here
-    </div>
+    <a class="artist-link" href="#"> {{-- Add link to artist page --}}
+        <div class="artist-footer c-{{ $post->category['color'] }}">
+            <img src="{{ route('assets.artist-profile-picture', ['uuid' => $post->poster->id]) }}" />
+            <p>{{ $post->poster->user->name }}</p>
+        </div>
+    </a>
 </div>
 <br/>

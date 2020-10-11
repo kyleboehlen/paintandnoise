@@ -9,6 +9,7 @@ use Image;
 
 // Models
 use App\Models\Users;
+use App\Models\Posters\Posters;
 
 // Requests
 use App\Http\Requests\Assets\IconRequest;
@@ -75,6 +76,18 @@ class AssetController extends Controller
         // Get logged in user
         $user = \Auth::user();
 
+        return $this->profilePictureByUser($user);
+    }
+
+    public function artistProfilePicture($uuid)
+    {
+        $poster = Posters::where('id', $uuid)->with('user')->first();
+        
+        return $this->profilePictureByUser($poster->user);
+    }
+
+    private function profilePictureByUser($user)
+    {
         $make = config('media.path') . config('profilepictures.sub_dir') . (is_null($user->profile_picture) ? config('profilepictures.default') : $user->profile_picture);
 
         $img = Image::make($make)->fit(600, 600);
