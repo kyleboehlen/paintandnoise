@@ -3,7 +3,7 @@
 namespace App\Console\Commands\Assets;
 
 use Illuminate\Console\Command;
-use Illuminate\Support\Facades\Storage;
+use Storage;
 
 class DeleteTestDir extends Command
 {
@@ -39,6 +39,9 @@ class DeleteTestDir extends Command
     public function handle()
     {
         // Delete test audio/images
-        return Storage::disk('audio')->deleteDirectory('test') && Storage::disk('images')->deleteDirectory('test');
+        return
+            Storage::disk('audio')->deleteDirectory('test') &&
+            Storage::disk('images')->deleteDirectory('test') &&
+            Storage::deleteDirectory(config('media.path') . config('profilepictures.sub_dir') . 'test');
     }
 }
